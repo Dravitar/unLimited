@@ -17,9 +17,9 @@ function getDefaultPlayer() {
       ]
     },
     producers: {
-      power: 0,
+      power: new Decimal(0),
       amounts: [0, 0, 0, 0],
-      prices: [10, 100, 1e4, 1e7],
+      prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
       empowered: [0, 0, 0, 0]
     },
     upgrades: [],
