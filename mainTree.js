@@ -1,3 +1,4 @@
+
 function treePress(index1, index2) {
   if(player.clicks>0){
     if(player.producers.power.gte(player.buttons.requirements.power[index1][index2])&&
@@ -7,6 +8,7 @@ function treePress(index1, index2) {
         docShow(id);
         player.buttons.unlocked.push(id);
       }
+      player.clicks--;
     }
   }
 }
