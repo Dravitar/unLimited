@@ -5,16 +5,9 @@ function getDefaultPlayer() {
       unlocked: [""],
       requirements: {
         power: [[0], [0], [1e4, 0, 1e12]],
-        buttons: [[""], ["00"], ["10", "10", "10"]]
+        buttons: [[""], ["00"], ["11", "11", "11"]]
       },
-      unlocks: [[["10"]], [["20", "21", "22"]], ["", "", ""]],
-      texts: [
-        ["Start"],
-        ["Show Clicks"]
-        ["Show Upgrades",
-         "Show Producers",
-         "Show Prestige"]
-      ]
+      unlocks: [[["11"]], [["10", "20", "12"]], ["", "", ""]]
     },
     producers: {
       power: new Decimal(0),
