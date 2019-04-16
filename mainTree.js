@@ -1,5 +1,5 @@
 function treePress(index1, index2) {
-  let id=""+index1+index2;
+  let id="treeButton"+index1+index2;
   if(player.clicks>0){
     if(player.producers.power.gte(player.buttons.requirements.power[index1][index2])&&
        player.buttons.unlocked.includes(player.buttons.requirements.buttons[index1][index2])){
