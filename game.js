@@ -7,7 +7,7 @@ function getDefaultPlayer() {
         power: [[0], [0], [1e4, 0, 1e12]],
         buttons: [[""], ["00"], ["10", "10", "10"]]
       },
-      unlocks: [["10"], ["20", "21", "22"], ["", "", ""]],
+      unlocks: [[["10"]], [["20", "21", "22"]], ["", "", ""]],
       texts: [
         ["Start"],
         ["Show Clicks"]
