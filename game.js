@@ -4,12 +4,12 @@ function getDefaultPlayer() {
     buttons: {
       unlocked: [""], //All buttons the player has currently unlocked
       requirements: { //Power req, button unlock req, buttons that it unlocks
-				row0: {col0: {0, "", ["11"]}},
-				row1: {col0: {0, "00", ["21"]}},
-				row2: {
-					col0: {"1e4", "11", [""]},
-					col1: {0, "11", [""]},
-					col2: {"1e12", "11", [""]},
+	row0: {col0: {0, "", ["11"]}},
+	row1: {col0: {0, "00", ["21"]}},
+	row2: {
+		col0: {"1e4", "11", [""]},
+		col1: {0, "11", [""]},
+		col2: {"1e12", "11", [""]},
 				},
       },
     },
