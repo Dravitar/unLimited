@@ -1,16 +1,20 @@
 function getDefaultPlayer() {
   return {
-    clicks: 12,
+    clicks: 12, //How many clicks the player has remaining
     buttons: {
-      unlocked: [""],
-      requirements: {
-        power: [[0], [0], [1e4, 0, 1e12]],
-        buttons: [[""], ["00"], ["11", "11", "11"]]
+      unlocked: [""], //All buttons the player has currently unlocked
+      requirements: { //Power req, button unlock req, buttons that it unlocks
+				row0: {col0: {0, "", ["11"]}},
+				row1: {col0: {0, "00", ["21"]}},
+				row2: {
+					col0: {"1e4", "11", [""]},
+					col1: {0, "11", [""]},
+					col2: {"1e12", "11", [""]},
+				},
       },
-      unlocks: [[["11"]], [["10", "20", "12"]], ["", "", ""]]
     },
     producers: {
-      power: new Decimal(0),
+      power: new Decimal(10),
       amounts: [0, 0, 0, 0],
       prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
       empowered: [0, 0, 0, 0]
