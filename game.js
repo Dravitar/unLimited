@@ -10,7 +10,7 @@ function getDefaultPlayer() {
 		col0: {"1e4", "11", [""]},
 		col1: {0, "11", [""]},
 		col2: {"1e12", "11", [""]},
-				},
+	},
       },
     },
     producers: {
