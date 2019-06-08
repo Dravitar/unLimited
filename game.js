@@ -87,6 +87,6 @@ function getProduction(time) {
   }
 }
 
-function start() {
+function startCycle() {
 	setInterval(gameCycle(50), 50);
 }
