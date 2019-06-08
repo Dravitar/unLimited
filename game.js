@@ -3,13 +3,13 @@ function getDefaultPlayer() {
     clicks: 12, //How many clicks the player has remaining
     buttons: {
       unlocked: [""], //All buttons the player has currently unlocked
-      requirements: { //Power req, button unlock req, buttons that it unlocks
-	row0: {col0: [0, "", ["10"]]},
-	row1: {col0: [0, "00", ["21"]]},
+      requirements: { //Power req, button unlock req, buttons that it unlocks, button id
+	row0: {col0: [0, "", ["10"], "00"]},
+	row1: {col0: [0, "00", ["21"], "10"]},
 	row2: {
-		col0: ["1e4", "10", [""]],
-		col1: [0, "10", [""]],
-		col2: ["1e12", "10", [""]],
+		col0: ["1e4", "10", [""], "20"],
+		col1: [0, "10", [""], "21"],
+		col2: ["1e12", "10", [""], "22"],
 	},
       },
     },
