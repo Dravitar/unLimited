@@ -4,13 +4,13 @@ function getDefaultPlayer() {
     buttons: {
       unlocked: [""], //All buttons the player has currently unlocked
       requirements: { //Power req, button unlock req, buttons that it unlocks, button id
-	row0: {col0: [0, "", ["10"], "00"]},
-	row1: {col0: [0, "00", ["21"], "10"]},
-	row2: {
-		col0: ["1e4", "10", [""], "20"],
-		col1: [0, "10", [""], "21"],
-		col2: ["1e12", "10", [""], "22"],
-	},
+				row0: {col0: [0, "", ["10"], "00"]},
+				row1: {col0: [0, "00", ["21"], "10"]},
+				row2: {
+					col0: ["1e4", "10", [""], "20"],
+					col1: [0, "10", [""], "21"],
+					col2: ["1e12", "10", [""], "22"],
+				},
       },
     },
     producers: {
@@ -25,9 +25,41 @@ function getDefaultPlayer() {
 }
 
 let player = getDefaultPlayer();
+let totalButtons = [[0,0],[1,0],[2,0],[2,1],[2,2]];
 
-function update(get, set) {
+function updateText(get, set) {
 	document.getElementById(get).innerHTML=set;
+}
+
+function updateColor(get, color) {
+	document.getElementById(get).style.backgroundColor = color;
+}
+
+function updateTextColor(get, color) {
+	document.getElementById(get).style.color = color;
+}
+
+function update() {
+	checkPricing();
+}
+
+function checkPricing() {
+	for(let i of totalButtons) {
+		let id = ""+i[0]+i[1];
+		let bigId = "treeButton"+id;
+		if(player.buttons.unlocked.contains(id)) {
+			updateColor(bigId, "green");
+			updateTextColor(bigId, "darkGreen");
+		}
+		else if(player.producers.power.gte(player.buttons.requirements["row"+i[0]]["col"+i[1]][0])) {
+			updateColor(bigId, "green");
+			updateTextColor(bigId, "white");
+		}
+		else {
+			updateColor(bigId, "white");
+			updateTextColor(bigId, "darkRed");
+		}
+	}
 }
 
 function gameCycle(time) {
@@ -53,4 +85,8 @@ function getProduction(time) {
       }
     }
   }
+}
+
+function start() {
+	setInterval(gameCycle(50), 50);
 }
