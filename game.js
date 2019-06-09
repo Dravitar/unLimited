@@ -48,7 +48,7 @@ function checkPricing() {
 	for(let i of totalButtons) {
 		let id = ""+i[0]+i[1];
 		let bigId = "treeButton"+id;
-		if(player.buttons.unlocked.contains(id)) {
+		if(player.buttons.unlocked.includes(id)) {
 			updateColor(bigId, "green");
 			updateTextColor(bigId, "darkGreen");
 		}
