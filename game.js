@@ -21,6 +21,7 @@ function getDefaultPlayer() {
     },
     upgrades: [],
     upgradePrices: [],
+	  lastTick: new Date().getTime();
   };
 }
 
@@ -62,12 +63,16 @@ function checkPricing() {
 	}
 }
 
-function gameCycle(time) {
-  getProduction(time);
+function gameCycle() {
+  getProduction();
   update();
 }
 
-function getProduction(time) {
+function getProduction() {
+	let time = new Date().getTime();
+	let x = time-player.lastTick;
+	player.lastTick = time;
+	time = x;
   while(time>0) {
     for(let i=player.producers.length-1;i>=0;i--) {
       if(i==0) {
@@ -88,5 +93,5 @@ function getProduction(time) {
 }
 
 function startCycle() {
-	setInterval(gameCycle(50), 50);
+	setInterval(gameCycle(), 50);
 }
