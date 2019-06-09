@@ -16,7 +16,6 @@ function treePress(index1, index2) {
 }
 
 function docShow(id) {
-  console.log(id);
   document.getElementById(id).style.display = "";
 }
 
