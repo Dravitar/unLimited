@@ -11,18 +11,18 @@ function getDefaultPlayer() {
 					col1: [0, "10", [""], "21"],
 					col2: ["1e12", "10", [""], "22"],
 				},
-      },
-    },
-    producers: {
-      power: new Decimal(10),
-      amounts: [0, 0, 0, 0],
-      prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
-      empowered: [0, 0, 0, 0]
-    },
-    upgrades: [],
-    upgradePrices: [],
-	  lastTick: new Date().getTime(),
-  };
+			},
+		},
+		producers: {
+			power: new Decimal(10),
+    	amounts: [0, 0, 0, 0],
+			prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
+			empowered: [0, 0, 0, 0]
+		},
+		upgrades: [],
+		upgradePrices: [],
+		lastTick: new Date().getTime(),
+	};
 }
 
 let player = getDefaultPlayer();
@@ -64,8 +64,8 @@ function checkPricing() {
 }
 
 function gameCycle() {
-  getProduction();
-  update();
+	getProduction();
+	update();
 }
 
 function getProduction() {
@@ -73,24 +73,24 @@ function getProduction() {
 	let x = time-player.lastTick;
 	player.lastTick = time;
 	time = x;
-  while(time>0) {
-    for(let i=player.producers.length-1;i>=0;i--) {
-	    console.log(i);
-      if(i==0) {
-        player.producers.power = player.producers.power.plus(
-          player.producers.amounts[0].times(
-            player.producers.empowered[0])
-          .times(0.05));
-        time-=50;
-      }
-      else {
-        player.producers.amounts[i-1] = player.producers.amount.plus(
-          player.producers.amounts[i].times(
-            player.producers.empowered[i])
-          .times(0.05));
-      }
-    }
-  }
+	while(time>0) {
+		for(let i=player.producers.amounts.length-1;i>=0;i--) {
+			console.log(i);
+			if(i==0) {
+				player.producers.power = player.producers.power.plus(
+					player.producers.amounts[0].times(
+						player.producers.empowered[0])
+					.times(0.05));
+				time-=50;
+			}
+			else {
+				player.producers.amounts[i-1] = player.producers.amount.plus(
+					player.producers.amounts[i].times(
+						player.producers.empowered[i])
+					.times(0.05));
+			}
+		}
+	}
 }
 
 function startCycle() {
