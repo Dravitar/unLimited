@@ -1,9 +1,9 @@
 function getDefaultPlayer() {
-  return {
-    clicks: 12, //How many clicks the player has remaining
-    buttons: {
-      unlocked: [""], //All buttons the player has currently unlocked
-      requirements: { //Power req, button unlock req, buttons that it unlocks, button id
+	return {
+		clicks: 12, //How many clicks the player has remaining
+		buttons: {
+			unlocked: [""], //All buttons the player has currently unlocked
+			requirements: { //Power req, button unlock req, buttons that it unlocks, button id
 				row0: {col0: [0, "", ["10"], "00"]},
 				row1: {col0: [0, "00", ["21"], "10"]},
 				row2: {
@@ -15,7 +15,7 @@ function getDefaultPlayer() {
 		},
 		producers: {
 			power: new Decimal(10),
-    	amounts: [0, 0, 0, 0],
+			amounts: [0, 0, 0, 0],
 			prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
 			empowered: [0, 0, 0, 0]
 		},
@@ -84,7 +84,7 @@ function getProduction() {
 				time-=50;
 			}
 			else {
-				player.producers.amounts[i-1] = player.producers.amount.plus(
+				player.producers.amounts[i-1] = player.producers.amounts.plus(
 					player.producers.amounts[i].times(
 						player.producers.empowered[i])
 					.times(0.05));
