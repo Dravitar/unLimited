@@ -4,20 +4,20 @@ function getDefaultPlayer() {
 		buttons: {
 			unlocked: [""], //All buttons the player has currently unlocked
 			requirements: { //Power req, button unlock req, buttons that it unlocks, button id
-				row0: {col0: [0, "", ["10"], "00"]},
-				row1: {col0: [0, "00", ["21"], "10"]},
+				row0: {col0: [new Decimal(0), "", ["10"], "00"]},
+				row1: {col0: [new Decimal(0), "00", ["21"], "10"]},
 				row2: {
-					col0: ["1e4", "10", [""], "20"],
-					col1: [0, "10", [""], "21"],
-					col2: ["1e12", "10", [""], "22"],
+					col0: [new Decimal(1e4), "10", [""], "20"],
+					col1: [new Decimal(0), "10", [""], "21"],
+					col2: [new Decimal(1e12), "10", [""], "22"],
 				},
 			},
 		},
 		producers: {
 			power: new Decimal(10),
-			amounts: [0, 0, 0, 0],
+			amounts: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
 			prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
-			empowered: [0, 0, 0, 0]
+			empowered: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)]
 		},
 		upgrades: [],
 		upgradePrices: [],
