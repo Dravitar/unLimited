@@ -74,14 +74,14 @@ function getProduction(time) {
         player.producers.power = player.producers.power.plus(
           player.producers.amounts[0].times(
             player.producers.empowered[0])
-          .times(0.1));
-        time-=100;
+          .times(0.05));
+        time-=50;
       }
       else {
         player.producers.amounts[i-1] = player.producers.amount.plus(
           player.producers.amounts[i].times(
             player.producers.empowered[i])
-          .times(0.1));
+          .times(0.05));
       }
     }
   }
