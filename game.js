@@ -21,7 +21,7 @@ function getDefaultPlayer() {
     },
     upgrades: [],
     upgradePrices: [],
-	  lastTick: new Date().getTime();
+	  lastTick: new Date().getTime(),
   };
 }
 
