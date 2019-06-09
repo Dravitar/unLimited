@@ -84,7 +84,7 @@ function getProduction() {
 				time-=50;
 			}
 			else {
-				player.producers.amounts[i-1] = player.producers.amounts.plus(
+				player.producers.amounts[i-1] = player.producers.amounts[i-1].plus(
 					player.producers.amounts[i].times(
 						player.producers.empowered[i])
 					.times(0.05));
