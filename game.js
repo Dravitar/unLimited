@@ -79,7 +79,6 @@ function getProduction() {
 	time = x;
 	while(time>0) {
 		for(let i=player.producers.amounts.length-1;i>=0;i--) {
-			console.log(i);
 			if(i==0) {
 				player.producers.power = player.producers.power.plus(
 					player.producers.amounts[0].times(
@@ -98,5 +97,5 @@ function getProduction() {
 }
 
 function startCycle() {
-	setInterval(gameCycle(), 50);
+	setInterval(gameCycle, 50);
 }
