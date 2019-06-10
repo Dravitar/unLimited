@@ -101,11 +101,11 @@ function updateTextColor(get, color) {
 }
 
 function update() {
-	checkPricing();
 	if(player.buttons.unlocked.includes("10")) {
 		docShow("clicks");
 		updateText("clicksRemaining", player.clicks);
 	}
+	checkPricing();
 }
 
 function checkPricing() {
