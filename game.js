@@ -145,6 +145,7 @@ function getProduction() {
 	while(time>0) {
 		for(let i=player.producers.amounts.length-1;i>=0;i--) {
 			if(i==0) {
+				console.log(player.producers.amounts[0]);
 				player.producers.power = player.producers.power.plus(
 					player.producers.amounts[0].times(
 						player.producers.empowered[0].plus(1))
