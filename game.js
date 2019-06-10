@@ -128,8 +128,8 @@ function checkPricing() {
 }
 
 function gameCycle() {
-	getProduction();
 	update();
+	getProduction();
 }
 
 function getProduction() {
