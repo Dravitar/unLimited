@@ -131,11 +131,6 @@ function checkPricing() {
 	}
 }
 
-function gameCycle() {
-	update();
-	getProduction();
-}
-
 function getProduction() {
 	let time = new Date().getTime();
 	let x = time-player.lastTick;
@@ -160,6 +155,11 @@ function getProduction() {
 			}
 		}
 	}
+}
+
+function gameCycle() {
+	update();
+	getProduction();
 }
 
 function startCycle() {
