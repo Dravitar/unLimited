@@ -22,6 +22,7 @@ function buyProducer(num) {
   player.producers.purchased[num] = player.producers.purchased[num].plus(1);
   player.producers.amounts[num] = player.producers.amounts[num].plus(1);
   updateText("gen"+num+"Cost", player.buttons.requirements["row"+3]["col"+num][0].toPrecision(2));
+  updateText("gen"+num+"Purchased", player.production.purchased[num]);
 }
 
 function docShow(id) {
