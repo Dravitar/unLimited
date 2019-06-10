@@ -136,7 +136,6 @@ function getProduction() {
 	let x = time-player.lastTick;
 	player.lastTick = time;
 	time = x;
-	console.log(time);
 	while(time>49) {
 		for(let i=player.producers.amounts.length-1;i>=0;i--) {
 			if(i==0) {
