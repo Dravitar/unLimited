@@ -8,7 +8,11 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body style="text-align:center" onLoad="startCycle()">
-		<div id="clicks" style="display:none">You have <span id="clicksRemaining">0</span> clicks remaining</div>
+		<div id="topRow">
+			<p id="powerDisplay" style="display:none">You have <span id="powerAmount">0</span> Power</p>
+			<p id="clicks" style="display:none">You have <span id="clicksRemaining">0</span> clicks remaining</p>
+			<p id="potencyDisplay" style="display:none">You have <span id="potencyAmount">0</span> Potency</p>
+		</div>
 		<div id="mainTree" class="flex-container tab">
 			<div id="treeButtonRow0">
 				<button id="treeButton00" class="treeButtonBig" onclick="treePress(0,0)">Start</button>
@@ -22,14 +26,14 @@
 				<button id="treeButton21" class="treeButtonBig" onclick="treePress(2,1)" style="display:none">Show Producers</button>
 			</div>
 			<div id="treeButtonRow3">
-				<div id="gen1"><button id="treeButton30" class="treeButton" onclick="treePress(3,0)" style="display:none">Buy Generator One</button></div>
-				<div id="gen2"><button id="treeButton31" class="treeButton" onclick="treePress(3,1)" style="display:none">Buy Generator Two</button></div>
-				<div id="gen3"><button id="treeButton32" class="treeButton" onclick="treePress(3,2)" style="display:none">Buy Generator Three</button></div>
-				<div id="gen4"><button id="treeButton33" class="treeButton" onclick="treePress(3,3)" style="display:none">Buy Generator Four</button></div>
-				<div id="gen5"><button id="treeButton34" class="treeButton" onclick="treePress(3,4)" style="display:none">Buy Generator Five</button></div>
-				<div id="gen6"><button id="treeButton35" class="treeButton" onclick="treePress(3,5)" style="display:none">Buy Generator Six</button></div>
-				<div id="gen7"><button id="treeButton36" class="treeButton" onclick="treePress(3,6)" style="display:none">Buy Generator Seven</button></div>
-				<div id="gen8"><button id="treeButton37" class="treeButton" onclick="treePress(3,7)" style="display:none">Buy Generator Eight</button></div>
+				<div id="gen1"><button id="treeButton30" class="treeButton" onclick="treePress(3,0)" style="display:none">Cost:<br/><span id="gen1Cost">10</span> Power</button></div>
+				<div id="gen2"><button id="treeButton31" class="treeButton" onclick="treePress(3,1)" style="display:none">Cost:<br/><span id="gen2Cost">100</span> Power</button></div>
+				<div id="gen3"><button id="treeButton32" class="treeButton" onclick="treePress(3,2)" style="display:none">Cost:<br/><span id="gen3Cost">1e4</span> Power</button></div>
+				<div id="gen4"><button id="treeButton33" class="treeButton" onclick="treePress(3,3)" style="display:none">Cost:<br/><span id="gen4Cost">1e7</span> Power</button></div>
+				<div id="gen5"><button id="treeButton34" class="treeButton" onclick="treePress(3,4)" style="display:none">Cost:<br/><span id="gen5Cost">1e12</span> Power</button></div>
+				<div id="gen6"><button id="treeButton35" class="treeButton" onclick="treePress(3,5)" style="display:none">Cost:<br/><span id="gen6Cost">1e18</span> Power</button></div>
+				<div id="gen7"><button id="treeButton36" class="treeButton" onclick="treePress(3,6)" style="display:none">Cost:<br/><span id="gen7Cost">1e25</span> Power</button></div>
+				<div id="gen8"><button id="treeButton37" class="treeButton" onclick="treePress(3,7)" style="display:none">Cost:<br/><span id="gen8Cost">1e35</span> Power</button></div>
 			</div>
 		</div>
 	</body>
