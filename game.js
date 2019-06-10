@@ -118,7 +118,7 @@ function checkPricing() {
 		let bigId = "treeButton"+id;
 		if(player.buttons.unlocked.includes(id)) {
 			updateColor(bigId, "green");
-			updateTextColor(bigId, "darkGreen");
+			updateTextColor(bigId, "black");
 		}
 		else if(player.producers.power.gte(player.buttons.requirements["row"+i[0]]["col"+i[1]][0])) {
 			updateColor(bigId, "green");
@@ -137,7 +137,7 @@ function getProduction() {
 	player.lastTick = time;
 	time = x;
 	console.log(time);
-	while(time>0) {
+	//while(time>0) {
 		for(let i=player.producers.amounts.length-1;i>=0;i--) {
 			if(i==0) {
 				console.log(player.producers.amounts[0]);
@@ -154,7 +154,7 @@ function getProduction() {
 					.times(0.05));
 			}
 		}
-	}
+	//}
 }
 
 function gameCycle() {
