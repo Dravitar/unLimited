@@ -21,7 +21,7 @@ function treePress(index1, index2) {
 function buyProducer(num) {
   player.buttons.requirements["row"+3]["col"+num][0] = player.buttons.requirements["row"+3]["col"+num][0].times(new Decimal(1.3))
   player.producers.purchased[num] = player.producers.purchased[num].plus(1);
-  updateText("gen"+num+"Cost", player.buttons.requirements["row"+3]["col"+num][0]);
+  updateText("gen"+num+"Cost", player.buttons.requirements["row"+3]["col"+num][0].toPrecision(2));
 }
 
 function docShow(id) {
