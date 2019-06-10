@@ -135,15 +135,15 @@ function checkPricing() {
 
 function checkVis() {
 	for(let i=0;i<2;i++){
-		if(player.producers.power.gte(player.buttons.requirement["row2"]["col"+i][0])) {
+		if(player.producers.power.gte(player.buttons.requirements["row2"]["col"+i][0])) {
 			docShow("treeButton2"+i);
 		}
 	}
 	for(let i=0;i<6;i++) {
-		if(player.producers.power.gte(player.buttons.requirement["row5"]["col"+i][0])) {
+		if(player.producers.power.gte(player.buttons.requirements["row5"]["col"+i][0])) {
 			docShow("treeButton5"+i);
 		}
-		if(player.producers.power.gte(player.buttons.requirement["row6"]["col"+i][0])) {
+		if(player.producers.power.gte(player.buttons.requirements["row6"]["col"+i][0])) {
 			docShow("treeButton6"+i);
 		}
 	}
