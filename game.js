@@ -107,7 +107,7 @@ function update() {
 	}
 	if(player.buttons.unlocked.includes("21")) {
 		docShow("powerDisplay");
-		updateText("powerAmount", player.producers.power);
+		updateText("powerAmount", player.producers.power.toPrecision(4));
 	}
 	checkPricing();
 }
@@ -137,10 +137,9 @@ function getProduction() {
 	player.lastTick = time;
 	time = x;
 	console.log(time);
-	while(time>0) {
+	while(time>49) {
 		for(let i=player.producers.amounts.length-1;i>=0;i--) {
 			if(i==0) {
-				console.log(player.producers.amounts[0]);
 				player.producers.power = player.producers.power.plus(
 					player.producers.amounts[0].times(
 						player.producers.empowered[0].plus(1))
@@ -153,6 +152,7 @@ function getProduction() {
 						player.producers.empowered[i].plus(1))
 					.times(0.05));
 			}
+			updateText("gen"+i+"Amount", player.producers.amounts[i].toPrecision(4));
 		}
 	}
 }
