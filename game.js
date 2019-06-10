@@ -157,11 +157,7 @@ function getProduction() {
 	}
 }
 
-function gameCycle() {
-	update();
-	getProduction();
-}
-
 function startCycle() {
-	setInterval(gameCycle, 50);
+	setInterval(update, 50);
+	setInterval(getProduction, 50);
 }
