@@ -67,7 +67,7 @@ function getDefaultPlayer() {
 		producers: {
 			power: new Decimal(10),
 			amounts: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			prices: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e7)],
+			purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
 			empowered: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)]
 		},
 		upgrades: [],
@@ -104,6 +104,10 @@ function update() {
 	if(player.buttons.unlocked.includes("10")) {
 		docShow("clicks");
 		updateText("clicksRemaining", player.clicks);
+	}
+	if(player.buttons.unlocked.includes("21")) {
+		docShow("powerDisplay");
+		updateText("powerAmount", player.producers.power);
 	}
 	checkPricing();
 }
