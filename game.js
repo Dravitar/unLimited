@@ -7,9 +7,9 @@ function getDefaultPlayer() {
 				row0: { col0: [new Decimal(0), "", ["10"], "00"]},
 				row1: { col0: [new Decimal(0), "00", ["21"], "10"]},
 				row2: {
-					col0: [new Decimal(1e4), "10", [""], "20"],
+					col0: [new Decimal(1e4), "10", ["50", "51", "52", "53", "54", "55", "56"], "20"],
 					col1: [new Decimal(0), "10", ["30"], "21"],
-					col2: [new Decimal(1e12), "10", [""], "22"],
+					col2: [new Decimal(1e12), "10", ["80", "81", "82", "83", "84", "85", "86", "87"], "22"],
 				},
 				row3: {
 					col0: [new Decimal(10), "21", ["31"], "30"],
@@ -108,21 +108,22 @@ function update() {
 	}
 	if(player.buttons.unlocked.includes("21")) {
 		docShow("powerDisplay");
-		updateText("powerAmount", player.producers.power.toPrecision(4));
+		updateText("powerAmount", player.producers.power.round());
 	}
 	checkPricing();
 	checkVis();
 }
 
 function checkPricing() {
-	for(let i of totalButtons) {
-		let id = ""+i[0]+i[1];
-		let bigId = "treeButton"+id;
+	let buttons = document.getElementsByClassName("treeButton");
+	for(let i of buttons) {
+		let bigId = i.id;
+		let id = [bigId.charAt(10), bigId.charAt(11)];
 		if(player.buttons.unlocked.includes(id)) {
 			updateColor(bigId, "green");
 			updateTextColor(bigId, "black");
 		}
-		else if(player.producers.power.gte(player.buttons.requirements["row"+i[0]]["col"+i[1]][0])) {
+		else if(player.producers.power.gte(player.buttons.requirements["row"+id[0]]["col"+id[1]][0])) {
 			updateColor(bigId, "green");
 			updateTextColor(bigId, "white");
 		}
@@ -170,7 +171,7 @@ function getProduction() {
 						player.producers.empowered[i].plus(1))
 					.times(0.05));
 			}
-			updateText("gen"+i+"Amount", player.producers.amounts[i].toPrecision(4));
+			updateText("gen"+i+"Amount", player.producers.amounts[i].round());
 		}
 	}
 }
