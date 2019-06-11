@@ -1,11 +1,13 @@
-.treeButtonBig {
-  height: 80px;
-  width: 160px;
+.treeButton {
   border-radius: 50%;
 }
 
-.treeButton {
+.big {
+  height: 80px;
+  width: 160px;
+}
+
+.small {
   height: 40px;
   width: 160px;
-  border-radius: 50%;
 }
