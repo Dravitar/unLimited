@@ -135,7 +135,8 @@ function checkPricing() {
 
 function checkVis() {
 	for(let i=0;i<2;i++){
-		if(player.producers.power.gte(player.buttons.requirements["row2"]["col"+i][0])) {
+		if(player.producers.power.gte(player.buttons.requirements["row2"]["col"+i][0])&&
+		   player.buttons.unlocked.includes("treeButton10")) {
 			docShow("treeButton2"+i);
 		}
 	}
