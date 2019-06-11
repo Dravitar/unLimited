@@ -108,7 +108,7 @@ function update() {
 	}
 	if(player.buttons.unlocked.includes("21")) {
 		docShow("powerDisplay");
-		updateText("powerAmount", player.producers.power.round());
+		updateText("powerAmount", player.producers.power);
 	}
 	checkPricing();
 	checkVis();
@@ -161,14 +161,14 @@ function getProduction() {
 			if(i==0) {
 				player.producers.power = player.producers.power.plus(
 					player.producers.amounts[0].times(
-						player.producers.empowered[0].plus(1))
+						player.producers.empowered[0].plus(1)).round()
 					.times(0.05));
 				time-=50;
 			}
 			else {
 				player.producers.amounts[i-1] = player.producers.amounts[i-1].plus(
 					player.producers.amounts[i].times(
-						player.producers.empowered[i].plus(1))
+						player.producers.empowered[i].plus(1)).round()
 					.times(0.05));
 			}
 			updateText("gen"+i+"Amount", player.producers.amounts[i].round());
