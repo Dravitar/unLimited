@@ -18,10 +18,10 @@ function treePress(index1, index2) {
 }
 
 function buyProducer(num) {
-  player.buttons.requirements["row"+3]["col"+num][0] = player.buttons.requirements["row"+3]["col"+num][0].times(new Decimal(1.3))
+  player.buttons.requirements["row"+3]["col"+num][0] = player.buttons.requirements["row"+3]["col"+num][0].times(new Decimal(1.3).round())
   player.producers.purchased[num] = player.producers.purchased[num].plus(1);
   player.producers.amounts[num] = player.producers.amounts[num].plus(1);
-  updateText("gen"+num+"Cost", player.buttons.requirements["row"+3]["col"+num][0].toPrecision(2));
+  updateText("gen"+num+"Cost", player.buttons.requirements["row"+3]["col"+num][0].round());
   updateText("gen"+num+"Purchased", player.producers.purchased[num]);
   updateText("gen"+num+"Amount", player.producers.amounts[num]);
 }
