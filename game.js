@@ -108,7 +108,7 @@ function update() {
 	}
 	if(player.buttons.unlocked.includes("21")) {
 		docShow("powerDisplay");
-		updateText("powerAmount", player.producers.power.round());
+		updateText("powerAmount", player.producers.power.times(10).round().div(10));
 	}
 	checkPricing();
 	checkVis();
