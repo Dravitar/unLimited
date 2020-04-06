@@ -1,16 +1,3 @@
-.treeButton {
-  border-radius: 50%;
-}
-
-.big {
-  height: 80px;
-  width: 160px;
-}
-
-.small {
-  height: 40px;
-  width: 160px;
-}
 .menuWrapper {
 	width: 100%;
 	height: 8%;
@@ -42,6 +29,6 @@
 
 .upgrade {
 	background: grey;
-	height: 16vh;
+	height: 10vh;
 	font-size:xx-large;
 }
