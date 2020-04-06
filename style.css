@@ -11,3 +11,37 @@
   height: 40px;
   width: 160px;
 }
+.menuWrapper {
+	width: 100%;
+	height: 8%;
+}
+
+.menuContainer {
+	display: grid;
+	grid-template-columns: 33% 1fr 1fr 1fr 33%;
+	grid-template-rows: 100%;
+	grid-gap: 10px 10px;
+}
+
+.mainWrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.mainContainer {
+	display: grid;
+	grid-template-columns: 1fr repeat(5,16%) 1fr;
+	grid-template-rows: 1fr repeat(5,16%) 1fr;
+	grid-gap: 10px 10px;
+}
+
+.menuButton {
+	color: white;
+	background: black;	
+}
+
+.upgrade {
+	color: red;
+	background: grey;
+	height: 20vh;
+}
