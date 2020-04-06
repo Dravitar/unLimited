@@ -29,10 +29,10 @@
 
 .upgrade {
 	background: grey;
-	height: 16vh;
+	height: 100%;
 	font-size:xx-large;
 }
 
 .blank {
-	height: 16vh;
+	height: 100%;
 }
