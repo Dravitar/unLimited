@@ -9,6 +9,7 @@ function initializeGrid() {
         var newSpan = document.createElement('span');
         newSpan.style="display:grid;grid-column:"+i+"/"+ii+";grid-row:"+j+"/"+jj;
         newSpan.id="blank"+i+j;
+        newSpan.textContent=i+"/"+j;
         $('gameSpace').appendChild(newSpan);
       }
     }
