@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="hnl.mobileConsole.js"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="break_eternity.js"></script>
+		<script type="text/javascript" src="format.js"></script>
+		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="saving.js"></script>
+		<script type="text/javascript" src="story.js"></script>
+		<title>(Un)Limited</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body style="text-align:center;" onLoad="startCycle()" onKeyDown="checkKey(event)">
+		<div class="menuWrapper">
+			<div id="tabs" class="menuContainer">
+				<div> </div>
+				<button id="menuTabButton" class="menuButton">Menu</button>
+				<button id="statsTabButton" class="menuButton">Stats</button>
+				<button id="storyTabButton" class="menuButton">Story</button>
+				<div id="savedInfo" style="display:none; position:absolute">Game saved!</div>				
+			</div>
+		</div>
+		<div class="mainWrapper">
+			<div id="gamespace" class="mainContainer">	
+				<button class="upgrade" style="display:grid; grid-column: 3/4; grid-row: 3/4;">Area 33</button>
+				<button class="upgrade" style="display:grid; grid-column: 2/3; grid-row: 3/4;">Area 23</button>
+				<button class="upgrade" style="display:grid; grid-column: 5/6; grid-row: 4/5;">Area 54</button>
+				<button class="upgrade" style="display:grid; grid-column: 1/2; grid-row: 4/5;">Area 14</button>
+			</div>
+		</div>
+	</body>
+</html>
