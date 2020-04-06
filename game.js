@@ -1,1 +1,1 @@
-function $(x) {document.getElementById(x)}
+function $(x) {return document.getElementById(x)}
