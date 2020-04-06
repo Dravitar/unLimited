@@ -3,7 +3,9 @@ function $(x) {return document.getElementById(x)}
 function initializeGrid() {
   for(i=1;i<8;i++){
     for(j=1;j<8;j++){
-      if(i!=6&&j!=4){
+      if(i==4&&j==6){
+        continue;
+      } else {
         let ii=i+1;
         let jj=j+1;
         var newSpan = document.createElement('span');
