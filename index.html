@@ -22,40 +22,44 @@
 			</div>
 		</div>
 		<div class="mainWrapper">
-			<div id="gamespace" class="mainContainer" style="font-size:xx-large">	
-				<span id="energyArea" class="display" style="display:grid; grid-column: 4/5; grid-row: 2/3;">
+			<div id="gamespace" class="mainContainer" style="font-size:xx-large">
+				<button id="start" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 6/7;"
+					onclick="$('showPower').style.display='grid'">
+					Start
+				</button>
+				<span id="energyArea" class="display" style="display:none; grid-column: 4/5; grid-row: 2/3;">
 					Energy Remaining
 				</span>
-				<span id="powerArea" class="display" style="display:grid; grid-column: 3/4; grid-row: 2/3;">
+				<span id="powerArea" class="display" style="display:none; grid-column: 3/4; grid-row: 2/3;">
 					Power
 				</span>
-				<span id="crystalArea" class="display" style="display:grid; grid-column: 5/6; grid-row: 2/3;">
+				<span id="crystalArea" class="display" style="display:none; grid-column: 5/6; grid-row: 2/3;">
 					Crystals
 				</span>
-				<button id="showEnergy" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 5/6;"
-					onclick="$('energyArea').display=''">
+				<button id="showEnergy" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 5/6;"
+					onclick="$('energyArea').style.display='grid'">
 					Show Energy
 				</button>
-				<button id="showPower" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 4/5;"
-					onclick="$('powerArea').display=''">
+				<button id="showPower" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 4/5;"
+					onclick="$('powerArea').style.display='grid'">
 					Show Power
 				</button>
-				<button id="showProducers" class="upgrade" style="display:grid; grid-column: 3/4; grid-row: 4/5;"
-					onclick="$('producerAccess').display=''">
+				<button id="showProducers" class="upgrade" style="display:none; grid-column: 3/4; grid-row: 4/5;"
+					onclick="$('producerAccess').style.display='grid'">
 					Show Producers
 				</button>
-				<button id="producerAccess" class="travelLeft" style="display:grid; grid-column: 2/3; grid-row: 4/5;"
+				<button id="producerAccess" class="travelLeft" style="display:none; grid-column: 2/3; grid-row: 4/5;"
 					onclick="moveLeftFrom('main')">
 				</button>
-				<button id="showCrystals" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 3/4;"
-					onclick="$('crystalArea').display=''">
+				<button id="showCrystals" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 3/4;"
+					onclick="$('crystalArea').style.display='grid'">
 					Show Crystals
 				</button>
-				<button id="showUpgrades" class="upgrade" style="display:grid; grid-column: 5/6; grid-row: 4/5;"
-					onclick="$('upgradeAccess').display=''">
+				<button id="showUpgrades" class="upgrade" style="display:none; grid-column: 5/6; grid-row: 4/5;"
+					onclick="$('upgradeAccess').style.display='grid'">
 					Show Upgrades
 				</button>
-				<button id="upgradeAccess" class="travelRight" style="display:grid; grid-column: 6/7; grid-row: 4/5;"
+				<button id="upgradeAccess" class="travelRight" style="display:none; grid-column: 6/7; grid-row: 4/5;"
 					onclick="moveRightFrom('main')">
 				</button>
 			</div>
