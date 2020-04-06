@@ -18,7 +18,7 @@
 .mainContainer {
 	display: grid;
 	grid-template-columns: 1fr repeat(5,16%) 1fr;
-	grid-template-rows: 1fr repeat(5,16%) 1fr;
+	grid-template-rows: 1fr repeat(5,20%) 1fr;
 	grid-gap: 10px 10px;
 }
 
@@ -29,6 +29,6 @@
 
 .upgrade {
 	background: grey;
-	height: 10vh;
+	height: 16vh;
 	font-size:xx-large;
 }
