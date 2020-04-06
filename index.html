@@ -1,79 +1,63 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="confractus_numerus.js"></script>
+		<script type="text/javascript" src="hnl.mobileConsole.js"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="break_eternity.js"></script>
+		<script type="text/javascript" src="format.js"></script>
 		<script type="text/javascript" src="game.js"></script>
-		<script type="text/javascript" src="mainTree.js"></script>
-		<title>(un)Limited</title>
+		<script type="text/javascript" src="saving.js"></script>
+		<script type="text/javascript" src="story.js"></script>
+		<title>(Un)Limited</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	<body style="text-align:center" onLoad="startCycle()">
-		<div id="topRow">
-			<span id="powerDisplay" style="display:none">You have <span id="powerAmount">0</span> Power</span>
-			<span id="clicks" style="display:none">You have <span id="clicksRemaining">0</span> clicks remaining</span>
-			<span id="potencyDisplay" style="display:none">You have <span id="potencyAmount">0</span> Potency</span>
+	<body style="text-align:center" onLoad="startCycle()" onKeyDown="checkKey(event)">
+		<div class="menuWrapper">
+			<div id="tabs" class="menuContainer">
+				<div> </div>
+				<button id="menuTabButton" class="menuButton">Menu</button>
+				<button id="statsTabButton" class="menuButton">Stats</button>
+				<button id="storyTabButton" class="menuButton">Story</button>
+				<div id="savedInfo" style="display:none; position:absolute">Game saved!</div>				
+			</div>
 		</div>
-		<div id="mainTree" class="flex-container tab">
-			<div id="treeButtonRow0">
-				<button id="treeButton00" class="treeButton big" onclick="treePress(0,0)">Start</button>
-			</div>
-			<div id="treeButtonRow1">
-				<button id="treeButton20" class="treeButton big" onclick="treePress(2,0)" style="display:none">Show Upgrades</button>
-				<button id="treeButton10" class="treeButton big" onclick="treePress(1,0)" style="display:none">Show Clicks</button>
-				<button id="treeButton22" class="treeButton big" onclick="treePress(2,2)" style="display:none">Show Prestige</button>
-			</div>
-			<div id="treeButtonRow2">
-				<button id="treeButton21" class="treeButton big" onclick="treePress(2,1)" style="display:none">Show Producers</button>
-			</div>
-			<div id="treeButtonRow3">
-				<div id="treeButton30" style="display:none">
-					<span id="gen0Amount">0</span>  (<span id="gen0Purchased">0</span>)  
-					<button id="Treebutton30" class="treeButton small" onclick="treePress(3,0)">
-						Cost:<br/><span id="gen0Cost">10</span> Power
-					</button>
-				</div>
-				<div id="treeButton31" style="display:none">
-					<span id="gen1Amount">0</span>  (<span id="gen1Purchased">0</span>)  
-					<button id="Treebutton31" class="treeButton small" onclick="treePress(3,1)">
-						Cost:<br/><span id="gen1Cost">100</span> Power
-					</button>
-				</div>
-				<div id="treeButton32" style="display:none">
-					<span id="gen2Amount">0</span>  (<span id="gen2Purchased">0</span>)  
-					<button id="Treebutton32" class="treeButton small" onclick="treePress(3,2)">
-						Cost:<br/><span id="gen2Cost">1e4</span> Power
-					</button>
-				</div>
-				<div id="treeButton33" style="display:none">
-					<span id="gen3Amount">0</span>  (<span id="gen3Purchased">0</span>)  
-					<button id="Treebutton33" class="treeButton small" onclick="treePress(3,3)">
-						Cost:<br/><span id="gen0Cost">1e7</span> Power
-					</button>
-				</div>
-				<div id="treeButton34" style="display:none">
-					<span id="gen4Amount">0</span>  (<span id="gen4Purchased">0</span>)  
-					<button id="Treebutton34" class="treeButton small" onclick="treePress(3,4)">
-						Cost:<br/><span id="gen4Cost">10</span> Power
-					</button>
-				</div>
-				<div id="treeButton35" style="display:none">
-					<span id="gen5Amount">0</span>  (<span id="gen5Purchased">0</span>)  
-					<button id="Treebutton35" class="treeButton small" onclick="treePress(3,5)">
-						Cost:<br/><span id="gen0Cost">10</span> Power
-					</button>
-				</div>
-				<div id="treeButton36" style="display:none">
-					<span id="gen6Amount">0</span>  (<span id="gen6Purchased">0</span>)  
-					<button id="Treebutton36" class="treeButton small" onclick="treePress(3,6)">
-						Cost:<br/><span id="gen6Cost">10</span> Power
-					</button>
-				</div>
-				<div id="treeButton37" style="display:none">
-					<span id="gen7Amount">0</span>  (<span id="gen7Purchased">0</span>)  
-					<button id="Treebutton37" class="treeButton small" onclick="treePress(3,7)">
-						Cost:<br/><span id="gen7Cost">10</span> Power
-					</button>
-				</div>
+		<div class="mainWrapper">
+			<div id="gamespace" class="mainContainer">	
+				<span id="energyArea" class="display" style="display:grid; grid-column: 4/5; grid-row: 2/3;">
+					Energy Remaining
+				</span>
+				<span id="powerArea" class="display" style="display:grid; grid-column: 3/4; grid-row: 2/3;">
+					Power
+				</span>
+				<span id="crystalArea" class="display" style="display:grid; grid-column: 5/6; grid-row: 2/3;">
+					Crystals
+				</span>
+				<button id="showEnergy" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 5/6;"
+					onclick="$('energyArea').display=''">
+					Show Energy
+				</button>
+				<button id="showPower" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 4/5;"
+					onclick="$('powerArea').display=''">
+					Show Power
+				</button>
+				<button id="showProducers" class="upgrade" style="display:grid; grid-column: 3/4; grid-row: 4/5;"
+					onclick="$('producerAccess').display=''">
+					Show Producers
+				</button>
+				<button id="producerAccess" class="travelLeft" style="display:grid; grid-column: 2/3; grid-row: 4/5;"
+					onclick="moveLeftFrom('main')">
+				</button>
+				<button id="showCrystals" class="upgrade" style="display:grid; grid-column: 4/5; grid-row: 3/4;"
+					onclick="$('crystalArea').display=''">
+					Show Crystals
+				</button>
+				<button id="showUpgrades" class="upgrade" style="display:grid; grid-column: 5/6; grid-row: 4/5;"
+					onclick="$('upgradeAccess').display=''">
+					Show Upgrades
+				</button>
+				<button id="upgradeAccess" class="travelRight" style="display:grid; grid-column: 6/7; grid-row: 4/5;"
+					onclick="moveRightFrom('main')">
+				</button>
 			</div>
 		</div>
 	</body>
