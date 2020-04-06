@@ -1,1 +1,15 @@
 function $(x) {return document.getElementById(x)}
+
+function initializeGrid() {
+  for(i=1;i<8;i++){
+    for(j=1;j<8;j++){
+      if(i!=6&&j!=4){
+        let ii=i+1;
+        let jj=j+1;
+        var newSpan = document.createElement('span');
+        newSpan.style="display:grid;grid-column:"+i+"/"+ii+";grid-row:"+j+"/"+jj;
+        $('gameSpace').appendChild(newSpan);
+      }
+    }
+  }
+}
