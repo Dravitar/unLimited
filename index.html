@@ -38,36 +38,36 @@
 				<span id="crystalArea" class="display" style="display:none; grid-column: 5/6; grid-row: 1/2;">
 					Crystals
 				</span>
-				<button id="showEnergy" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 5/6;"
+				<button id="showEnergy" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 5/6;"
 					onclick="$('energyArea').style.display='grid';
-						 $('showPower').style.display='grid';">
+						 $('showPower').style.display='block';">
 					Show Energy
 				</button>
-				<button id="showPower" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 4/5;"
+				<button id="showPower" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 4/5;"
 					onclick="$('powerArea').style.display='grid';
 						 $('showProducers').style.display='grid';
 						 $('showUpgrades').style.display='grid';
 						 $('showCrystals').style.display='grid';">
 					Show Power
 				</button>
-				<button id="showProducers" class="upgrade" style="display:none; grid-column: 3/4; grid-row: 4/5;"
+				<button id="showProducers" class="upgrade main" style="display:none; grid-column: 3/4; grid-row: 4/5;"
 					onclick="$('producerAccess').style.display='grid';">
 					Show Producers
 				</button>
-				<button id="producerAccess" class="travelLeft" style="display:none; grid-column: 2/3; grid-row: 4/5; font-size: 140px"
-					onclick="moveLeftFrom('main')">
+				<button id="producerAccess" class="travelLeft main" style="display:none; grid-column: 2/3; grid-row: 4/5; font-size: 100px"
+					onclick="moveFrom('main','l')">
 					<==
 				</button>
-				<button id="showCrystals" class="upgrade" style="display:none; grid-column: 4/5; grid-row: 3/4;"
+				<button id="showCrystals" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 3/4;"
 					onclick="$('crystalArea').style.display='grid';">
 					Show Crystals
 				</button>
-				<button id="showUpgrades" class="upgrade" style="display:none; grid-column: 5/6; grid-row: 4/5;"
+				<button id="showUpgrades" class="upgrade main" style="display:none; grid-column: 5/6; grid-row: 4/5;"
 					onclick="$('upgradeAccess').style.display='grid';">
 					Show Upgrades
 				</button>
-				<button id="upgradeAccess" class="travelRight" style="display:none; grid-column: 6/7; grid-row: 4/5; font-size: 140px"
-					onclick="moveRightFrom('main');">
+				<button id="upgradeAccess" class="travelRight main" style="display:none; grid-column: 6/7; grid-row: 4/5; font-size: 100px"
+					onclick="moveFrom('main','r');">
 					==>
 				</button>
 			</div>
