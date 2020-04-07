@@ -33,8 +33,8 @@ function fadeIn(x) {
   var fade = setInterval(function() {
     let elem = $(x);
     let op = window.getComputedStyle(elem).opacity;
-    elem.style.opacity = op + 0.02;
-    if(elem.style.opacity == 1) clearInterval(fade);
+    elem.style.setProperty("opacity", op + 0.02);
+    if(op+0.02 >= 1) clearInterval(fade);
   }, 10);
 }
 
