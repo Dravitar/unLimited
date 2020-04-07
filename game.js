@@ -30,34 +30,44 @@ function moveFrom(orig,dir) {
 }
 
 function fadeIn(x) {
+  let op = 0;
+  let elem = $(x);
   var fade = setInterval(function() {
-    let elem = $(x);
-    let op = parseInt(window.getComputedStyle(elem).opacity);
-    elem.style.setProperty("opacity", op + 0.02);
-    if(op+0.02 >= 1) clearInterval(fade);
+    op += 0.02;
+    elem.style.setProperty("opacity", op);
+    if(op>= 1) clearInterval(fade);
   }, 10);
 }
 
 function fadeInAll(set) {
+  let op = 0;
   var fade = setInterval(function() {
+    op += 0.02;
     for(i=0;i<set.length;i++){
-      set.item[i].style.opacity = window.getComputedStyle(set.item[i]).opacity += 0.02;
+      let elem = set.item[i];
+      elem.style.setProperty("opacity", op);
     }
     if(set.item[set.length-1].style.opacity == 1) clearInterval(fade);
   }, 10);
 }
 
 function fadeOut(x) {
+  let op = 1;
+  let elem = $(x);
   var fade = setInterval(function() {
-    $(x).style.opacity = window.getComputedStyle($(x)).opacity -= 0.02;
-    if(x.style.opacity == 1) clearInterval(fade);
+    op -= 0.02;
+    elem.style.setProperty("opacity", op);
+    if(op>= 1) clearInterval(fade);
   }, 10);
 }
 
 function fadeOutAll(set) {
+  let op = 1;
   var fade = setInterval(function() {
+    op -= 0.02;
     for(i=0;i<set.length;i++){
-      set.item[i].style.opacity = window.getComputedStyle(set.item[i]).opacity -= 0.02;
+      let elem = set.item[i];
+      elem.style.setProperty("opacity", op);
     }
     if(set.item[set.length-1].style.opacity == 1) clearInterval(fade);
   }, 10);
