@@ -32,8 +32,9 @@ function moveFrom(orig,dir) {
 function fadeIn(x) {
   var fade = setInterval(function() {
     let elem = $(x);
-    elem.style.opacity = window.getComputedStyle(elem).opacity += 0.02;
-    if(x.style.opacity == 1) clearInterval(fade);
+    let op = window.getComputedStyle(elem).opacity;
+    elem.style.opacity = op + 0.02;
+    if(elem.style.opacity == 1) clearInterval(fade);
   }, 10);
 }
 
