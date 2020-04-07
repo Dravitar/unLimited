@@ -31,7 +31,7 @@ function moveFrom(orig,dir) {
 
 function fadeIn(x) {
   var fade = setInterval(function() {
-    $(x).style.opacity = window.getComputedStyle(x).opacity += 0.02;
+    $(x).style.opacity = window.getComputedStyle($(x)).opacity += 0.02;
     if(x.style.opacity == 1) clearInterval(fade);
   }, 10);
 }
@@ -47,7 +47,7 @@ function fadeInAll(set) {
 
 function fadeOut(x) {
   var fade = setInterval(function() {
-    $(x).style.opacity = window.getComputedStyle(x).opacity -= 0.02;
+    $(x).style.opacity = window.getComputedStyle($(x)).opacity -= 0.02;
     if(x.style.opacity == 1) clearInterval(fade);
   }, 10);
 }
