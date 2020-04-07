@@ -25,47 +25,59 @@
 			<div id="gameSpace" class="mainContainer" style="font-size:xx-large">
 				<span style="display:grid;grid-column:1/2;grid-row:1/2;"></span>
 				<button id="start" class="upgrade main" style="display:grid; grid-column: 4/5; grid-row: 6/7;"
-					onclick="$('showEnergy').style.display='grid'">
+					onclick="fadeIn('showEnergy')">
 					Start
 				</button>
-				<span id="energyArea" class="display" style="display:none; grid-column: 4/5; grid-row: 1/2;">
+				<span id="energyArea" class="display" style="display:grid; opacity: 0;
+									     grid-column: 4/5; grid-row: 1/2;">
 					Energy Remaining
 				</span>
-				<span id="powerArea" class="display" style="display:none; grid-column: 3/4; grid-row: 1/2;">
+				<span id="powerArea" class="display" style="display:grid; opacity: 0;
+									    grid-column: 3/4; grid-row: 1/2;">
 					Power
 				</span>
-				<span id="crystalArea" class="display" style="display:none; grid-column: 5/6; grid-row: 1/2;">
+				<span id="crystalArea" class="display" style="display:grid; opacity: 0;
+									      grid-column: 5/6; grid-row: 1/2;">
 					Crystals
 				</span>
-				<button id="showEnergy" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 5/6;"
-					onclick="$('energyArea').style.display='grid';
-						 $('showPower').style.display='block'">
+				<button id="showEnergy" class="upgrade main" style="display:grid; opacity: 0;
+										    grid-column: 4/5; grid-row: 5/6;"
+					onclick="fadeIn('energyArea');
+						 fadeIn('showPower')">
 					Show Energy
 				</button>
-				<button id="showPower" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 4/5;"
-					onclick="$('powerArea').style.display='grid';
-						 $('showGenerators').style.display='grid';
-						 $('showUpgrades').style.display='grid';
-						 $('showCrystals').style.display='grid';">
+				<button id="showPower" class="upgrade main" style="display:grid; opacity: 0;
+										   grid-column: 4/5; grid-row: 4/5;"
+					onclick="fadeIn('powerArea');
+						 fadeIn('showGenerators');
+						 fadeIn('showUpgrades');
+						 fadeIn('showCrystals')">
 					Show Power
 				</button>
-				<button id="showGenerators" class="upgrade main" style="display:none; grid-column: 3/4; grid-row: 4/5;"
-					onclick="$('generatorAccess').style.display='grid';">
+				<button id="showGenerators" class="upgrade main" style="display:grid; opacity: 0;
+											grid-column: 3/4; grid-row: 4/5;"
+					onclick="fadeIn('generatorAccess')">
 					Show Producers
 				</button>
-				<button id="generatorAccess" class="travelLeft main" style="display:none; grid-column: 1/2; grid-row: 4/5; font-size: 100px"
+				<button id="generatorAccess" class="travelLeft main" style="display:grid; opacity: 0; 
+											    grid-column: 1/2; grid-row: 4/5; 
+											    font-size: 100px"
 					onclick="moveFrom('main','l')">
 					<
 				</button>
-				<button id="showCrystals" class="upgrade main" style="display:none; grid-column: 4/5; grid-row: 3/4;"
-					onclick="$('crystalArea').style.display='grid';">
+				<button id="showCrystals" class="upgrade main" style="display:grid; opacity: 0;
+										      grid-column: 4/5; grid-row: 3/4;"
+					onclick="fadeIn('crystalArea')">
 					Show Crystals
 				</button>
-				<button id="showUpgrades" class="upgrade main" style="display:none; grid-column: 5/6; grid-row: 4/5;"
-					onclick="$('upgradeAccess').style.display='grid';">
+				<button id="showUpgrades" class="upgrade main" style="display:grid; opacity: 0;
+										      grid-column: 5/6; grid-row: 4/5;"
+					onclick="fadeIn('upgradeAccess')">
 					Show Upgrades
 				</button>
-				<button id="upgradeAccess" class="travelRight main" style="display:none; grid-column: 7/8; grid-row: 4/5; font-size: 100px"
+				<button id="upgradeAccess" class="travelRight main" style="display:grid; opacity: 0;
+											   grid-column: 7/8; grid-row: 4/5; 
+											   font-size: 100px"
 					onclick="moveFrom('main','r');">
 					>
 				</button>
