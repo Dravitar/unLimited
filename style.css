@@ -18,7 +18,7 @@
 .mainContainer {
 	display: grid;
 	grid-template-columns: 10% repeat(5,1fr) 10%;
-	grid-template-rows: 1fr repeat(5,minmax(100px,16vh)) 1fr;
+	grid-template-rows: 3fr repeat(5,minmax(100px,16vh)) 2fr;
 	grid-gap: 10px 10px;
 }
 
