@@ -12,7 +12,6 @@ function initializeGrid() {
         newSpan.style="display:grid;grid-column:"+i+"/"+ii+";grid-row:"+j+"/"+jj;
         newSpan.class="blank";
         newSpan.id="blank"+i+j;
-        newSpan.textContent=i+"/"+j;
         $('gameSpace').appendChild(newSpan);
       }
     }
