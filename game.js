@@ -14,6 +14,7 @@ function getDefaultPlayer() {
     clicked: {
       start: false, showEnergy: false, showPower: false, showGenerators: false, mainDepartureL: false, showCrystals: false, 
       showUpgrades: false, mainDepartureR: false, generatorsDepartureR: false,},
+    
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
   };
@@ -27,6 +28,71 @@ function checkButton(x) {
   } else{
     player.clicked[x] = true;
     return true;
+  }
+}
+
+function press(id) {
+  switch(id) {
+    case "start":
+      if(!player.clicked.start){
+        fadeIn('showEnergy');
+        player.clicked.start = true;
+      }
+      break;
+    case "showEnergy":
+      if(!player.clicked.showEnergy){
+        fadeIn('energyArea');
+        fadeIn('showPower');
+        player.clicked.showEnergy = true;
+      }
+      break;
+    case "showPower":
+      if(!player.clicked.showPower){
+        fadeIn('powerArea');
+        fadeIn('showGenerators');
+        fadeIn('showUpgrades');
+        player.clicked.showPower = true;
+      }
+      break;
+    case "showGenerators":
+      if(!player.clicked.showGenerators){
+        fadeIn('mainDepartureL');
+        player.clicked.showGenerators = true;
+      }
+      break;
+    case "mainDepartureL":
+      if(!player.clicked.mainDepartureL){
+        moveFrom('main','l');
+        player.clicked.mainDepartureL = true;
+        player.clicked.generatorsDepartureR = false;
+      }
+      break;
+    case "showCrystals":
+      if(!player.clicked.showCrystals){
+        fadeIn('crystalArea');
+        player.clicked.showCrystals = true;
+      }
+      break;
+    case "showUpgrades":
+      if(!player.clicked.showUpgrades){
+        fadeIn('mainDepartureR');
+        player.clicked.showUpgrades = true;
+      }
+      break;
+    case "mainDepartureR":
+      if(!player.clicked.mainDepartureR){
+        moveFrom('main','r');
+        player.clicked.mainDepartureR = true;
+      }
+      break;
+    case "generatorsDepartureR":
+      if(!player.clicked.generatorsDepartureR){
+        moveFrom('generators','r');
+        player.clicked.generatorsDepartureR = true;
+        player.clicked.mainDepartureR = false;
+        player.clicked.mainDepartureL = false;
+      }
+      break;
   }
 }
 
