@@ -71,7 +71,7 @@ function fadeOutAll(set) {
   let op = 1;
   for(i=0;i<set.length;i++){
     let elem = set.item[i];
-    console.log(elem.id);
+    console.log(elem);
     elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
   }
   var fade = setInterval(function() {
