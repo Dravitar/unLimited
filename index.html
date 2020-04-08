@@ -22,20 +22,20 @@
 			</div>
 		</div>
 		<div class="mainWrapper">
-			<div id="gameSpace" class="mainContainer" style="font-size:xx-large">
+			<div id="gameSpace" class="mainContainer">
 				<span style="display:grid;grid-column:1/2;grid-row:1/2;"></span>
 		<!---------------------------------------------------------------------------->
 		<!-------------------------------- Top Menu ---------------------------------->
 		<!---------------------------------------------------------------------------->
-				<span id="energyArea" class="display" style="display:grid; opacity: 0;
+				<span id="energyArea" class="display" style="display:grid; opacity: 0; font-size:xx-large;
 									     grid-column: 4/5; grid-row: 1/2;">
 					Energy Remaining
 				</span>
-				<span id="powerArea" class="display" style="display:grid; opacity: 0;
+				<span id="powerArea" class="display" style="display:grid; opacity: 0; font-size:xx-large;
 									    grid-column: 3/4; grid-row: 1/2;">
 					Power
 				</span>
-				<span id="crystalArea" class="display" style="display:grid; opacity: 0;
+				<span id="crystalArea" class="display" style="display:grid; opacity: 0; font-size:xx-large;
 									      grid-column: 5/6; grid-row: 1/2;">
 					Crystals
 				</span>
@@ -43,48 +43,50 @@
 		<!------------------------------ Main Screen -------------------------------->
 		<!--------------------------------------------------------------------------->
 				<button id="start" class="upgrade main" style="display:grid; grid-column: 4/5; grid-row: 6/7; z-index: 11"
-					onclick="fadeIn('showEnergy')">
+					onclick="if(checkButton('start')) fadeIn('showEnergy')">
 					Start
 				</button>
 				<button id="showEnergy" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										    grid-column: 4/5; grid-row: 5/6;"
-					onclick="fadeIn('energyArea');
-						 fadeIn('showPower')">
+					onclick="if(checkButton('showEnergy'){
+						 fadeIn('energyArea');
+						 fadeIn('showPower')}">
 					Show Energy
 				</button>
 				<button id="showPower" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										   grid-column: 4/5; grid-row: 4/5;"
-					onclick="fadeIn('powerArea');
+					onclick="if(checkButton('showPower'){
+						 fadeIn('powerArea');
 						 fadeIn('showGenerators');
 						 fadeIn('showUpgrades');
-						 fadeIn('showCrystals')">
+						 fadeIn('showCrystals')}">
 					Show Power
 				</button>
 				<button id="showGenerators" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 											grid-column: 3/4; grid-row: 4/5;"
-					onclick="fadeIn('generatorAccess')">
+					onclick="if(checkButton('showGenerators') fadeIn('mainDepartureL')">
 					Show Producers
 				</button>
-				<button id="generatorAccess" class="travelLeft main" style="display:grid; opacity: 0; z-index: 1;
+				<button id="mainDepartureL" class="travelLeft main" style="display:grid; opacity: 0; z-index: 1;
 											    grid-column: 1/2; grid-row: 4/5; 
 											    font-size: 100px"
-					onclick="moveFrom('main','l')">
+					onclick="if(checkButton('mainDepartureL') moveFrom('main','l')">
 					<<
 				</button>
 				<button id="showCrystals" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										      grid-column: 4/5; grid-row: 3/4;"
-					onclick="fadeIn('crystalArea')">
+					onclick="if(checkButton('showCrystals') fadeIn('crystalArea')">
 					Show Crystals
 				</button>
 				<button id="showUpgrades" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										      grid-column: 5/6; grid-row: 4/5;"
-					onclick="fadeIn('upgradeAccess')">
+					onclick="if(checkButton('showUpgrades') fadeIn('mainDepartureR')">
 					Show Upgrades
 				</button>
-				<button id="upgradeAccess" class="travelRight main" style="display:grid; opacity: 0; z-index: 1;
+				<button id="mainDepartureR" class="travelRight main" style="display:grid; opacity: 0; z-index: 1;
 											   grid-column: 7/8; grid-row: 4/5; 
 											   font-size: 100px"
-					onclick="moveFrom('main','r');">
+					onclick="if(checkButton('mainDepartureR') moveFrom('main','r');">
 					>>
 				</button>
 		<!---------------------------------------------------------------------------->
@@ -120,26 +122,26 @@
 					Reset all Generators but grant them all a boost.<br/>
 					Total Boost: <span id="genBoostAmount">0</span>
 				</button>
-				<button id="generator1" class="display generators" style="display:grid; opacity: 0; z-index: 1;
+				<div id="generator1" class="display generators" style="display:grid; opacity: 0; z-index: 1;
 											  grid-column: 4/5; grid-row: 2/3;">
 					You have <span id="genAmount1">0</span> Generator 1s generating
 					<span id="generation1">0</span> Power per second.
-				</button>
-				<button id="generator2" class="display generators" style="display:grid; opacity: 0; z-index: 1;
+				</div>
+				<div id="generator2" class="display generators" style="display:grid; opacity: 0; z-index: 1;
 											  grid-column: 4/5; grid-row: 3/4;">
 					You have <span id="genAmount2">0</span> Generator 2s generating
 					<span id="generation2">0</span> Generator 1s per second.
-				</button>
-				<button id="generator3" class="display generators" style="display:grid; opacity: 0; z-index: 1;
+				</div>
+				<div id="generator3" class="display generators" style="display:grid; opacity: 0; z-index: 1;
 											  grid-column: 4/5; grid-row: 4/5;">
 					You have <span id="genAmount3">0</span> Generator 3s generating
 					<span id="generation3">0</span> Generator 2s per second.
-				</button>
-				<button id="generator4" class="display generators" style="display:grid; opacity: 0; z-index: 1;
+				</div>
+				<div id="generator4" class="display generators" style="display:grid; opacity: 0; z-index: 1;
 											  grid-column: 4/5; grid-row: 5/6;">
 					You have <span id="genAmount4">0</span> Generator 4s generating
 					<span id="generation4">0</span> Generator 3s per second.
-				</button>
+				</div>
 		<!-------------------------------------------------------------------------------->
 		<!---------------------------------ClickBanks------------------------------------->
 		<!-------------------------------------------------------------------------------->
@@ -223,10 +225,10 @@
 				
 				
 				
-				<button id="mainAccess" class="travelright generators" style="display:grid; opacity: 0; z-index: 0;
+				<button id="generatorsDepartureR" class="travelright generators" style="display:grid; opacity: 0; z-index: 0;
 											    grid-column: 7/8; grid-row: 4/5; 
 											    font-size: 100px"
-					onclick="moveFrom('generators','r')">
+					onclick="if(checkButton('generatorsDepartureR') moveFrom('generators','r')">
 					>>
 				</button>
 			</div>
