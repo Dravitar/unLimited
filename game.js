@@ -52,7 +52,7 @@ function fadeInAll(set) {
       let elem = set.item(i);
       elem.style.setProperty("opacity", op);
     }
-    if(set.item(set.length-1).style.opacity == 1) clearInterval(fade);
+    if(set.item(set.length-1).style.opacity >= 1) clearInterval(fade);
   }, 10);
 }
 
@@ -63,7 +63,7 @@ function fadeOut(x) {
   var fade = setInterval(function() {
     op -= 0.02;
     elem.style.setProperty("opacity", op);
-    if(op>= 1) clearInterval(fade);
+    if(op<= 0) clearInterval(fade);
   }, 10);
 }
 
@@ -79,7 +79,7 @@ function fadeOutAll(set) {
       let elem = set.item(i);
       elem.style.setProperty("opacity", op);
     }
-    if(set.item(set.length-1).style.opacity == 1) clearInterval(fade);
+    if(set.item(set.length-1).style.opacity <= 0) clearInterval(fade);
   }, 10);
 }
 
