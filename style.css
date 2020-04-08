@@ -22,6 +22,9 @@
 	grid-gap: 10px 10px;
 }
 
+.main {
+	font-size:xx-large;
+
 .menuButton {
 	color: white;
 	background: black;	
@@ -30,7 +33,6 @@
 .upgrade {
 	background: grey;
 	height: 100%;
-	font-size:xx-large;
 }
 
 .blank {
