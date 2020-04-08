@@ -11,12 +11,24 @@ function getDefaultPlayer() {
       increase: [new Decimal(0)],
       scaling: [new Decimal(0)],
     },
+    clicked: {
+      start: false, showEnergy: false, showPower: false, showGenerators: false, mainDepartureL: false, showCrystals: false, 
+      showUpgrades: false, mainDepartureR: false, generatorsDepartureR: false,},
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
   };
 }
 
 var player = getDefaultPlayer();
+
+function checkButton(x) {
+  if(player.clicked[x]){
+    return false;
+  } else{
+    player.clicked[x] = true;
+    return true;
+  }
+}
 
 function moveFrom(orig,dir) {
   let index = player.zones.indexOf(orig);
@@ -27,6 +39,10 @@ function moveFrom(orig,dir) {
   fadeOutAll(toHide);
   let toShow = document.getElementsByClassName(dest);
   fadeInAll(toShow);
+  let left = dest + "DepartureL";
+  let right = dest + "DepartureR";
+  player.clicked[left] = false;
+  player.clicked[right] = false;
 }
 
 function fadeIn(x) {
