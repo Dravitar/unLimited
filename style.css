@@ -24,6 +24,7 @@
 
 .main {
 	font-size:xx-large;
+	background: grey;
 
 .menuButton {
 	color: white;
@@ -31,7 +32,6 @@
 }
 
 .upgrade {
-	background: grey;
 	height: 100%;
 }
 
