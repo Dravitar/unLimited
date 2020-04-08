@@ -52,7 +52,7 @@ function fadeInAll(set) {
       let elem = set.item(i);
       elem.style.setProperty("opacity", op);
     }
-    if(set.item[set.length-1].style.opacity == 1) clearInterval(fade);
+    if(set.item(set.length-1).style.opacity == 1) clearInterval(fade);
   }, 10);
 }
 
@@ -80,7 +80,7 @@ function fadeOutAll(set) {
       let elem = set.item(i);
       elem.style.setProperty("opacity", op);
     }
-    if(set.item[set.length-1].style.opacity == 1) clearInterval(fade);
+    if(set.item(set.length-1).style.opacity == 1) clearInterval(fade);
   }, 10);
 }
 
