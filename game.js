@@ -90,3 +90,18 @@ function initializeGrid() {
     }
   }
 }
+
+function checkKey(event) {
+}
+
+function purchase(item) {
+}
+
+function genBoost() {
+}
+
+function bank(amount, index) {
+}
+
+function bankBoost() {
+}
