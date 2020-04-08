@@ -69,7 +69,7 @@ function fadeOut(x) {
 
 function fadeOutAll(set) {
   let op = 1;
-  for(i=0;i<set.length,i++){
+  for(i=0;i<set.length;i++){
     let elem = set.item[i];
     elem.style.setProperty("z-index",parseInt(elem.style.zindex())-10);
   }
