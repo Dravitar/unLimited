@@ -42,17 +42,17 @@
 		<!--------------------------------------------------------------------------->
 		<!------------------------------ Main Screen -------------------------------->
 		<!--------------------------------------------------------------------------->
-				<button id="start" class="upgrade main" style="display:grid; grid-column: 4/5; grid-row: 6/7; z-index: 10"
+				<button id="start" class="upgrade main" style="display:grid; grid-column: 4/5; grid-row: 6/7; z-index: 1"
 					onclick="fadeIn('showEnergy')">
 					Start
 				</button>
-				<button id="showEnergy" class="upgrade main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="showEnergy" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										    grid-column: 4/5; grid-row: 5/6;"
 					onclick="fadeIn('energyArea');
 						 fadeIn('showPower')">
 					Show Energy
 				</button>
-				<button id="showPower" class="upgrade main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="showPower" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										   grid-column: 4/5; grid-row: 4/5;"
 					onclick="fadeIn('powerArea');
 						 fadeIn('showGenerators');
@@ -60,28 +60,28 @@
 						 fadeIn('showCrystals')">
 					Show Power
 				</button>
-				<button id="showGenerators" class="upgrade main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="showGenerators" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 											grid-column: 3/4; grid-row: 4/5;"
 					onclick="fadeIn('generatorAccess')">
 					Show Producers
 				</button>
-				<button id="generatorAccess" class="travelLeft main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="generatorAccess" class="travelLeft main" style="display:grid; opacity: 0; z-index: 1;
 											    grid-column: 1/2; grid-row: 4/5; 
 											    font-size: 100px"
 					onclick="moveFrom('main','l')">
 					<<
 				</button>
-				<button id="showCrystals" class="upgrade main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="showCrystals" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										      grid-column: 4/5; grid-row: 3/4;"
 					onclick="fadeIn('crystalArea')">
 					Show Crystals
 				</button>
-				<button id="showUpgrades" class="upgrade main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="showUpgrades" class="upgrade main" style="display:grid; opacity: 0; z-index: 1;
 										      grid-column: 5/6; grid-row: 4/5;"
 					onclick="fadeIn('upgradeAccess')">
 					Show Upgrades
 				</button>
-				<button id="upgradeAccess" class="travelRight main" style="display:grid; opacity: 0; z-index: 0;
+				<button id="upgradeAccess" class="travelRight main" style="display:grid; opacity: 0; z-index: 1;
 											   grid-column: 7/8; grid-row: 4/5; 
 											   font-size: 100px"
 					onclick="moveFrom('main','r');">
