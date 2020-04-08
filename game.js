@@ -31,7 +31,7 @@ function moveFrom(orig,dir) {
 
 function fadeIn(x) {
   let elem = $(x);
-  elem.style.setProperty("z-index",parseInt(elem.style.zindex())+10);
+  elem.style.setProperty("z-index",parseInt(elem.style.zIndex())+10);
   let op = 0;
   var fade = setInterval(function() {
     op += 0.02;
@@ -44,7 +44,7 @@ function fadeInAll(set) {
   let op = 0;
   for(i=0;i<set.length;i++){
     let elem = set.item[i];
-    elem.style.setProperty("z-index",parseInt(elem.style.zindex())+10);
+    elem.style.setProperty("z-index",parseInt(elem.style.zIndex())+10);
   }
   var fade = setInterval(function() {
     op += 0.02;
@@ -59,7 +59,7 @@ function fadeInAll(set) {
 function fadeOut(x) {
   let op = 1;
   let elem = $(x);
-  elem.style.setProperty("z-index",parseInt(elem.style.zindex())-10);
+  elem.style.setProperty("z-index",parseInt(elem.style.zIndex())-10);
   var fade = setInterval(function() {
     op -= 0.02;
     elem.style.setProperty("opacity", op);
@@ -71,7 +71,7 @@ function fadeOutAll(set) {
   let op = 1;
   for(i=0;i<set.length;i++){
     let elem = set.item[i];
-    elem.style.setProperty("z-index",parseInt(elem.style.zindex())-10);
+    elem.style.setProperty("z-index",parseInt(elem.style.zIndex())-10);
   }
   var fade = setInterval(function() {
     op -= 0.02;
