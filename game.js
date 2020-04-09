@@ -102,7 +102,7 @@ function press(id) {
 }
 
 function moveFrom(place,dir) {
-  let index = player.zones.indexOf(orig);
+  let index = player.zones.indexOf(place);
   var dest = "unlocked ";
   var orig = "unlocked "+place;
   if(dir=="l") dest += player.zones[index-1];
