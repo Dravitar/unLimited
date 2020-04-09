@@ -46,20 +46,11 @@
 	z-index: 2;
 }
 
-.travelLeft {
+.travel {
 	background: forestGreen;
 	transition: box-shadow 0.5s;
 }
 
-.travelRight {
-	background: forestGreen;
-	transition: box-shadow 0.5s;
-}
-
-.travelLeft:hover {
-	box-shadow: 0 4px 20px 5px rgba(35, 256, 35, 0.4), 0 4px 20px 5px rgba(35, 256, 35, 0.4);
-}
-
-.travelRight:hover{
+.travel:hover{
 	box-shadow: 0 4px 20px 5px rgba(35, 256, 35, 0.4), 0 4px 20px 5px rgba(35, 256, 35, 0.4);
 }
