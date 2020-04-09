@@ -50,8 +50,9 @@ function press(id) {
     case "showQuests":
       if(!player.clicked.showQuests){
         fadeIn('showPower');
-        fadeIn('
+        fadeIn('mainDepartureD');
         $("showPower").classList.add("unlocked");
+        $("mainDepartureD").classList.add("unlocked");
         if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
         if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
         player.clicked.showQuests = true;
@@ -102,6 +103,12 @@ function press(id) {
       if(!player.clicked.generatorsDepartureR){
         moveFrom('generators','main');
         player.clicked.generatorsDepartureR = true;
+      }
+      break;
+    case "mainDepartureD":
+      if(!player.clicked.mainDepartureD){
+        moveFrom('main','quest');
+        player.clicked.mainDepartureD = true;
       }
       break;
     case "questDepartureU":
