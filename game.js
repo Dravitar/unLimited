@@ -12,8 +12,8 @@ function getDefaultPlayer() {
       scaling: [new Decimal(0)],
     },
     clicked: {
-      start: false, showEnergy: false, showPower: false, showGenerators: false, mainDepartureL: false, showCrystals: false, 
-      showUpgrades: false, mainDepartureR: false, generatorsDepartureR: false,},
+      start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
+      showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
   };
@@ -42,18 +42,26 @@ function press(id) {
     case "showEnergy":
       if(!player.clicked.showEnergy){
         fadeIn('energyArea');
-        fadeIn('showPower');
-        $("showPower").classList.add("unlocked");
+        fadeIn('showQuests');
+        $("showQuests").classList.add("unlocked");
         player.clicked.showEnergy = true;
+      }
+      break;
+    case "showQuests":
+      if(!player.clicked.showQuests){
+        fadeIn('showPower');
+        fadeIn('
+        $("showPower").classList.add("unlocked");
+        if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
+        if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
+        player.clicked.showQuests = true;
       }
       break;
     case "showPower":
       if(!player.clicked.showPower){
         fadeIn('powerArea');
         fadeIn('showGenerators');
-        $("showGenerators").classList.add("unlocked");
-        if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
-        if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
+        $("showGenerators").classList.add("unlocked");        
         player.clicked.showPower = true;
       }
       break;
@@ -65,9 +73,9 @@ function press(id) {
       }
       break;
     case "mainDepartureL":
-      if(!player.clicked.mainDepartureL){
-        moveFrom('main','l');
-        player.clicked.mainDepartureL = true;
+      if(!player.clicked.mainDeparture){
+        moveFrom('main','generators');
+        player.clicked.mainDeparture = true;
         player.clicked.generatorsDepartureR = false;
       }
       break;
@@ -85,36 +93,40 @@ function press(id) {
       }
       break;
     case "mainDepartureR":
-      if(!player.clicked.mainDepartureR){
-        moveFrom('main','r');
-        player.clicked.mainDepartureR = true;
+      if(!player.clicked.mainDeparture){
+        moveFrom('main','upgrades');
+        player.clicked.mainDeparture = true;
       }
       break;
     case "generatorsDepartureR":
       if(!player.clicked.generatorsDepartureR){
-        moveFrom('generators','r');
+        moveFrom('generators','main');
         player.clicked.generatorsDepartureR = true;
-        player.clicked.mainDepartureR = false;
-        player.clicked.mainDepartureL = false;
+      }
+      break;
+    case "questDepartureU":
+      if(!player.clicked.questDeparture){
+        moveFrom('quest','main')
+        player.clicked.generators
       }
       break;
   }
 }
 
-function moveFrom(place,dir) {
+function moveFrom(place,des) {
   let index = player.zones.indexOf(place);
-  var dest = "unlocked ";
+  var dest = "unlocked "+des;
   var orig = "unlocked "+place;
-  if(dir=="l") dest += player.zones[index-1];
-  else if(dir=="r") dest += player.zones[index+1];
   let toHide = document.getElementsByClassName(orig);
   fadeOutAll(toHide);
   let toShow = document.getElementsByClassName(dest);
   fadeInAll(toShow);
-  let left = dest + "DepartureL";
-  let right = dest + "DepartureR";
-  player.clicked[left] = false;
-  player.clicked[right] = false;
+  let allTravel = document.getElementsByClassName("travel");
+  for(i=0;i<allTravel.length;i++){
+    let id = des+"Departure";
+    if(allTravel[i].classList.contains(des)) player.clicked[id] = false;
+    else player.clicked[id] = true;
+  }      
 }
 
 function fadeIn(x) {
