@@ -101,9 +101,10 @@ function press(id) {
   }
 }
 
-function moveFrom(orig,dir) {
+function moveFrom(place,dir) {
   let index = player.zones.indexOf(orig);
   var dest = "unlocked ";
+  var orig = "unlocked "+place;
   if(dir=="l") dest += player.zones[index-1];
   else if(dir=="r") dest += player.zones[index+1];
   let toHide = document.getElementsByClassName(orig);
