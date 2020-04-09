@@ -24,7 +24,7 @@
 
 .main {
 	font-size:xx-large;
-	background: grey;
+}
 
 .menuButton {
 	color: white;
@@ -33,9 +33,24 @@
 
 .upgrade {
 	height: 100%;
+	background: grey;
+	transition: box-shadow 0.5s;
+}
+
+.upgrade:hover {
+	box-shadow: 0 4px 20px 5px rgba(256, 35, 35, 0.4), 0 4px 20px 5px rgba(256, 35, 35, 0.4);
 }
 
 .blank {
 	height: 100%;
 	z-index: 2;
+}
+
+.travelLeft .travelRight {
+	background: forestGreen;
+	transition: box-shadow 0.5s;
+}
+
+.travelLeft:hover .travelRight:hover{
+	box-shadow: 0 4px 20px 5px rgba(35, 256, 35, 0.4), 0 4px 20px 5px rgba(35, 256, 35, 0.4);
 }
