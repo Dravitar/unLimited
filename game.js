@@ -14,7 +14,6 @@ function getDefaultPlayer() {
     clicked: {
       start: false, showEnergy: false, showPower: false, showGenerators: false, mainDepartureL: false, showCrystals: false, 
       showUpgrades: false, mainDepartureR: false, generatorsDepartureR: false,},
-    
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
   };
@@ -36,6 +35,7 @@ function press(id) {
     case "start":
       if(!player.clicked.start){
         fadeIn('showEnergy');
+        $("showEnergy").classList.add("unlocked");
         player.clicked.start = true;
       }
       break;
@@ -43,20 +43,24 @@ function press(id) {
       if(!player.clicked.showEnergy){
         fadeIn('energyArea');
         fadeIn('showPower');
+        $("showPower").classList.add("unlocked");
         player.clicked.showEnergy = true;
       }
       break;
     case "showPower":
-      if(!player.clicked.showPower){
+      if(!player.clicked.showPower{
         fadeIn('powerArea');
         fadeIn('showGenerators');
-        fadeIn('showUpgrades');
+        $("showGenerators").classList.add("unlocked");
+        if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
+        if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
         player.clicked.showPower = true;
       }
       break;
     case "showGenerators":
       if(!player.clicked.showGenerators){
         fadeIn('mainDepartureL');
+        $("mainDepartureL").classList.add("unlocked");
         player.clicked.showGenerators = true;
       }
       break;
@@ -76,6 +80,7 @@ function press(id) {
     case "showUpgrades":
       if(!player.clicked.showUpgrades){
         fadeIn('mainDepartureR');
+        $("mainDepartureR").classList.add("unlocked");
         player.clicked.showUpgrades = true;
       }
       break;
@@ -98,12 +103,13 @@ function press(id) {
 
 function moveFrom(orig,dir) {
   let index = player.zones.indexOf(orig);
-  var dest;
-  if(dir=="l") dest = player.zones[index-1];
-  else if(dir=="r") dest = player.zones[index+1];
+  var dest = "unlocked ";
+  if(dir=="l") dest += player.zones[index-1];
+  else if(dir=="r") dest += player.zones[index+1];
   let toHide = document.getElementsByClassName(orig);
+  for(
   fadeOutAll(toHide);
-  let toShow = document.getElementsByClassName(dest);
+  let toShow = Array.from(document.getElementsByClassName(dest));
   fadeInAll(toShow);
   let left = dest + "DepartureL";
   let right = dest + "DepartureR";
