@@ -48,7 +48,7 @@ function press(id) {
       }
       break;
     case "showPower":
-      if(!player.clicked.showPower{
+      if(!player.clicked.showPower){
         fadeIn('powerArea');
         fadeIn('showGenerators');
         $("showGenerators").classList.add("unlocked");
