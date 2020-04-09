@@ -109,7 +109,7 @@ function moveFrom(place,dir) {
   else if(dir=="r") dest += player.zones[index+1];
   let toHide = document.getElementsByClassName(orig);
   fadeOutAll(toHide);
-  let toShow = Array.from(document.getElementsByClassName(dest));
+  let toShow = document.getElementsByClassName(dest);
   fadeInAll(toShow);
   let left = dest + "DepartureL";
   let right = dest + "DepartureR";
