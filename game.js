@@ -5,7 +5,9 @@ function getDefaultPlayer() {
     energy: new Decimal(4),
     power: new Decimal(0),
     generators: {amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-                 boost: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+		 purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+                 boost: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+		 price: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e8)],
                 },
     crystals: new Decimal(0),
     upgrades: {
@@ -27,11 +29,26 @@ var player = getDefaultPlayer();
 
 function gameCycle() {
 	let now = new Date().getTime();
-	let diff = now - user.lastTick;
-  
-  user.lastTick = now;
+	let diff = now - player.lastTick;
+	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01)));
+	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01)));
+	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01)));
+	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(0.01)));
+  player.lastTick = now;
   updateAll();
+}
 
+function updateAll() {
+	$("currentEnergy").textContent = display(player.energy);
+	$("currentPower").textContent = display(player.power);
+	$("currentCrystals").textContent = display(player.crystals);
+	for(i=1;i<5;i++){
+		$("gen"+i+"Purchased").textContent = display(player.generators.purchased[i-1]);
+		$("gen"+i+"Price").textContent = display(player.generators.price[i-1]);
+		$("gen"+i+"Amount").textContent = display(player.generators.amount[i-1]);
+		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.bonus[i-1]));
+	}
+}
 
 function checkButton(x) {
   if(player.clicked[x]){
