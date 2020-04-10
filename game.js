@@ -4,6 +4,9 @@ function getDefaultPlayer() {
   return {
     energy: new Decimal(4),
     power: new Decimal(0),
+    generators: {amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+                 boost: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+                },
     crystals: new Decimal(0),
     upgrades: {
       prices: [new Decimal(0)],
@@ -16,10 +19,19 @@ function getDefaultPlayer() {
       showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
+    lastTick = new Date().getTime();
   };
 }
 
 var player = getDefaultPlayer();
+
+function gameCycle() {
+	let now = new Date().getTime();
+	let diff = now - user.lastTick;
+  
+  user.lastTick = now;
+  updateAll();
+
 
 function checkButton(x) {
   if(player.clicked[x]){
@@ -33,22 +45,24 @@ function checkButton(x) {
 function press(id) {
   switch(id) {
     case "start":
-      if(!player.clicked.start){
+      if(!player.clicked.start&&player.energy.gt(0)){
         fadeIn('showEnergy');
         $("showEnergy").classList.add("unlocked");
         player.clicked.start = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "showEnergy":
-      if(!player.clicked.showEnergy){
+      if(!player.clicked.showEnergy&&player.energy.gt(0)){
         fadeIn('energyArea');
         fadeIn('showQuests');
         $("showQuests").classList.add("unlocked");
         player.clicked.showEnergy = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "showQuests":
-      if(!player.clicked.showQuests){
+      if(!player.clicked.showQuests&&player.energy.gt(0)){
         fadeIn('showPower');
         fadeIn('mainDepartureD');
         $("showPower").classList.add("unlocked");
@@ -56,21 +70,24 @@ function press(id) {
         if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
         if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
         player.clicked.showQuests = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "showPower":
-      if(!player.clicked.showPower){
+      if(!player.clicked.showPower&&player.energy.gt(0)){
         fadeIn('powerArea');
         fadeIn('showGenerators');
         $("showGenerators").classList.add("unlocked");        
         player.clicked.showPower = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "showGenerators":
-      if(!player.clicked.showGenerators){
+      if(!player.clicked.showGenerators&&player.energy.gt(0)){
         fadeIn('mainDepartureL');
         $("mainDepartureL").classList.add("unlocked");
         player.clicked.showGenerators = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "mainDepartureL":
@@ -81,16 +98,18 @@ function press(id) {
       }
       break;
     case "showCrystals":
-      if(!player.clicked.showCrystals){
+      if(!player.clicked.showCrystals&&player.energy.gt(0)){
         fadeIn('crystalArea');
         player.clicked.showCrystals = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "showUpgrades":
-      if(!player.clicked.showUpgrades){
+      if(!player.clicked.showUpgrades&&player.energy.gt(0)){
         fadeIn('mainDepartureR');
         $("mainDepartureR").classList.add("unlocked");
         player.clicked.showUpgrades = true;
+        player.energy = player.energy.minus(1);
       }
       break;
     case "mainDepartureR":
@@ -206,6 +225,12 @@ function initializeGrid() {
       $('gameSpace').appendChild(newSpan);
     }
   }
+}
+
+function beginination() {
+  initializeGrid();
+	setInterval(gameCycle, 10);
+	setInterval(save, 30000);
 }
 
 function checkKey(event) {
