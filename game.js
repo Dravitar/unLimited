@@ -21,7 +21,7 @@ function getDefaultPlayer() {
       showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
     storySeen: 0,
     zones: ["upgrades","generators","main","prestige"],
-    lastTick = new Date().getTime();
+    lastTick = new Date().getTime(),
   };
 }
 
