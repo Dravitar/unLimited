@@ -97,24 +97,28 @@ function press(id) {
       if(!player.clicked.mainDeparture){
         moveFrom('main','upgrades');
         player.clicked.mainDeparture = true;
+        player.clicked.upgradesDeparture = false;
       }
       break;
     case "generatorsDepartureR":
-      if(!player.clicked.generatorsDepartureR){
+      if(!player.clicked.generatorsDeparture){
         moveFrom('generators','main');
-        player.clicked.generatorsDepartureR = true;
+        player.clicked.generatorsDeparture = true;
+        player.clicked.mainDeparture = false;
       }
       break;
     case "mainDepartureD":
-      if(!player.clicked.mainDepartureD){
+      if(!player.clicked.mainDeparture){
         moveFrom('main','quest');
-        player.clicked.mainDepartureD = true;
+        player.clicked.mainDeparture = true;
+        player.clicked.questDeparture = false;
       }
       break;
     case "questDepartureU":
       if(!player.clicked.questDeparture){
         moveFrom('quest','main')
-        player.clicked.generators
+        player.clicked.questDeparture = true;
+        player.clicked.mainDeparture = false;
       }
       break;
   }
