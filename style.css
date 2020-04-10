@@ -24,17 +24,20 @@
 
 .main {
 	font-size:xx-large;
+	position: relative;
 }
 
 .menuButton {
 	color: white;
-	background: black;	
+	background: black;
+	position: relative;
 }
 
 .upgrade {
 	height: 100%;
 	background: grey;
 	transition: box-shadow 0.5s;
+	position: relative;
 }
 
 .upgrade:hover {
@@ -44,11 +47,13 @@
 .blank {
 	height: 100%;
 	z-index: 2;
+	position: relative;
 }
 
 .travel {
 	background: forestGreen;
 	transition: box-shadow 0.5s;
+	position: relative;
 }
 
 .travel:hover{
