@@ -8,10 +8,12 @@ function getDefaultPlayer() {
 		 purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
                  boost: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 		 price: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e8)],
+		 increase: [new Decimal(1.3), new Decimal(1.5), new Decimal(1.7), new Decimal(1.9),],
+		 scaling: [new Decimal(1.03), new Decimal(1.05), new Decimal(1.07), new Decimal(1.09),],
                 },
     crystals: new Decimal(0),
     upgrades: {
-      prices: [new Decimal(0)],
+      price: [new Decimal(0)],
       purchased: [new Decimal(0)],
       increase: [new Decimal(0)],
       scaling: [new Decimal(0)],
@@ -253,7 +255,15 @@ function beginination() {
 function checkKey(event) {
 }
 
-function purchase(item) {
+function purchaseGen(item) {
+	if(player.power.gte(player.generator.price[item-1])&&player.energy.gt(0)){
+		player.generator.purchased[item-1] = player.generator.purchased[item-1].plus(1);
+		player.power = player.power.minus(player.generator.price[item-1]);
+		if(player.generator.purchased[item-1].gte(Decimal.div(40,item).floor())){
+			player.generator.price[item-1] = player.generator[item-1].times(player.generator.scaling[item-1]);
+		}
+		player.generator.price[item-1] = player.generator.price[item-1].times(player.generator.increase[item-1]);
+	}		
 }
 
 function genBoost() {
