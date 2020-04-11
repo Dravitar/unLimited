@@ -40,15 +40,21 @@ function gameCycle() {
   updateAll();
 }
 
+function display(x) {
+	if(x.gte(1e3)){
+		return x.toPrecision(4)
+	} else return x;
+}
+
 function updateAll() {
-	$("currentEnergy").textContent = player.energy.toPrecision(2);
-	$("currentPower").textContent = player.power.toPrecision(2);
-	$("currentCrystals").textContent = player.crystals.toPrecision(2);
+	$("currentEnergy").textContent = display(player.energy);
+	$("currentPower").textContent = display(player.power);
+	$("currentCrystals").textContent = display(player.crystals);
 	for(i=1;i<5;i++){
-		$("gen"+i+"Purchased").textContent = player.generators.purchased[i-1].toPrecision(2);
-		$("gen"+i+"Price").textContent = player.generators.price[i-1].toPrecision(2);
-		$("genAmount"+i).textContent = player.generators.amount[i-1].toPrecision(2);
-		$("generation"+i).textContent = player.generators.amount[i-1].times(player.generators.boost[i-1]).toPrecision(2);
+		$("gen"+i+"Purchased").textContent = display(player.generators.purchased[i-1]);
+		$("gen"+i+"Price").textContent = display(player.generators.price[i-1]);
+		$("genAmount"+i).textContent = display(player.generators.amount[i-1]);
+		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.boost[i-1]));
 	}
 }
 
@@ -264,6 +270,7 @@ function purchaseGen(item) {
 			player.generators.price[item-1] = player.generators[item-1].times(player.generators.scaling[item-1]);
 		}
 		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
+		player.energy = player.energy.minus(1);
 	}		
 }
 
