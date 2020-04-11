@@ -4,13 +4,14 @@ function getDefaultPlayer() {
   return {
     energy: new Decimal(4),
     power: new Decimal(0),
-    generators: {amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-		 purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-                 boost: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-		 price: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e8)],
-		 increase: [new Decimal(1.3), new Decimal(1.5), new Decimal(1.7), new Decimal(1.9),],
-		 scaling: [new Decimal(1.03), new Decimal(1.05), new Decimal(1.07), new Decimal(1.09),],
-                },
+    generators: {
+      amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+      purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+      boost: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+      price: [new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e8)],
+      increase: [new Decimal(1.3), new Decimal(1.5), new Decimal(1.7), new Decimal(1.9),],
+      scaling: [new Decimal(1.03), new Decimal(1.05), new Decimal(1.07), new Decimal(1.09),],
+    },
     crystals: new Decimal(0),
     upgrades: {
       price: [new Decimal(0)],
@@ -21,8 +22,9 @@ function getDefaultPlayer() {
     clicked: {
       start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
       showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
+    quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
     storySeen: 0,
-    zones: ["upgrades","generators","main","prestige"],
+    curentZone: "main",
     lastTick: new Date().getTime(),
   };
 }
@@ -56,6 +58,20 @@ function updateAll() {
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]);
 		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.boost[i-1]));
 	}
+  if(player.energy.equals(0)){
+    fadeOut("currentEnergy");
+    fadeIn("reset");
+    if($("quest2").classList.contains("unsolved")){
+      $("quest2").classList.add("solved");
+      $("quest2").classList.remove("unsolved");
+    }
+  }
+  if(!player.quests[3]&&player.power.gte(100)){    
+    if($("quest4").classList.contains("unsolved")){
+      $("quest4").classList.add("solved");
+      $("quest4").classList.remove("unsolved");
+    }
+  }
 }
 
 function checkButton(x) {
@@ -75,6 +91,10 @@ function press(id) {
         $("showEnergy").classList.add("unlocked");
         player.clicked.start = true;
         player.energy = player.energy.minus(1);
+        if($("quest1").classList.contains("unsolved")){
+          $("quest1").classList.add("solved");
+          $("quest1").classList.remove("unsolved");
+        }
       }
       break;
     case "showEnergy":
@@ -113,6 +133,10 @@ function press(id) {
         $("mainDepartureL").classList.add("unlocked");
         player.clicked.showGenerators = true;
         player.energy = player.energy.minus(1);
+        if($("quest3").classList.contains("unsolved")){
+          $("quest3").classList.add("solved");
+          $("quest3").classList.remove("unsolved");
+        }
       }
       break;
     case "mainDepartureL":
@@ -168,8 +192,16 @@ function press(id) {
   }
 }
 
+function claimQuest(num) {
+	if($("quest"+num).classList.contains("solved")) {
+    $("quest"+num).classList.add("claimed");
+    $("quest"+num).classList.remove("solved");
+    player.quests[num-1] = true;
+  }
+}
+
 function moveFrom(place,des) {
-  let index = player.zones.indexOf(place);
+  player.currentZone = des;
   var dest = "unlocked "+des;
   var orig = "unlocked "+place;
   let toHide = document.getElementsByClassName(orig);
@@ -272,6 +304,30 @@ function purchaseGen(item) {
 		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
 		player.energy = player.energy.minus(1);
 	}		
+}
+
+function reset() {
+  if(player.energy.equals(0)){
+    player.power = new Decimal(0);
+    let energy = new Decimal(3);
+    for(i=0;i<player.quests.length;i++){
+      switch(i) {
+        case 0 case 1:
+          if(player.quests[i]) energy = energy.plus(2);
+          break;
+        case 3 case 4:
+          if(player.quests[i]) energy = energy.plus(3);
+          break;
+        case 5 case 6 case 7:
+          if(player.quests[i]) energy = energy.plus(4);
+          break;
+        default:
+          break;
+      }
+    }
+    player.energy = energy;
+    if(player.currentZone!="main") moveFrom(player.currentZone,"main");
+  }
 }
 
 function genBoost() {
