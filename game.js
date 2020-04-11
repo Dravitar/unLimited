@@ -258,6 +258,7 @@ function checkKey(event) {
 function purchaseGen(item) {
 	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){
 		player.generators.purchased[item-1] = player.generators.purchased[item-1].plus(1);
+		player.generators.amount[item-1] = player.generators.amount[item-1].plus(1);
 		player.power = player.power.minus(player.generators.price[item-1]);
 		if(player.generators.purchased[item-1].gte(Decimal.div(40,item).floor())){
 			player.generators.price[item-1] = player.generators[item-1].times(player.generators.scaling[item-1]);
