@@ -48,7 +48,7 @@ function updateAll() {
 		$("gen"+i+"Purchased").textContent = player.generators.purchased[i-1].toPrecision(2);
 		$("gen"+i+"Price").textContent = player.generators.price[i-1].toPrecision(2);
 		$("genAmount"+i).textContent = player.generators.amount[i-1].toPrecision(2);
-		$("generation"+i).textContent = player.generators.amount[i-1].times(player.generators.bonus[i-1]).toPrecision(2);
+		$("generation"+i).textContent = player.generators.amount[i-1].times(player.generators.boost[i-1]).toPrecision(2);
 	}
 }
 
