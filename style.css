@@ -54,8 +54,26 @@
 	background: forestGreen;
 	transition: box-shadow 0.5s;
 	position: relative;
+	font-size: xx-large;
 }
 
 .travel:hover{
 	box-shadow: 0 4px 20px 5px rgba(35, 256, 35, 0.4), 0 4px 20px 5px rgba(35, 256, 35, 0.4);
+}
+
+button.quest {
+	background: grey;
+}
+
+.unsolved {
+	color: black;
+}
+
+.solved {
+	color: green;
+}
+
+.claimed {
+	color: black;
+	background: green;
 }
