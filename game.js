@@ -256,13 +256,13 @@ function checkKey(event) {
 }
 
 function purchaseGen(item) {
-	if(player.power.gte(player.generator.price[item-1])&&player.energy.gt(0)){
-		player.generator.purchased[item-1] = player.generator.purchased[item-1].plus(1);
-		player.power = player.power.minus(player.generator.price[item-1]);
-		if(player.generator.purchased[item-1].gte(Decimal.div(40,item).floor())){
-			player.generator.price[item-1] = player.generator[item-1].times(player.generator.scaling[item-1]);
+	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){
+		player.generators.purchased[item-1] = player.generators.purchased[item-1].plus(1);
+		player.power = player.power.minus(player.generators.price[item-1]);
+		if(player.generators.purchased[item-1].gte(Decimal.div(40,item).floor())){
+			player.generators.price[item-1] = player.generators[item-1].times(player.generators.scaling[item-1]);
 		}
-		player.generator.price[item-1] = player.generator.price[item-1].times(player.generator.increase[item-1]);
+		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
 	}		
 }
 
