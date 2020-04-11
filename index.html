@@ -89,12 +89,16 @@
 					onclick="press('questDepartureU')">
 					Return
 				</button>
-				<p id="quest1" class="quest item unlocked" style="opacity: 0">Press the Start Button</p>
-				<p id="quest2" class="quest item unlocked" style="opacity: 0">Run out of Energy</p>
-				<p id="quest3" class="quest item unlocked" style="opacity: 0">Find some Generators</p>
-				<p id="quest4" class="quest item" style="opacity: 0">Obtain 1000 Power</p>
-				<p id="quest5" class="quest item" style="opacity: 0">Obtain a Crystal</p>
-				<p id="quest6" class="quest item" style="opacity: 0">Access the Upgrades</p>
+				<button id="questList1" class="questList quest unlocked" style="display:grid; opacity: 0;z-index: 1; grid-column: 3/4; grid-row: 3/4;">
+					<p class="questItem quest unsolved" id="quest1" onclick="claimQuest(1)">Press the Start Button</p>
+					<p class="questItem quest unsolved" id="quest2" onclick="claimQuest(2)">Run out of Energy</p>
+					<p class="questItem quest unsolved" id="quest3" onclick="claimQuest(3)">Find some Generators</p>
+				</button>
+				<button id="questList2" class="questList quest" style="display:grid; opacity: 0; z-index: 1; grid-column: 4/5; grid-row: 3/4;">
+					<p class="questItem quest unsolved" id="quest4" onclick="claimQuest(4)">Obtain 1000 Power</p>
+					<p class="questItem quest unsolved" id="quest5" onclick="claimQuest(5)">Obtain a Crystal</p>
+					<p class="questItem quest unsolved" id="quest6" onclick="claimQuest(6)">Access the Upgrades</p>
+				</button>
 		<!---------------------------------------------------------------------------->
 		<!--------------------------------- Generators ------------------------------->
 		<!---------------------------------------------------------------------------->
