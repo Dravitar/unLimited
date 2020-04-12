@@ -43,9 +43,7 @@ function gameCycle() {
 }
 
 function display(x) {
-	if(x.gte(1e3)){
-		return x.toPrecision(4)
-	} else return x;
+	return x.toPrecision(4)
 }
 
 function updateAll() {
