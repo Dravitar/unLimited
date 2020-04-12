@@ -68,7 +68,7 @@ function updateAll() {
 
 function checkZero() {  
   if(player.energy.equals(0)&&$("reset").style.zIndex<10){
-    fadeOut("currentEnergy");
+    fadeOut("energyArea");
     fadeIn("reset");
     if($("quest2").classList.contains("unsolved")){
       $("quest2").classList.add("solved");
