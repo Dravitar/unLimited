@@ -320,7 +320,7 @@ function checkKey(event) {
 
 function purchaseGen(item) {
 	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){
-    if(columns[0]) player.generators.boost[item-1] = player.generators.boost[item-1].times(1.1);
+    if(player.columns[0]) player.generators.boost[item-1] = player.generators.boost[item-1].times(1.1);
 		player.generators.purchased[item-1] = player.generators.purchased[item-1].plus(1);
 		player.generators.amount[item-1] = player.generators.amount[item-1].plus(1);
 		player.power = player.power.minus(player.generators.price[item-1]);
