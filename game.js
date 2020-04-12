@@ -103,6 +103,7 @@ function press(id) {
     case "showEnergy":
       if(!player.clicked.showEnergy&&player.energy.gt(0)){
         fadeIn('energyArea');
+        $("energyArea").classList.add("unlocked");
         fadeIn('showQuests');
         $("showQuests").classList.add("unlocked");
         player.clicked.showEnergy = true;
@@ -124,6 +125,7 @@ function press(id) {
     case "showPower":
       if(!player.clicked.showPower&&player.energy.gt(0)){
         fadeIn('powerArea');
+        $("powerArea").classList.add("unlocked");
         fadeIn('showGenerators');
         $("showGenerators").classList.add("unlocked");        
         player.clicked.showPower = true;
