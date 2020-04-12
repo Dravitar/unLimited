@@ -3,7 +3,7 @@ function $(x) {return document.getElementById(x)}
 function getDefaultPlayer() {
   return {
     energy: new Decimal(4),
-    power: new Decimal(0),
+    power: new Decimal(10),
     generators: {
       amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
       purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
