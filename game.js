@@ -58,18 +58,21 @@ function updateAll() {
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]);
 		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.boost[i-1]));
 	}
+  if(!player.quests[3]&&player.power.gte(100)){    
+    if($("quest4").classList.contains("unsolved")){
+      $("quest4").classList.add("solved");
+      $("quest4").classList.remove("unsolved");
+    }
+  }
+}
+
+function checkZero() {  
   if(player.energy.equals(0)){
     fadeOut("currentEnergy");
     fadeIn("reset");
     if($("quest2").classList.contains("unsolved")){
       $("quest2").classList.add("solved");
       $("quest2").classList.remove("unsolved");
-    }
-  }
-  if(!player.quests[3]&&player.power.gte(100)){    
-    if($("quest4").classList.contains("unsolved")){
-      $("quest4").classList.add("solved");
-      $("quest4").classList.remove("unsolved");
     }
   }
 }
@@ -190,6 +193,7 @@ function press(id) {
       }
       break;
   }
+  checkZero();
 }
 
 function claimQuest(num) {
@@ -303,7 +307,8 @@ function purchaseGen(item) {
 		}
 		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
 		player.energy = player.energy.minus(1);
-	}		
+	}
+  checkZero();
 }
 
 function reset() {
@@ -316,7 +321,8 @@ function reset() {
         case 1:
           if(player.quests[i]) energy = energy.plus(2);
           break;
-        case 3:
+        case 2:
+          if(player.quests[i]) player.power = new Decimal(10);
         case 4:
           if(player.quests[i]) energy = energy.plus(3);
           break;
@@ -330,7 +336,12 @@ function reset() {
       }
     }
     player.energy = energy;
-    if(player.currentZone!="main") moveFrom(player.currentZone,"main");
+    player.generators = getDefaultPlayer().generators;
+    player.clicked = getDefaultPlayer().clicked;
+    var orig = "unlocked "+player.currentZone;
+    let toHide = document.getElementsByClassName(orig);
+    fadeOutAll(toHide);
+    fadeIn("start");
   }
 }
 
