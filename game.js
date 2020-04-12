@@ -34,11 +34,11 @@ var player = getDefaultPlayer();
 
 function gameCycle() {
 	let now = new Date().getTime();
-	let diff = now - player.lastTick;
-	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01)));
-	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01)));
-	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01)));
-	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(0.01)));
+	let diff = (now - player.lastTick)/10;
+	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01).times(diff)));
+	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01).times(diff)));
+	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01).times(diff)));
+	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(0.01).times(diff)));
   player.lastTick = now;
   updateAll();
 }
@@ -63,6 +63,11 @@ function updateAll() {
       $("quest4").classList.remove("unsolved");
     }
   }
+  if(!player.quests[4]&&player.power.gte(1e8)){
+    if($("quest5").classList.contains("unsolved")){
+      $("quest5").classList.add("solved");
+      $("quest5").classList.remove("unsolved");
+    }
 }
 
 function checkZero() {  
@@ -224,6 +229,11 @@ function claimColumn(num) {
     $("columnReward"+num).classList.remove("solved");
     $("columnReward"+num).classList.add("claimed");
     player.columns[num-1] = true;
+    var nuum = num+1;
+    fadeIn("columnReward"+nuum);
+    for(i=4*num;i<4*num+4;i++){
+      fadeIn("quest"+num);
+    }
   }
 }
 
