@@ -312,13 +312,17 @@ function reset() {
     let energy = new Decimal(3);
     for(i=0;i<player.quests.length;i++){
       switch(i) {
-        case 0 case 1:
+        case 0:
+        case 1:
           if(player.quests[i]) energy = energy.plus(2);
           break;
-        case 3 case 4:
+        case 3:
+        case 4:
           if(player.quests[i]) energy = energy.plus(3);
           break;
-        case 5 case 6 case 7:
+        case 5:
+        case 6:
+        case 7:
           if(player.quests[i]) energy = energy.plus(4);
           break;
         default:
