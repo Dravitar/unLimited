@@ -86,7 +86,7 @@ function checkButton(x) {
 }
 
 function press(id) {
-	if(player.energy.gt(0)){
+	if(player.energy.gt(0) || $(id).classList.contains("travel")){
 		switch(id) {
     case "start":
       if(!player.clicked.start){
