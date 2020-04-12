@@ -86,9 +86,10 @@ function checkButton(x) {
 }
 
 function press(id) {
-  switch(id) {
+	if(player.energy.gt(0)){
+		switch(id) {
     case "start":
-      if(!player.clicked.start&&player.energy.gt(0)){
+      if(!player.clicked.start&&){
         fadeIn('showEnergy');
         $("showEnergy").classList.add("unlocked");
         player.clicked.start = true;
@@ -100,7 +101,7 @@ function press(id) {
       }
       break;
     case "showEnergy":
-      if(!player.clicked.showEnergy&&player.energy.gt(0)){
+      if(!player.clicked.showEnergy&&player.clicked.start){
         fadeIn('energyArea');
         $("energyArea").classList.add("unlocked");
         fadeIn('showQuests');
@@ -112,7 +113,7 @@ function press(id) {
       }
       break;
     case "showQuests":
-      if(!player.clicked.showQuests&&player.energy.gt(0)){
+      if(!player.clicked.showQuests&&player.clicked.showEnergy){
         fadeIn('showPower');
         fadeIn('mainDepartureD');
         $("showPower").classList.add("unlocked");
@@ -124,7 +125,7 @@ function press(id) {
       }
       break;
     case "showPower":
-      if(!player.clicked.showPower&&player.energy.gt(0)){
+      if(!player.clicked.showPower&&player.clicked.showQuests){
         fadeIn('powerArea');
         $("powerArea").classList.add("unlocked");
         fadeIn('showGenerators');
@@ -134,7 +135,7 @@ function press(id) {
       }
       break;
     case "showGenerators":
-      if(!player.clicked.showGenerators&&player.energy.gt(0)){
+      if(!player.clicked.showGenerators&&player.clicked.showPower){
         fadeIn('mainDepartureL');
         $("mainDepartureL").classList.add("unlocked");
         player.clicked.showGenerators = true;
@@ -146,21 +147,21 @@ function press(id) {
       }
       break;
     case "mainDepartureL":
-      if(!player.clicked.mainDeparture){
+      if(!player.clicked.mainDeparture&&player.clicked.showGenerators){
         moveFrom('main','generators');
         player.clicked.mainDeparture = true;
         player.clicked.generatorsDepartureR = false;
       }
       break;
     case "showCrystals":
-      if(!player.clicked.showCrystals&&player.energy.gt(0)){
+      if(!player.clicked.showCrystals&&player.clicked.showQuests){
         fadeIn('crystalArea');
         player.clicked.showCrystals = true;
         player.energy = player.energy.minus(1);
       }
       break;
     case "showUpgrades":
-      if(!player.clicked.showUpgrades&&player.energy.gt(0)){
+      if(!player.clicked.showUpgrades&&player.clicked.showCrystals){
         fadeIn('mainDepartureR');
         $("mainDepartureR").classList.add("unlocked");
         player.clicked.showUpgrades = true;
@@ -168,7 +169,7 @@ function press(id) {
       }
       break;
     case "mainDepartureR":
-      if(!player.clicked.mainDeparture){
+      if(!player.clicked.mainDeparture&&player.clicked.showUpgrades){
         moveFrom('main','upgrades');
         player.clicked.mainDeparture = true;
         player.clicked.upgradesDeparture = false;
