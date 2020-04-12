@@ -89,7 +89,7 @@ function press(id) {
 	if(player.energy.gt(0)){
 		switch(id) {
     case "start":
-      if(!player.clicked.start&&){
+      if(!player.clicked.start){
         fadeIn('showEnergy');
         $("showEnergy").classList.add("unlocked");
         player.clicked.start = true;
@@ -198,6 +198,7 @@ function press(id) {
       break;
   }
   checkZero();
+	}
 }
 
 function claimQuest(num) {
