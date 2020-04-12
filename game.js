@@ -222,6 +222,7 @@ function claimColumn(num) {
     $("columnReward"+num).classList.remove("solved");
     $("columnReward"+num).classList.add("claimed");
     player.columns[num-1] = true;
+  }
 }
 
 function moveFrom(place,des) {
