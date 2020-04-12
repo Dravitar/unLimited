@@ -23,6 +23,7 @@ function getDefaultPlayer() {
       start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
       showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
     quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
+    columns: [false, false, false, false, false],
     storySeen: 0,
     curentZone: "main",
     lastTick: new Date().getTime(),
@@ -56,7 +57,7 @@ function updateAll() {
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]);
 		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.boost[i-1]));
 	}
-  if(!player.quests[3]&&player.power.gte(100)){    
+  if(!player.quests[3]&&player.power.gte(1000)){    
     if($("quest4").classList.contains("unsolved")){
       $("quest4").classList.add("solved");
       $("quest4").classList.remove("unsolved");
@@ -204,6 +205,23 @@ function claimQuest(num) {
     $("quest"+num).classList.remove("solved");
     player.quests[num-1] = true;
   }
+  var set = Math.floor((num-1)/4);
+  check = true;
+  for(i=set;i<set+4;i++){
+    if(!player.quest[i]) check = false;
+  }
+  if(check) {
+    var nuum = set+1;
+    $("columnReward"+nuum).classList.add("solved");
+    $("columnReward"+nuum).classList.remove("unsolved");
+  }
+}
+
+function claimColumn(num) {
+  if($("columnReward"+num).classList.contains("solved")){
+    $("columnReward"+num).classList.remove("solved");
+    $("columnReward"+num).classList.add("claimed");
+    player.columns[num-1] = true;
 }
 
 function moveFrom(place,des) {
@@ -301,6 +319,7 @@ function checkKey(event) {
 
 function purchaseGen(item) {
 	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){
+    if(columns[0]) player.generators.boost[item-1] = player.generators.boost[item-1].times(1.1);
 		player.generators.purchased[item-1] = player.generators.purchased[item-1].plus(1);
 		player.generators.amount[item-1] = player.generators.amount[item-1].plus(1);
 		player.power = player.power.minus(player.generators.price[item-1]);
