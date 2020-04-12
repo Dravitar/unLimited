@@ -208,7 +208,7 @@ function claimQuest(num) {
   var set = Math.floor((num-1)/4);
   check = true;
   for(i=set;i<set+4;i++){
-    if(!player.quest[i]) check = false;
+    if(!player.quests[i]) check = false;
   }
   if(check) {
     var nuum = set+1;
