@@ -106,6 +106,8 @@ function press(id) {
         $("energyArea").classList.add("unlocked");
         fadeIn('showQuests');
         $("showQuests").classList.add("unlocked");
+        fadeIn("dumpEnergy");
+        $("dumpEnergy").classList.add("unlocked");
         player.clicked.showEnergy = true;
         player.energy = player.energy.minus(1);
       }
