@@ -67,7 +67,7 @@ function updateAll() {
 }
 
 function checkZero() {  
-  if(player.energy.equals(0)){
+  if(player.energy.equals(0)&&$("reset").style.zIndex<10){
     fadeOut("currentEnergy");
     fadeIn("reset");
     if($("quest2").classList.contains("unsolved")){
