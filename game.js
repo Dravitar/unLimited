@@ -343,8 +343,8 @@ function reset() {
     fadeOutAll(toHide);
     fadeOut("reset");
     fadeOut("energyArea");
-    if($("powerArea").classList.includes("unlocked")) fadeOut("powerArea");
-    if($("crystalArea").classList.includes("unlocked")) fadeOut("crystalArea");
+    if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
+    if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");
     fadeIn("start");
     updateAll();
   }
