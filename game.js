@@ -316,43 +316,46 @@ function purchaseGen(item) {
 }
 
 function reset() {
+  let good = true;
   if(!player.energy.equals(0)){
-    if(!confirm("You still have energy remaining. Do you want to reset?")) break;
+    if(!confirm("You still have energy remaining. Do you want to reset?")) good = false;
   }
-  player.power = new Decimal(10);
-  let energy = new Decimal(3);
-  for(i=0;i<player.quests.length;i++){
-    switch(i) {
-      case 0:
-      case 1:
-        if(player.quests[i]) energy = energy.plus(2);
-        break;
-      case 2:
-      case 3:
-      case 4:
-        if(player.quests[i]) energy = energy.plus(3);
-        break;
-      case 5:
-      case 6:
-      case 7:
-        if(player.quests[i]) energy = energy.plus(4);
-        break;
-      default:
-        break;
+  if(good){
+    player.power = new Decimal(10);
+    let energy = new Decimal(3);
+    for(i=0;i<player.quests.length;i++){
+      switch(i) {
+        case 0:
+        case 1:
+          if(player.quests[i]) energy = energy.plus(2);
+          break;
+        case 2:
+        case 3:
+        case 4:
+          if(player.quests[i]) energy = energy.plus(3);
+          break;
+        case 5:
+        case 6:
+        case 7:
+          if(player.quests[i]) energy = energy.plus(4);
+          break;
+        default:
+          break;
+      }
     }
+    player.energy = energy;
+    player.generators = getDefaultPlayer().generators;
+    player.clicked = getDefaultPlayer().clicked;
+    var orig = "unlocked "+player.currentZone;
+    let toHide = document.getElementsByClassName(orig);
+    fadeOutAll(toHide);
+    fadeOut("reset");
+    fadeOut("energyArea");
+    if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
+    if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");
+    fadeIn("start");
+    updateAll();
   }
-  player.energy = energy;
-  player.generators = getDefaultPlayer().generators;
-  player.clicked = getDefaultPlayer().clicked;
-  var orig = "unlocked "+player.currentZone;
-  let toHide = document.getElementsByClassName(orig);
-  fadeOutAll(toHide);
-  fadeOut("reset");
-  fadeOut("energyArea");
-  if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
-  if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");
-  fadeIn("start");
-  updateAll();
 }
 
 function genBoost() {
