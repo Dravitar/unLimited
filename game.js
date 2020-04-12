@@ -341,7 +341,12 @@ function reset() {
     var orig = "unlocked "+player.currentZone;
     let toHide = document.getElementsByClassName(orig);
     fadeOutAll(toHide);
+    fadeOut("reset");
+    fadeOut("energyArea");
+    if($("powerArea").classList.includes("unlocked")) fadeOut("powerArea");
+    if($("crystalArea").classList.includes("unlocked")) fadeOut("crystalArea");
     fadeIn("start");
+    updateAll();
   }
 }
 
