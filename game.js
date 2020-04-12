@@ -317,8 +317,7 @@ function purchaseGen(item) {
 
 function reset() {
   if(!player.energy.equals(0)){
-    if(confirm("You still have energy remaining. Do you want to reset?")) continue;
-    else break;
+    if(!confirm("You still have energy remaining. Do you want to reset?")) break;
   }
   player.power = new Decimal(10);
   let energy = new Decimal(3);
