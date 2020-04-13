@@ -89,9 +89,9 @@ function updateAll() {
 
 function beginination() {
 	initializeGrid();
-	load();
 	setInterval(gameCycle, 10);
 	setInterval(save(), 30000);
+	load();
 }
 
 function save() {
