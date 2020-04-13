@@ -68,6 +68,7 @@ function updateAll() {
       $("quest5").classList.add("solved");
       $("quest5").classList.remove("unsolved");
     }
+  }
 }
 
 function checkZero() {  
@@ -323,8 +324,17 @@ function initializeGrid() {
 
 function beginination() {
   initializeGrid();
+  if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	setInterval(gameCycle, 10);
-	//setInterval(save, 30000);
+	setInterval(saveGame(), 30000);
+}
+  
+function clearSave(){
+	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
+		player = getDefaultPlayer();
+		updateAll();
+		localStorage.removeItem("unLimitedSave");
+	}
 }
 
 function checkKey(event) {
