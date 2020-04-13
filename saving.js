@@ -1,6 +1,6 @@
 let saveName = "(un)LimitedSave"
-let initPlayerFunctionName = "getDefaultUser"
-let playerVarName = "user" // DO NOT USE THE WORD "SAVE"
+let initPlayerFunctionName = "getDefaultPlayer"
+let playerVarName = "player" // DO NOT USE THE WORD "SAVE"
 let importDangerAlertText = "Your imported save seems to be missing some values, which means importing this save might be destructive, if you have made a backup of your current save and are sure about importing this save please press OK, if not, press cancel and the save will not be imported."
 
 function onImportError() {
