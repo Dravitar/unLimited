@@ -1,6 +1,6 @@
-function $(x) return document.getElementById(x);
+function $(x) {return document.getElementById(x);}
 
-function display(x) return x.toPrecision(4);
+function display(x) {return x.toPrecision(4);}
 
 function getDefaultPlayer() {
 	return {
