@@ -233,7 +233,7 @@ function claimColumn(num) {
     var nuum = num+1;
     fadeIn("columnReward"+nuum);
     for(i=4*num;i<4*num+4;i++){
-      fadeIn("quest"+num);
+      fadeIn("quest"+i);
     }
   }
 }
