@@ -25,14 +25,6 @@ function getDefaultPlayer() {
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
 			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
 		visibilityArrayForLoading: [],
-		visible: {
-			start: true, energyArea: false, reset: false, powerArea: false, crystalArea: false, showEnergy: false, dumpEnergy: false, showQuests: false, 
-			showPower: false, showGenerators: false, mainDepartureL: false, showCrystals: false, mainDepartureD: false, mainDepartureR: false,
-			showUpgrades: false, generatorsDeparture: false, questDepartureU: false, quest1: false, quest2: false, quest3: false, quest4: false, quest5: false,
-			quest6: false, quest7: false, quest8: false, columnReward1: false, columnReward2},
-		unlocked: {
-			start: true, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
-			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
 		quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
 		columns: [false, false, false, false, false],
 		storySeen: 0,
