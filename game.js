@@ -52,6 +52,8 @@ function updateAll() {
 	$("currentPower").textContent = display(player.power);
 	$("currentCrystals").textContent = display(player.crystals);
 	for(i=1;i<5;i++){
+    if(player.power.lt(player.generators.price[i-1])) $("genPurchase"+i).color = "darkGrey";
+    else $("genPurchase"+i).color = "grey";
 		$("gen"+i+"Purchased").textContent = display(player.generators.purchased[i-1]);
 		$("gen"+i+"Price").textContent = display(player.generators.price[i-1]);
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]);
@@ -215,7 +217,7 @@ function claimQuest(num) {
   }
   var set = Math.floor((num-1)/4);
   check = true;
-  for(i=set;i<set+4;i++){
+  for(i=set*4;i<(set*4)+4;i++){
     if(!player.quests[i]) check = false;
   }
   if(check) {
