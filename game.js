@@ -86,10 +86,14 @@ function updateAll() {
 	}
 }
 
-function beginination() {
-	initializeGrid();
+function load() {
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	return player;
+}
+
+function beginination() {
+	initializeGrid();
+	load();
 	setInterval(gameCycle, 10);
 	setInterval(saveGame(), 30000);
 }
