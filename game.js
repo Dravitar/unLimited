@@ -97,11 +97,18 @@ function beginination() {
 function save() {
 	document.querySelectorAll('body *').forEach(function(node) {
 		let individualArray = [];
-		if(node.classList.contains("unlocked")) individualArray.push(true);
-		else individualArray.push(false);
-		if(node.style.zIndex>5) individualArray.push(true);
-		else individualArray.push(false);
-		player.visibilityArrayForLoading.push(individualArray);
+		if(node.classList.contains("main")||
+		   node.classList.contains("display")||
+		   node.classList.contains("upgrades")||
+		   node.classList.contains("generators")||
+		   node.classList.contains("quest")){
+			individualArray.push(node.id);
+			if(node.classList.contains("unlocked")) individualArray.push(true);
+			else individualArray.push(false);
+			if(node.style.zIndex>5) individualArray.push(true);
+			else individualArray.push(false);
+			player.visibilityArrayForLoading.push(individualArray);
+		}
 	});
 	saveGame();
 }
@@ -109,16 +116,11 @@ function save() {
 function load() {
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	if(player.visibilityArrayForLoading[0]!=null){
-		var i=0;
-		document.querySelectorAll('body *').forEach(function(node) {
+		for(i=0;i<player.visibilityArrayForLoading.length;i++){
 			let individualArray = player.visibilityArrayForLoading[i];
-			if(individualArray[0]) {
-			node.classList.add("unlocked");
-		}
-			if(individualArray[1]) {
-				fadeIn(node);
-			}
-			i++;
+			let id = individualArray[0];
+			if(individualArray[1]) $(id).classList.add("unlocked");
+			if(individualArray[2]) fadeIn($(id));
 		});
 		player.visibilityArrayForLoading = [];
 	}
