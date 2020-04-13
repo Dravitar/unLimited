@@ -102,7 +102,7 @@ function save() {
 		if(node.style.zIndex>5) individualArray.push(true);
 		else individualArray.push(false);
 		player.visibilityArrayForLoading.push(individualArray);
-	}
+	});
 	saveGame();
 }
 						    
