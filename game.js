@@ -97,7 +97,7 @@ function beginination() {
 function save() {
 	document.querySelectorAll('body *').forEach(function(node) {
 		let individualArray = [];
-		if(node.classList.contains("unlocked") individualArray.push(true);
+		if(node.classList.contains("unlocked")) individualArray.push(true);
 		else individualArray.push(false);
 		if(node.style.zIndex>5) individualArray.push(true);
 		else individualArray.push(false);
