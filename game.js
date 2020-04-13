@@ -232,8 +232,10 @@ function claimColumn(num) {
     player.columns[num-1] = true;
     var nuum = num+1;
     fadeIn("columnReward"+nuum);
+    $("columnReward"+nuum).classList.add("unlocked");
     for(i=4*num;i<4*num+4;i++){
       fadeIn("quest"+i);
+      $("quest"+i).classList.add("unlocked");
     }
   }
 }
