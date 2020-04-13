@@ -108,18 +108,20 @@ function save() {
 						    
 function load() {
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
-	var i=0;
-	document.querySelectorAll('body *').forEach(function(node) {
-		let individualArray = player.visibilityArrayForLoading[i];
-		if(individualArray[0]) {
+	if(player.visibilityArrayForLoading[0]!=null){
+		var i=0;
+		document.querySelectorAll('body *').forEach(function(node) {
+			let individualArray = player.visibilityArrayForLoading[i];
+			if(individualArray[0]) {
 			node.classList.add("unlocked");
 		}
-		if(individualArray[1]) {
-			fadeIn(node);
-		}
-		i++;
-	});
-	player.visibilityArrayForLoading = [];
+			if(individualArray[1]) {
+				fadeIn(node);
+			}
+			i++;
+		});
+		player.visibilityArrayForLoading = [];
+	}
 	return player;
 }
 
