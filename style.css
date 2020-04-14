@@ -37,9 +37,14 @@
 }
 
 .expandButtonActive {
+	color: white;
+	background: black;
+	position: absolute;
 	height: 400px;
 	width: 450px;
 	z-index: 10;
+  	transition: width 0.75s, height 1s, z-index 0s;
+  	transition-delay: 0s, 0.75s, 0s;
 }
 
 .mainWrapper {
