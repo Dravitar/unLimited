@@ -1,15 +1,14 @@
 .menuWrapper {
-	display: table;
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 8%;
 	width: 100%;
+	height: 8%;
+	position: absolute;
 }
 
 .menuContainer {
-	display: table-cell;
-	vertical-align: middle;
+	display: grid;
+	grid-template-columns: 33% 1fr 1fr 1fr 33%;
+	grid-template-rows: 100%;
+	grid-gap: 10px 10px;
 }
 
 .menuButton {
@@ -40,8 +39,10 @@
 }
 
 .mainWrapper {
+	position: absolute;
 	width: 100%;
-	height: 100vh;
+	height: 92vh;
+	top: 8%;
 }
 
 .mainContainer {
@@ -53,12 +54,6 @@
 
 .main {
 	font-size:xx-large;
-	position: relative;
-}
-
-.menuButton {
-	color: white;
-	background: black;
 	position: relative;
 }
 
