@@ -70,8 +70,8 @@ function grow(item) {
 	setTimeout(function() {
 		let list = document.getElementsByClassName(item);
 		for(i=0;i<list.length;i++){
-			if(list[i].display=="block") list[i].display = "";
-			else list[i].display = "block";
+			if(list[i].style.display=="block") list[i].style.display = "";
+			else list[i].style.display = "block";
 		}
 	}, 1750);
 }
