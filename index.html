@@ -16,8 +16,8 @@
 	<body style="text-align:center" onLoad="beginination()" onKeyDown="checkKey(event)">
 		<div class="menuWrapper">
 			<div id="tabs" class="menuContainer">
-				<button id="menuTabButton" class="menuButton" onclick="grow('menu')">Menu</button>
-				<div id="menuSection" class="expandButton">
+				<button id="menuTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:2/3; grid-row:1/2" onclick="grow('menu')">Menu</button>
+				<div id="menuSection" class="menuButton" style="display:grid; z-index: 1; grid-column: 2/3; grid-row: 1/2">
 					<button id="saveGame" class="subMenuButton" style="display:in-line; opacity: 0" onclick="save()">
 						Save your game
 					</button>
@@ -28,8 +28,8 @@
 						CLEAR YOUR SAVE
 					</button>
 				</div>
-				<button id="statsTabButton" class="menuButton" onclick="grow('stats')">Stats</button>
-				<div id="statsSection" class="expandButton">
+				<button id="statsTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:3/4; grid-row:1/2" onclick="grow('stats')">Stats</button>
+				<div id="statsSection" class="menuButton" style="display:grid; z-index: 1; grid-column: 3/4; grid-row:1/2">
 					<p>You have a maximum of <span id="maxEnergy">4</span> Energy.</p>
 					<p>You have made a maximum of <span id="maxPower">10</span> Power.</p>
 					<p>You have created a maximum of <span id="maxCrystals">0</span> Crystals.</p>
@@ -37,8 +37,8 @@
 					<p>You have played for <span id="totalTime">0</span>.</p>
 					<p>You have completed <span id="storyPercentage"0</span>% of the story</p>
 				</div>
-				<button id="storyTabButton" class="menuButton" onclick="grow('story')">Story</button>
-				<div id="storySection" class="expandButton">
+				<button id="storyTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:4/5; grid-row:1/2" onclick="grow('story')">Story</button>
+				<div id="storySection" class="menuButton" style="display:grid; z-index: 1; grid-column: 4/5; grid-row:1/2">
 				</div>
 				<div id="savedInfo" style="display:none; position:absolute">Game saved!</div>				
 			</div>
