@@ -1,13 +1,42 @@
 .menuWrapper {
-	width: 100%;
-	height: 8%;
+	display: table;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 8%;
 }
 
 .menuContainer {
-	display: grid;
-	grid-template-columns: 33% 1fr 1fr 1fr 33%;
-	grid-template-rows: 100%;
-	grid-gap: 10px 10px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.menuButton {
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	background: black;
+	width: 150px;
+	height: 50px;
+}
+
+.expandButton {
+	color: white;
+	background: black;
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	z-index: 1;
+  	transition: width 0.75s, height 1s, z-index 0s;
+  	transition-delay: 1s, 0s, 0s;
+}
+
+.expandButtonActive {
+	height: 400px;
+	width: 450px;
+	z-index: 10;
 }
 
 .mainWrapper {
@@ -31,13 +60,7 @@
 	color: white;
 	background: black;
 	position: relative;
-  	transition: width 0.75s, height 1s;
-  	transition-delay: 0s, 0.75s;
 }
-
-.menuButtonActive {
-	position: absolute;
-	
 
 .upgrade {
 	height: 100%;
@@ -80,4 +103,4 @@
 .claimed {
 	color: black;
 	background: green;
-}
+}	
