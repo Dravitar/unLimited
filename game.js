@@ -63,12 +63,17 @@ function purchaseGen(item) {
 
 function grow(item) {
 	let id = item+"Section";
-	if($(id).style.display=="flex") $(id).style.display = "none";
-	else $(id).style.display = "flex";
 	if($(id).style.zIndex == 10) $(id).style.zIndex = 0;
 	else $(id).style.zIndex = 10;
 	$(id).classList.toggle("expandButton");
 	$(id).classList.toggle("expandButtonActive");
+	setTimeout(function() {
+		let list = document.getElementsByClassName(item);
+		for(i=0;i<list.length;i++){
+			if(list[i].display=="block") list[i].display = "";
+			else list[i].display = "block";
+		}
+	}, 1750);
 }
 
 function updateAll() {
