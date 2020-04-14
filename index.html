@@ -18,32 +18,33 @@
 			<div id="tabs" class="menuContainer">
 				<div id="menuTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:2/3; grid-row:1/2" onclick="grow('menu')">
 					Menu
-					<div id="menuSection" class="menuButton" style="display:none; z-index: 1">
-						<button id="saveGame" class="subMenuButton" style="display:in-line; opacity: 0" onclick="save()">
+					<div id="menuSection" class="menuButton" style="display:flex; flex-direction:column; z-index: 1">
+						<button id="saveGame" class="menu" style="z-index:10; display:none;" onclick="save()">
 							Save your game
 						</button>
-						<button id="loadGame" class="subMenuButton" style="display:in-line; opacity: 0" onclick="load()">
+						<button id="loadGame" class="menu" style="z-index:10; display:none;" onclick="load()">
 							Load a save file
 						</button>
-						<button id="clearSave" class="subMenuButton" style="display:in-line; opacity: 0; color:red;" onclick="clearSave()">
+						<button id="clearSave" class="menu" style="z-index:10; display:none; color:red;" onclick="clearSave()">
 							CLEAR YOUR SAVE
 						</button>
 					</div>
 				</div>
 				<div id="statsTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:3/4; grid-row:1/2" onclick="grow('stats')">
 					Stats
-					<div id="statsSection" class="menuButton" style="display:none; z-index: 1;">
-						<p>You have a maximum of <span id="maxEnergy">4</span> Energy.</p>
-						<p>You have made a maximum of <span id="maxPower">10</span> Power.</p>
-						<p>You have created a maximum of <span id="maxCrystals">0</span> Crystals.</p>
-						<p>You have been on this reset for <span id="resetTime">0</span>.</p>
-						<p>You have played for <span id="totalTime">0</span>.</p>
-						<p>You have completed <span id="storyPercentage"0</span>% of the story</p>
+					<div id="statsSection" class="menuButton" style="display:flex; flex-direction:column; z-index: 1;">
+						<p class="stats" style="z-index:10; display:none;">You have a maximum of <span id="maxEnergy">4</span> Energy.</p>
+						<p class="stats" style="z-index:10; display:none;">You have made a maximum of <span id="maxPower">10</span> Power.</p>
+						<p class="stats" style="z-index:10; display:none;">You have created a maximum of <span id="maxCrystals">0</span> Crystals.</p>
+						<p class="stats" style="z-index:10; display:none;">You have been on this reset for <span id="resetTime">0</span>.</p>
+						<p class="stats" style="z-index:10; display:none;">You have played for <span id="totalTime">0</span>.</p>
+						<p class="stats" style="z-index:10; display:none;">You have completed <span id="storyPercentage"0</span>% of the story</p>
 					</div>
 				</div>
 				<div id="storyTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:4/5; grid-row:1/2" onclick="grow('story')">
 					Story
-					<div id="storySection" class="menuButton" style="display:none; z-index: 1;">
+					<div id="storySection" class="menuButton" style="display:flex; flex-direction:column; z-index: 1;">
+						<p class="story" style="z-index:10; display:none;">Story</p>
 					</div>
 				</div>
 				<div id="savedInfo" style="display:none; position:absolute">Game saved!</div>				
