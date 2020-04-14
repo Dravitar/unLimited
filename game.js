@@ -61,6 +61,11 @@ function purchaseGen(item) {
 	checkZero();
 }
 
+function grow(item) {
+	let id = item+"Section";
+	$(id).classList.toggle("expandButtonActive");
+}
+
 function updateAll() {
 	$("currentEnergy").textContent = display(player.energy);
 	$("currentPower").textContent = display(player.power);
