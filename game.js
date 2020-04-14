@@ -70,7 +70,7 @@ function grow(item) {
 	setTimeout(function() {
 		let list = document.getElementsByClassName(item);
 		for(i=0;i<list.length;i++){
-			if(list[i].style.display=="block") list[i].style.display = "";
+			if(list[i].style.display=="block") list[i].style.display = "none";
 			else list[i].style.display = "block";
 		}
 	}, 1750);
