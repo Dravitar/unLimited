@@ -67,13 +67,13 @@ function grow(item) {
 	else $(id).style.zIndex = 10;
 	$(id).classList.toggle("expandButton");
 	$(id).classList.toggle("expandButtonActive");
-	setTimeout(function() {
-		let list = document.getElementsByClassName(item);
-		for(i=0;i<list.length;i++){
-			if(list[i].style.display=="block") list[i].style.display = "none";
-			else list[i].style.display = "block";
-		}
-	}, 1750);
+	let list = document.getElementsByClassName(item);
+	if(document.getElementsByClassName(item)[0].style.display = "none"){
+		setTimeout(function() {
+			for(i=0;i<list.length;i++) list[i].style.display = "block";
+		}, 1750);
+	}
+	else for(i=0;i<list.length;i++) list[i].style.display = "none";
 }
 
 function updateAll() {
