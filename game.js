@@ -67,6 +67,7 @@ function grow(item) {
 	else $(id).style.display = "flex";
 	if($(id).style.zIndex == 10) $(id).style.zIndex = 0;
 	else $(id).style.zIndex = 10;
+	$(id).classList.toggle("expandButton");
 	$(id).classList.toggle("expandButtonActive");
 }
 
