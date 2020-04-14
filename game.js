@@ -63,6 +63,8 @@ function purchaseGen(item) {
 
 function grow(item) {
 	let id = item+"Section";
+	$(id).style.display="flex";
+	$(id).style.zIndex = 10;
 	$(id).classList.toggle("expandButtonActive");
 }
 
