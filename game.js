@@ -38,21 +38,23 @@ var player = getDefaultPlayer();
 
 var defaultVisibilitySetup = [];
 
-document.querySelectorAll('body *').forEach(function(node) {
-	let individualArray = [];
-	if(node.classList.contains("main")||
-	   node.classList.contains("display")||
-	   node.classList.contains("upgrades")||
-	   node.classList.contains("generators")||
-	   node.classList.contains("quest")){
-		individualArray.push(node.id);
-		if(node.classList.contains("unlocked")) individualArray.push(true);
-		else individualArray.push(false);
-		if(node.style.opacity>0.5) individualArray.push(true);
-		else individualArray.push(false);
-		defaultVisibilitySetup.push(individualArray);
-	}
-});
+function getBaselineVisibility() {
+	document.querySelectorAll('body *').forEach(function(node) {
+		let individualArray = [];
+		if(node.classList.contains("main")||
+		   node.classList.contains("display")||
+		   node.classList.contains("upgrades")||
+		   node.classList.contains("generators")||
+		   node.classList.contains("quest")){
+			individualArray.push(node.id);
+			if(node.classList.contains("unlocked")) individualArray.push(true);
+			else individualArray.push(false);
+			if(node.style.opacity>0.5) individualArray.push(true);
+			else individualArray.push(false);
+			defaultVisibilitySetup.push(individualArray);
+		}
+	});
+}
 
 function gameCycle() {
 	let now = new Date().getTime();
@@ -159,6 +161,7 @@ function save() {
 }
 						    
 function load() {
+	getBaselineVisibility();
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	if(localStorage.getItem("unLimitedButtonVis") !== null) visibilityArrayForLoading = JSON.parse(atob(localStorage.getItem("unLimitedButtonVis")));
 	if(visibilityArrayForLoading[0]!=null){
