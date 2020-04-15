@@ -32,8 +32,9 @@
 	width: 150px;
 	height: 50px;
 	z-index: 1;
-  	transition: width 0.75s, height 1s, z-index 0s;
-  	transition-delay: 0s, 0.75s, 0s;
+	top: 0px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s;
+  	transition-delay: 0s, 0.75s, 0s, 0.75s;
 }
 
 .expandButtonActive {
@@ -43,8 +44,25 @@
 	height: 400px;
 	width: 450px;
 	z-index: 10;
-  	transition: width 0.75s, height 1s, z-index 0s;
-  	transition-delay: 1s, 0s, 0s;
+	top: 60px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s;
+  	transition-delay: 1s, 0s, 0s, 0s;
+}
+
+.extraBit {
+	background: black;
+	width: 20px;
+	height: 50px;
+	z-index: 0;
+	position: absolute;
+	transition: top 1s;
+	transition-delay: 0.75s;
+}
+
+.extraBitActive {
+	top: 30px;
+	transition: top 1s;
+	transition-delay: 0s;
 }
 
 .mainWrapper {
