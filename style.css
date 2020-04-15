@@ -6,7 +6,7 @@
 
 .menuContainer {
 	display: grid;
-	grid-template-columns: 33% 1fr 1fr 1fr 33%;
+	grid-template-columns: 1fr 150px 150px 150px 1fr;
 	grid-template-rows: 100%;
 	grid-gap: 10px 10px;
 }
@@ -41,24 +41,26 @@
 .statsExpandButton {
 	color: white;
 	background: black;
-	position: absolute;
+	position: relative;
 	width: 150px;
 	height: 50px;
 	z-index: 1;
 	top: 0px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
+	right: 0px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, right 0.75s;
   	transition-delay: 0s, 0.75s, 0s, 0.75s, 0s;
 }
 
 .storyExpandButton {
 	color: white;
 	background: black;
-	position: absolute;
+	position: relative;
 	width: 150px;
 	height: 50px;
 	z-index: 1;
 	top: 0px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
+	right: 0px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, right 0.75s;
   	transition-delay: 0s, 0.75s, 0s, 0.75s, 0s;
 }
 
@@ -77,26 +79,26 @@
 .statsExpandButtonActive {
 	color: white;
 	background: black;
-	position: absolute;
+	position: relative;
 	height: 400px;
 	width: 470px;
 	z-index: 10;
 	top: 60px;
-	left: 160px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
+	right: 160px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, right 0.75s;
   	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
 .storyExpandButtonActive {
 	color: white;
 	background: black;
-	position: absolute;
+	position: relative;
 	height: 400px;
 	width: 470px;
 	z-index: 10;
 	top: 60px;
 	left: 320px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, right 0.75s;
   	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
