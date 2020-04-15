@@ -128,6 +128,7 @@ function save() {
 		}
 	});
 	saveGame();
+	event.stopPropagation();
 }
 						    
 function load() {
@@ -141,6 +142,7 @@ function load() {
 		}
 		player.visibilityArrayForLoading = [];
 	}
+	event.stopPropagation();
 	return player;
 }
 
@@ -150,6 +152,7 @@ function clearSave(){
 		updateAll();
 		localStorage.removeItem("unLimitedSave");
 	}
+	event.stopPropagation();
 }
 
 function checkKey(event) {
