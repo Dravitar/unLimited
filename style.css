@@ -97,7 +97,7 @@
 	width: 470px;
 	z-index: 10;
 	top: 60px;
-	left: 320px;
+	right: 320px;
   	transition: width 0.75s, height 1s, z-index 0s, top 1s, right 0.75s;
   	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
