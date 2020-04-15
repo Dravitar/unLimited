@@ -63,7 +63,6 @@ function purchaseGen(item) {
 
 function grow(item) {
 	let id = item+"Section";
-	let extra = item+"Extra";
 	if($(id).style.zIndex == 23) $(id).style.zIndex = 3;
 	else $(id).style.zIndex = 23;
 	$(id).classList.toggle("expandButton");
