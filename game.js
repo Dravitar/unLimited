@@ -67,7 +67,9 @@ function grow(item) {
 	if($(id).style.zIndex == 23) $(id).style.zIndex = 3;
 	else $(id).style.zIndex = 23;
 	$(id).classList.toggle("expandButton");
+	$(id).classList.toggle(item+"ExpandButton");
 	$(id).classList.toggle("expandButtonActive");
+	$(id).classList.toggle(item+"ExpandButtonActive");
 	let list = document.getElementsByClassName(item);
 	var big;
 	list[0].style.display=="none" ? big=false : big=true;
