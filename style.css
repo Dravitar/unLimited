@@ -25,7 +25,8 @@
 	background: white;
 }
 
-.expandButton {
+
+.menuExpandButton {
 	color: white;
 	background: black;
 	position: absolute;
@@ -37,18 +38,31 @@
   	transition-delay: 0s, 0.75s, 0s, 0.75s;
 }
 
-.menuExpandButton {
-}
-
 .statsExpandButton {
-	transition: left 0.75s;
+	color: white;
+	background: black;
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	z-index: 1;
+	top: 0px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75;
+  	transition-delay: 0s, 0.75s, 0s, 0.75s, 0s;
 }
 
 .storyExpandButton {
-	transition: left 0.75s;
+	color: white;
+	background: black;
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	z-index: 1;
+	top: 0px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
+  	transition-delay: 0s, 0.75s, 0s, 0.75s, 0s;
 }
 
-.expandButtonActive {
+.menuExpandButtonActive {
 	color: white;
 	background: black;
 	position: absolute;
@@ -60,17 +74,28 @@
   	transition-delay: 1s, 0s, 0s, 0s;
 }
 
-.menuExpandButtonActive {
-}
-
 .statsExpandButtonActive {
-	left: 160px;
-	transition-delay: 1s;
+	color: white;
+	background: black;
+	position: absolute;
+	height: 400px;
+	width: 470px;
+	z-index: 10;
+	top: 60px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 160px;
+  	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
 .storyExpandButtonActive {
-	left: 320px;
-	transition-delay: 1s;
+	color: white;
+	background: black;
+	position: absolute;
+	height: 400px;
+	width: 470px;
+	z-index: 10;
+	top: 60px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 320px;
+  	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
 .mainWrapper {
