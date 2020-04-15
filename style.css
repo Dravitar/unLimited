@@ -60,15 +60,15 @@
   	transition-delay: 1s, 0s, 0s, 0s;
 }
 
-.menuExpandButton {
+.menuExpandButtonActive {
 }
 
-.statsExpandButton {
+.statsExpandButtonActive {
 	left: 160px;
 	transition-delay: 1s;
 }
 
-.storyExpandButton {
+.storyExpandButtonActive {
 	left: 320px;
 	transition-delay: 1s;
 }
