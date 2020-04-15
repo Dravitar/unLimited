@@ -36,6 +36,24 @@ var visibilityArrayForLoading = [];
 
 var player = getDefaultPlayer();
 
+var defaultVisibilitySetup = [];
+
+document.querySelectorAll('body *').forEach(function(node) {
+	let individualArray = [];
+	if(node.classList.contains("main")||
+	   node.classList.contains("display")||
+	   node.classList.contains("upgrades")||
+	   node.classList.contains("generators")||
+	   node.classList.contains("quest")){
+		individualArray.push(node.id);
+		if(node.classList.contains("unlocked")) individualArray.push(true);
+		else individualArray.push(false);
+		if(node.style.opacity>0.5) individualArray.push(true);
+		else individualArray.push(false);
+		defaultVisibilitySetup.push(individualArray);
+	}
+});
+
 function gameCycle() {
 	let now = new Date().getTime();
 	let diff = (now - player.lastTick)/10;
@@ -163,6 +181,14 @@ function clearSave(){
 		player = getDefaultPlayer();
 		updateAll();
 		localStorage.removeItem("unLimitedSave");
+	}
+	for(i=0;i<defaultVisibilitySetup.length;i++){
+		let individualArray = defaultVisibilitySetup[i];
+		let id = individualArray[0];
+		if(individualArray[1]) $(id).classList.add("unlocked");
+		else if($(id).classList.contains("unlocked")) $(id).classList.remove("unlocked");
+		if(individualArray[2]) fadeIn(id);
+		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
 	event.stopPropagation();
 }
