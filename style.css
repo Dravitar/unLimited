@@ -37,38 +37,40 @@
   	transition-delay: 0s, 0.75s, 0s, 0.75s;
 }
 
+.menuExpandButton {
+}
+
+.statsExpandButton {
+	transition: left 0.75s;
+}
+
+.storyExpandButton {
+	transition: left 0.75s;
+}
+
 .expandButtonActive {
 	color: white;
 	background: black;
 	position: absolute;
 	height: 400px;
-	width: 450px;
+	width: 470px;
 	z-index: 10;
 	top: 60px;
   	transition: width 0.75s, height 1s, z-index 0s, top 1s;
   	transition-delay: 1s, 0s, 0s, 0s;
 }
 
-.extraBit {
-	background: black;
-	width: 20px;
-	height: 50px;
-	z-index: 0;
-	position: absolute;
-	top: 0px;
-	transition: top 1s;
-	transition-delay: 0.75s;
+.menuExpandButton {
 }
 
-.extraBitActive {
-	background: black;
-	widthL 20px;
-	height: 50px;
-	z-index: 0;
-	position: absolute;
-	top: 30px;
-	transition: top 1s;
-	transition-delay: 0s;
+.statsExpandButton {
+	left: 160px;
+	transition-delay: 1s;
+}
+
+.storyExpandButton {
+	left: 320px;
+	transition-delay: 1s;
 }
 
 .mainWrapper {
