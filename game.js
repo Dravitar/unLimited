@@ -122,6 +122,7 @@ function save() {
 		   node.classList.contains("generators")||
 		   node.classList.contains("quest")){
 			individualArray.push(node.id);
+			console.log(node.id);
 			if(node.classList.contains("unlocked")) individualArray.push(true);
 			else individualArray.push(false);
 			if(node.style.zIndex>5) individualArray.push(true);
@@ -145,7 +146,7 @@ function load() {
 		}
 		player.visibilityArrayForLoading = [];
 	}
-	event.stopPropagation();
+	//event.stopPropagation();
 	return player;
 }
 
