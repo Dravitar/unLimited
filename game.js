@@ -164,7 +164,6 @@ function load() {
 	if(visibilityArrayForLoading[0]!=null){
 		for(i=0;i<visibilityArrayForLoading.length;i++){
 			let individualArray = visibilityArrayForLoading[i];
-			console.log(individualArray);
 			let id = individualArray[0];
 			if(individualArray[1]) $(id).classList.add("unlocked");
 			else if($(id).classList.contains("unlocked")) $(id).classList.remove("unlocked");
