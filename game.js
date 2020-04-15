@@ -125,7 +125,7 @@ function save() {
 			individualArray.push(node.id);
 			if(node.classList.contains("unlocked")) individualArray.push(true);
 			else individualArray.push(false);
-			if(node.style.zIndex>5) individualArray.push(true);
+			if(node.style.opacity>0.5) individualArray.push(true);
 			else individualArray.push(false);
 			visibilityArrayForLoading.push(individualArray);
 		}
