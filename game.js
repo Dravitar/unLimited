@@ -145,7 +145,7 @@ function load() {
 			console.log(individualArray);
 			let id = individualArray[0];
 			if(individualArray[1]) $(id).classList.add("unlocked");
-			if(individualArray[2]) fadeIn($(id));
+			if(individualArray[2]) fadeIn(id);
 		}
 		visibilityArrayForLoading = [];
 	}
