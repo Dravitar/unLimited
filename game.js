@@ -68,12 +68,14 @@ function grow(item) {
 	$(id).classList.toggle("expandButton");
 	$(id).classList.toggle("expandButtonActive");
 	let list = document.getElementsByClassName(item);
-	if(document.getElementsByClassName(item)[0].style.display = "none"){
+	var big;
+	list[0].style.display=="none" ? big=false : big=true;
+	if(!big){
 		setTimeout(function() {
 			for(i=0;i<list.length;i++) list[i].style.display = "block";
 		}, 1750);
 	}
-	else for(i=0;i<list.length;i++) list[i].style.display = "none";
+	else if(big) for(i=0;i<list.length;i++) list[i].style.display = "none";
 }
 
 function updateAll() {
