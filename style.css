@@ -82,7 +82,8 @@
 	width: 470px;
 	z-index: 10;
 	top: 60px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 160px;
+	left: 160px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
   	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
@@ -94,7 +95,8 @@
 	width: 470px;
 	z-index: 10;
 	top: 60px;
-  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 320px;
+	left: 320px;
+  	transition: width 0.75s, height 1s, z-index 0s, top 1s, left 0.75s;
   	transition-delay: 1s, 0s, 0s, 0s, 1s;
 }
 
