@@ -190,7 +190,6 @@ function clearSave(){
 		if(individualArray[2]) fadeIn(id);
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
-	event.stopPropagation();
 }
 
 function checkKey(event) {
