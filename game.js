@@ -122,7 +122,6 @@ function save() {
 		   node.classList.contains("generators")||
 		   node.classList.contains("quest")){
 			individualArray.push(node.id);
-			console.log(node.id);
 			if(node.classList.contains("unlocked")) individualArray.push(true);
 			else individualArray.push(false);
 			if(node.style.zIndex>5) individualArray.push(true);
@@ -140,6 +139,7 @@ function load() {
 	if(player.visibilityArrayForLoading[0]!=null){
 		for(i=0;i<player.visibilityArrayForLoading.length;i++){
 			let individualArray = player.visibilityArrayForLoading[i];
+			console.log(individualArray);
 			let id = individualArray[0];
 			if(individualArray[1]) $(id).classList.add("unlocked");
 			if(individualArray[2]) fadeIn($(id));
