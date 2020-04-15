@@ -109,9 +109,9 @@ function updateAll() {
 
 function beginination() {
 	initializeGrid();
+	load();
 	setInterval(gameCycle, 10);
 	setInterval(save(), 30000);
-	load();
 }
 
 function save() {
@@ -147,7 +147,7 @@ function load() {
 			if(individualArray[1]) $(id).classList.add("unlocked");
 			else if($(id).classList.contains("unlocked")) $(id).classList.remove("unlocked");
 			if(individualArray[2]) fadeIn(id);
-			else fadeOut(id);
+			else if($(id).style.opacity>0.5) fadeOut(id);
 		}
 		visibilityArrayForLoading = [];
 	}
