@@ -63,8 +63,11 @@ function purchaseGen(item) {
 
 function grow(item) {
 	let id = item+"Section";
+	let extra = item+"Extra";
 	if($(id).style.zIndex == 10) $(id).style.zIndex = 0;
 	else $(id).style.zIndex = 10;
+	$(extra).classList.toggle("extraBit");
+	$(extra).classList.toggle("extraBitActive");
 	$(id).classList.toggle("expandButton");
 	$(id).classList.toggle("expandButtonActive");
 	let list = document.getElementsByClassName(item);
