@@ -131,6 +131,7 @@ function save() {
 	});
 	saveGame();
 	event.stopPropagation();
+	console.log("Game saved");
 }
 						    
 function load() {
