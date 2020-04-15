@@ -115,6 +115,7 @@ function beginination() {
 }
 
 function save() {
+	visibilityArrayForLoading = [];
 	document.querySelectorAll('body *').forEach(function(node) {
 		let individualArray = [];
 		if(node.classList.contains("main")||
@@ -133,7 +134,10 @@ function save() {
 	localStorage.setItem("unLimitedButtonVis", btoa(JSON.stringify(visibilityArrayForLoading)));
 	saveGame();
 	event.stopPropagation();
-	console.log("Game saved");
+	$("savedInfo").style.display = "";
+	setTimeout( function() {
+		$("savedInfo").style.display = "none";
+	}, 2000);
 }
 						    
 function load() {
