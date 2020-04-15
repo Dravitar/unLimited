@@ -24,7 +24,6 @@ function getDefaultPlayer() {
 		clicked: {
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
 			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
-		visibilityArrayForLoading: [],
 		quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
 		columns: [false, false, false, false, false],
 		storySeen: 0,
@@ -32,6 +31,8 @@ function getDefaultPlayer() {
 		lastTick: new Date().getTime(),
 	};
 }
+
+var visibilityArrayForLoading = [];
 
 var player = getDefaultPlayer();
 
@@ -126,9 +127,10 @@ function save() {
 			else individualArray.push(false);
 			if(node.style.zIndex>5) individualArray.push(true);
 			else individualArray.push(false);
-			player.visibilityArrayForLoading.push(individualArray);
+			visibilityArrayForLoading.push(individualArray);
 		}
 	});
+	localStorage.setItem("unLimitedButtonVis", btoa(JSON.stringify(visibilityArrayForLoading)));
 	saveGame();
 	event.stopPropagation();
 	console.log("Game saved");
@@ -136,15 +138,16 @@ function save() {
 						    
 function load() {
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
-	if(player.visibilityArrayForLoading[0]!=null){
-		for(i=0;i<player.visibilityArrayForLoading.length;i++){
-			let individualArray = player.visibilityArrayForLoading[i];
+	if(localStorage.getItem("unLimitedButtonVis") !== null) visibilityArrayForLoading = JSON.parse(atob(localStorage.getItem("unLimitedButtonVis")));
+	if(visibilityArrayForLoading[0]!=null){
+		for(i=0;i<visibilityArrayForLoading.length;i++){
+			let individualArray = visibilityArrayForLoading[i];
 			console.log(individualArray);
 			let id = individualArray[0];
 			if(individualArray[1]) $(id).classList.add("unlocked");
 			if(individualArray[2]) fadeIn($(id));
 		}
-		player.visibilityArrayForLoading = [];
+		visibilityArrayForLoading = [];
 	}
 	//event.stopPropagation();
 	return player;
