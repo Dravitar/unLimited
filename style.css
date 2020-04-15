@@ -55,11 +55,17 @@
 	height: 50px;
 	z-index: 0;
 	position: absolute;
+	top: 0px;
 	transition: top 1s;
 	transition-delay: 0.75s;
 }
 
 .extraBitActive {
+	background: black;
+	widthL 20px;
+	height: 50px;
+	z-index: 0;
+	position: absolute;
 	top: 30px;
 	transition: top 1s;
 	transition-delay: 0s;
