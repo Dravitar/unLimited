@@ -137,6 +137,7 @@ function updateAll() {
 			$("crystalConversion").textContent = "Convert your Power into "+display(getCrystalsOnReset())+" Crystals";
 		}
 	}
+	else $("crystalConversion").textContent = "You need more Power to make a Crystal";
 	for(i=1;i<5;i++){
 		if(player.power.lt(player.generators.price[i-1])) $("genPurchase"+i).color = "darkGrey";
 		else $("genPurchase"+i).color = "grey";
