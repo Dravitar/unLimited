@@ -118,7 +118,7 @@ function press(id) {
 				}
 				break;
 			case "mainDepartureD":
-				if(!player.clicked.mainDeparture){
+				if(!player.clicked.mainDeparture&&player.clicked.showQuests){
 					moveFrom('main','quest');
 					player.clicked.mainDeparture = true;
 					player.clicked.questDeparture = false;
