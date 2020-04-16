@@ -243,8 +243,8 @@ function clearSave(){
 		if(individualArray[2]) fadeIn(id);
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
-	fadeIn("start");
 	beginination();
+	reset();
 }
 
 function checkKey(event) {
@@ -284,8 +284,8 @@ function reset() {
 		var orig = "unlocked "+player.currentZone;
 		let toHide = document.getElementsByClassName(orig);
 		fadeOutAll(toHide);
-		fadeOut("reset");
-		fadeOut("energyArea");
+		if($("reset").classList.contains("unlocked")) fadeOut("reset");
+		if($("energyArea").classList.contains("unlocked")) fadeOut("energyArea");
 		if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
 		if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");		
 		for(i=0;i<visibilityArrayForLoading.length;i++){
