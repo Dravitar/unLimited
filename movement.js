@@ -21,7 +21,9 @@ function fadeIn(x) {
   var fade = setInterval(function() {
     op += 0.02;
     elem.style.setProperty("opacity", op);
-    if(op>= 1) clearInterval(fade);
+    if(op>= 1){
+      elem.style.setProperty("opacity", 1);
+      clearInterval(fade);
   }, 10);
 }
 
@@ -35,7 +37,8 @@ function fadeInAll(set) {
     op += 0.02;
     for(i=0;i<set.length;i++){
       let elem = set.item(i);
-      elem.style.setProperty("opacity", op);
+      if(op>=1) elem.style.setProperty("opacity", 1);
+      else elem.style.setProperty("opacity", op);
     }
     if(set.item(set.length-1).style.opacity >= 1) clearInterval(fade);
   }, 10);
@@ -48,7 +51,9 @@ function fadeOut(x) {
   var fade = setInterval(function() {
     op -= 0.02;
     elem.style.setProperty("opacity", op);
-    if(op<= 0) clearInterval(fade);
+    if(op<= 0){
+      elem.style.setProperty("opacity", 0);
+      clearInterval(fade);
   }, 10);
 }
 
@@ -63,7 +68,8 @@ function fadeOutAll(set) {
     op -= 0.02;
     for(i=0;i<set.length;i++){
       let elem = set.item(i);
-      elem.style.setProperty("opacity", op);
+      if(op<=0) elem.style.setProperty("opacity", 0);
+      else elem.style.setProperty("opacity", op);
     }
     if(set.item(set.length-1).style.opacity <= 0) clearInterval(fade);
   }, 10);
