@@ -134,7 +134,7 @@ function updateAll() {
 			$("crystalConversion").textContent = "You have "+getCrystalsOnReset()+" of a Crystal";
 		}
 		else {
-			$("crystalConversion").textCOntent = "Convert your Power into "+getCrystalsOnReset()+" Crystals";
+			$("crystalConversion").textContent = "Convert your Power into "+getCrystalsOnReset()+" Crystals";
 		}
 	}
 	for(i=1;i<5;i++){
