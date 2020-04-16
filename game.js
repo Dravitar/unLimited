@@ -14,12 +14,11 @@ function getDefaultPlayer() {
 			increase: [new Decimal(1.3), new Decimal(1.5), new Decimal(1.7), new Decimal(1.9),],
 			scaling: [new Decimal(1.03), new Decimal(1.05), new Decimal(1.07), new Decimal(1.09),],
 		},
+		banks: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],			
 		crystals: new Decimal(0),
 		upgrades: {
-			price: [new Decimal(0)],
-			purchased: [new Decimal(0)],
-			increase: [new Decimal(0)],
-			scaling: [new Decimal(0)],
+			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
+			
 		},
 		clicked: {
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
@@ -63,10 +62,10 @@ function gameCycle() {
 function timeHack(num) {
 	let now = new Date().getTime();
 	let diff = num*(now - player.lastTick)/10;
-	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01).times(diff)));
-	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01).times(diff)));
-	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01).times(diff)));
-	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(0.01).times(diff)));
+	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01).times(diff).times(player.banks[3].plus(1).sqrt())));
+	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01).times(diff).times(player.banks[2].plus(1).sqrt())));
+	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01).times(diff).times(player.banks[1].plus(1).sqrt())));
+	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(0.01).times(diff).times(player.banks[0].plus(1).sqrt())));
 	player.lastTick = now;
 	updateAll();
 }
@@ -109,6 +108,22 @@ function purchaseGen(item) {
 		player.energy = player.energy.minus(1);
 	}
 	checkZero();
+}
+
+function upgrade(item) {
+	if(player.crystals.gte(player.upgrades[item].price)){
+		player.crystals = player.crystals.minus(player.upgrades[item].price);
+		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1);
+		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase);
+		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling);
+	}
+}
+
+function bank(amount, index){
+	player.energy = player.energy.minus(amount);
+	player.banks[index-1] = player.banks[index-1].plus(amount);
+	$("bankedClicks"+index).textContent = player.banks[index-1];
+	$("bankPower"+index).textContent = player.banks[index-1].plus(1).sqrt();
 }
 
 function grow(item) {
@@ -161,6 +176,21 @@ function updateAll() {
 		if($("quest5").classList.contains("unsolved")){
 			$("quest5").classList.add("solved");
 			$("quest5").classList.remove("unsolved");
+		}
+	}
+	if(player.upgrades.energyBank.amount.gt(0)){
+		let num = player.upgrades.energyBank.amount;
+		for(i=1;i<5;i++){
+			if(i<num&&!$("clickBank"+i).classList.contains("unlocked")){
+				$("clickBank"+i).classList.add("unlocked");
+				fadeIn("clickBank"+i);
+				$("energyBanked"+i).style.display = "";
+			}
+			else if(i>num&&$("clickBank"+i).classList.contains("unlocked")){
+				$("clickBank"+i).classList.remove("unlocked");
+				fadeOut("clickBank"+i);
+				$("energyBanked"+i).style.display = "none";
+			}
 		}
 	}
 }
