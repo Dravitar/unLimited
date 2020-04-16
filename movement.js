@@ -62,6 +62,7 @@ function fadeOutAll(set) {
     op -= 0.02;
     for(i=0;i<set.length;i++){
       let elem = set.item(i);
+      console.log(elem);
       elem.style.setProperty("opacity", op);
     }
     if(set.item(set.length-1).style.opacity <= 0) clearInterval(fade);
