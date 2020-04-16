@@ -81,6 +81,13 @@ function crystalConversion() {
 		player.crystals = player.crystals.plus(getCrystalsOnReset());
 		player.power = 0;
 		player.generators = getDefaultPlayer().generators;
+		if(!player.quests[5]){
+			if($("quest6").classList.contains("unsolved")){
+				$("quest6").classList.add("solved");
+				$("quest6").classList.remove("unsolved");
+			}
+		}
+			
 	}
 }
 
