@@ -43,6 +43,7 @@ function press(id) {
 					$("showPower").classList.add("unlocked");
 					$("mainDepartureD").classList.add("unlocked");
 					if(player.quests[4]) $("showCrystals").classList.add("unlocked");
+					if(player.quests[5]) $("showUpgrades").classList.contains("unlocked");
 					if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
 					if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
 					player.clicked.showQuests = true;
