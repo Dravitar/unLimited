@@ -74,7 +74,7 @@ function timeHack(num) {
 function getCrystalsOnReset() {
 	if(player.power.gte(1e8)){
 		if(player.power.gte(1e10)){
-			return player.power.log10().minus(9);
+			return player.power.log10().minus(9).floor();
 		}
 		else return display(player.power.div(1e8))+"%";
 	}
