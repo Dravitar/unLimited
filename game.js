@@ -296,6 +296,7 @@ function reset() {
 			let individualArray = visibilityArrayForLoading[i];
 			let id = individualArray[0];
 			if($(id).style.zIndex<0) $(id).style.zIndex = 1;
+			if($(id).style.sIndex>1) $(id).style.xIndex = 1;
 		}
 		fadeIn("start");
 		updateAll();
