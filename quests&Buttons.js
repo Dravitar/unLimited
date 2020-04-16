@@ -9,15 +9,6 @@ function checkZero() {
 	}
 }
 
-function checkButton(x) {
-	if(player.clicked[x]){
-		return false;
-	} else{
-		player.clicked[x] = true;
-		return true;
-	}
-}
-
 function press(id) {
 	if(player.energy.gt(0) || $(id).classList.contains("travel")){
 		switch(id) {
@@ -91,6 +82,12 @@ function press(id) {
 				if(!player.clicked.showCrystals&&player.clicked.showQuests){
 					fadeIn('crystalArea');
 					player.clicked.showCrystals = true;
+					player.energy = player.energy.minus(1);
+				}
+				break;
+			case "crystalConversion":
+				if(player.clicked.showCrystals&&player.power.gte(1e10)){
+					crystalConversion();
 					player.energy = player.energy.minus(1);
 				}
 				break;
