@@ -126,8 +126,15 @@ function press(id) {
 				break;
 			case "questDepartureU":
 				if(!player.clicked.questDeparture){
-					moveFrom('quest','main')
+					moveFrom('quest','main');
 					player.clicked.questDeparture = true;
+					player.clicked.mainDeparture = false;
+				}
+				break;
+			case "upgradesDepartureL":
+				if(!player.clicked.upgradesDeparture){
+					moveFrom('upgrades','main');
+					player.clicked.upgradeDeparture = true;
 					player.clicked.mainDeparture = false;
 				}
 				break;
