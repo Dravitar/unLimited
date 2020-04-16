@@ -244,7 +244,6 @@ function clearSave(){
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
 	beginination();
-	reset();
 }
 
 function checkKey(event) {
@@ -257,7 +256,7 @@ function reset() {
 	}
 	if(good){
 		player.power = new Decimal(10);
-		let energy = new Decimal(3);
+		let energy = new Decimal(4);
 		for(i=0;i<player.quests.length;i++){
 			switch(i) {
 				case 0:
