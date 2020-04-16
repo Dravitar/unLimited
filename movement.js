@@ -53,10 +53,10 @@ function fadeOut(x) {
 }
 
 function fadeOutAll(set) {
+  console.log(set);
   let op = 1;
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
-    console.log(elem+" "+elem.style.opacity);
     elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
   }
   var fade = setInterval(function() {
