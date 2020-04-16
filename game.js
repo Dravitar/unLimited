@@ -244,7 +244,7 @@ function clearSave(){
 		if(individualArray[2]) fadeIn(id);
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
-	for(i=1;i<quests.length;i++){
+	for(i=1;i<player.quests.length;i++){
 		if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
 		if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
 	}
