@@ -288,7 +288,7 @@ function reset() {
 		var orig = "unlocked "+player.currentZone;
 		let toHide = document.getElementsByClassName(orig);
 		fadeOutAll(toHide);
-		if($("reset").classList.contains("unlocked")) fadeOut("reset");
+		fadeOut("reset");
 		if($("energyArea").classList.contains("unlocked")) fadeOut("energyArea");
 		if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
 		if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");		
