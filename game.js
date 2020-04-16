@@ -27,7 +27,7 @@ function getDefaultPlayer() {
 		quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
 		columns: [false, false, false, false, false],
 		storySeen: 0,
-		curentZone: "main",
+		currentZone: "main",
 		lastTick: new Date().getTime(),
 	};
 }
