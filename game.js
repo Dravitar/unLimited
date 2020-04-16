@@ -283,7 +283,12 @@ function reset() {
 		fadeOut("reset");
 		fadeOut("energyArea");
 		if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
-		if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");
+		if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");		
+		for(i=0;i<visibilityArrayForLoading.length;i++){
+			let individualArray = visibilityArrayForLoading[i];
+			let id = individualArray[0];
+			if($(id).style.zIndex<0) $(id).style.zIndex = 1;
+		}
 		fadeIn("start");
 		updateAll();
 	}
