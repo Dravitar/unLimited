@@ -174,7 +174,7 @@ function load() {
 			else if($(id).style.opacity>0.5) fadeOut(id);
 			if($(id).classList.contains("quest")){
 				let index = parseInt(id.substring(id.length-1,id.length));
-				if(quests[index-1]){ 
+				if(player.quests[index-1]){ 
 					$(id).classList.remove("unsolved");
 					$(id).classList.add("claimed");
 				}
