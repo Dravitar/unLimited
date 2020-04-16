@@ -131,7 +131,7 @@ function beginination() {
 	initializeGrid();
 	load();
 	setInterval(gameCycle, 10);
-	setInterval(save(), 30000);
+	setInterval(save, 30000);
 }
 
 function save() {
@@ -200,6 +200,7 @@ function clearSave(){
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
 	fadeIn("start");
+	beginination();
 }
 
 function checkKey(event) {
