@@ -67,6 +67,23 @@ function gameCycle() {
 	updateAll();
 }
 
+function getCrystalsOnReset() {
+	if(player.power.gte(1e8)){
+		if(player.power.gte(1e10)){
+			return player.power.log10().minus(9);
+		}
+		else return display(player.power.div(1e8))+"%";
+	}
+}
+
+function crystalConversion() {
+	if(player.power.gte(1e10)){
+		player.crystals = player.crystals.plus(getCrystalsOnReset());
+		player.power = 0;
+		player.generators = getDefaultPlayer().generators;
+	}
+}
+
 function purchaseGen(item) {
 	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){
 		if(player.columns[0]) player.generators.boost[item-1] = player.generators.boost[item-1].times(1.1);
@@ -105,6 +122,14 @@ function updateAll() {
 	$("currentEnergy").textContent = display(player.energy);
 	$("currentPower").textContent = display(player.power);
 	$("currentCrystals").textContent = display(player.crystals);
+	if(player.power.gte(1e8)){
+		if(typeof getCrystalsOnReset() === "string"){
+			$("crystalConversion").textContent = "You have "+getCrystalsOnReset()+" of a Crystal";
+		}
+		else {
+			$("crystalConversion").textCOntent = "Convert your Power into "+getCrystalsOnReset()+" Crystals";
+		}
+	}
 	for(i=1;i<5;i++){
 		if(player.power.lt(player.generators.price[i-1])) $("genPurchase"+i).color = "darkGrey";
 		else $("genPurchase"+i).color = "grey";
@@ -173,9 +198,17 @@ function load() {
 			else if($(id).style.opacity>0.5) fadeOut(id);
 			if($(id).classList.contains("quest")){
 				let index = parseInt(id.substring(id.length-1,id.length));
-				if(player.quests[index-1]){ 
-					$(id).classList.remove("unsolved");
-					$(id).classList.add("claimed");
+				if($(id).classList.contains("column")){
+					if(player.columns[index-1]){
+						$(id).classList.remove("unsolved");
+						$(id).classList.add("claimed");
+					}
+				}
+				else {
+					if(player.quests[index-1]){ 
+						$(id).classList.remove("unsolved");
+						$(id).classList.add("claimed");
+					}
 				}
 			}
 		}
