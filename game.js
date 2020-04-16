@@ -57,7 +57,7 @@ function getBaselineVisibility() {
 }
 
 function gameCycle() {
-	timeHack(10);
+	timeHack(1);
 }
 
 function timeHack(num) {
