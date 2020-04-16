@@ -153,7 +153,6 @@ function save() {
 	});
 	localStorage.setItem("unLimitedButtonVis", btoa(JSON.stringify(visibilityArrayForLoading)));
 	saveGame();
-	event.stopPropagation();
 	$("savedInfo").style.display = "";
 	setTimeout( function() {
 		$("savedInfo").style.display = "none";
