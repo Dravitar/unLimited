@@ -83,7 +83,7 @@ function getCrystalsOnReset() {
 function crystalConversion() {
 	if(player.power.gte(1e10)){
 		player.crystals = player.crystals.plus(getCrystalsOnReset());
-		player.power = 0;
+		player.power = new Decimal(0);
 		player.generators = getDefaultPlayer().generators;
 		console.log(player.generators);
 		if(!player.quests[5]){
