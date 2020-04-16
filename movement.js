@@ -24,6 +24,7 @@ function fadeIn(x) {
     if(op>= 1){
       elem.style.setProperty("opacity", 1);
       clearInterval(fade);
+    }
   }, 10);
 }
 
@@ -54,6 +55,7 @@ function fadeOut(x) {
     if(op<= 0){
       elem.style.setProperty("opacity", 0);
       clearInterval(fade);
+    }
   }, 10);
 }
 
