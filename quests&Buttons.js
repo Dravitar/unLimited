@@ -82,6 +82,7 @@ function press(id) {
 			case "showCrystals":
 				if(!player.clicked.showCrystals&&player.clicked.showQuests){
 					fadeIn('crystalArea');
+					$('crystalArea').classList.add("unlocked");
 					fadeIn('crystalConversion');
 					$('crystalConversion').classList.add("unlocked");
 					player.clicked.showCrystals = true;
