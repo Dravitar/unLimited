@@ -178,8 +178,8 @@ function updateAll() {
 			$("quest5").classList.remove("unsolved");
 		}
 	}
-	if(player.upgrades.energyBank.amount.gt(0)){
-		let num = player.upgrades.energyBank.amount;
+	if(player.upgrades.bankUnlock.amount.gt(0)){
+		let num = player.upgrades.bankUnlock.amount;
 		for(i=1;i<5;i++){
 			if(i<num&&!$("clickBank"+i).classList.contains("unlocked")){
 				$("clickBank"+i).classList.add("unlocked");
