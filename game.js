@@ -57,8 +57,12 @@ function getBaselineVisibility() {
 }
 
 function gameCycle() {
+	timeHack(10);
+}
+
+function timeHack(num) {
 	let now = new Date().getTime();
-	let diff = (now - player.lastTick)/10;
+	let diff = num*(now - player.lastTick)/10;
 	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(0.01).times(diff)));
 	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(0.01).times(diff)));
 	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(0.01).times(diff)));
