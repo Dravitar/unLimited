@@ -248,6 +248,7 @@ function clearSave(){
 		if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
 	}
 	beginination();
+	fadeIn("start");
 }
 
 function checkKey(event) {
