@@ -76,7 +76,7 @@ function press(id) {
 				if(!player.clicked.mainDeparture&&player.clicked.showGenerators){
 					moveFrom('main','generators');
 					player.clicked.mainDeparture = true;
-					player.clicked.generatorsDepartureR = false;
+					player.clicked.generatorsDeparture = false;
 				}
 				break;
 			case "showCrystals":
