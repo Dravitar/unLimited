@@ -149,8 +149,8 @@ function claimQuest(num) {
 		$("quest"+num).classList.remove("solved");
 		player.quests[num-1] = true;
 		if(num==5){
-			fadeIn("showCrystals");
-			fadeIn("showUpgrades");
+			$("showCrystals").classList.add("unlocked");
+			$("showUpgrades").classList.add("unlocked");
 		}
 	}
 	var set = Math.floor((num-1)/4);
