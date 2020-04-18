@@ -335,7 +335,6 @@ function reset() {
 		for(i=0;i<allMainUnlocked.length;i++){
 			let item = allMainUnlocked[i];
 			if(item.id != "start") item.classList.remove("unlocked");
-			fadeOut(item.id);
 		}
 		fadeIn("start");
 		updateAll();
