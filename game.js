@@ -265,8 +265,9 @@ function clearSave(){
 		player = getDefaultPlayer();
 		updateAll();
 		localStorage.removeItem("unLimitedSave");
+		resetView();
 	}
-	for(i=0;i<defaultVisibilitySetup.length;i++){
+	/*for(i=0;i<defaultVisibilitySetup.length;i++){
 		let individualArray = defaultVisibilitySetup[i];
 		let id = individualArray[0];
 		if(individualArray[1]) $(id).classList.add("unlocked");
@@ -281,7 +282,7 @@ function clearSave(){
 		}
 	}
 	beginination();
-	fadeIn("start");
+	fadeIn("start");*/
 }
 
 function checkKey(event) {
