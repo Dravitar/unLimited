@@ -275,8 +275,10 @@ function clearSave(){
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}
 	for(i=1;i<player.quests.length;i++){
-		if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
-		if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+		if($("quest"+i)!=null){
+			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
+			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+		}
 	}
 	beginination();
 	fadeIn("start");
