@@ -331,6 +331,11 @@ function reset() {
 			if($(id).style.zIndex<0) $(id).style.zIndex = 1;
 			if($(id).style.sIndex>1) $(id).style.xIndex = 1;
 		}
+		let allMainUnlocked = document.getElementsByClassName("unlocked main");
+		for(i=0;i<allMainUnlocked.length;i++){
+			let item = allMainUnlocked[i];
+			if(item.id != "start") item.classList.remove("unlocked");
+		}
 		fadeIn("start");
 		updateAll();
 	}
