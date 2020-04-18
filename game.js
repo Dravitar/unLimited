@@ -318,29 +318,32 @@ function reset() {
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
 		player.clicked = getDefaultPlayer().clicked;
-		var orig = "unlocked "+player.currentZone;
-		let toHide = document.getElementsByClassName(orig);
-		fadeOutAll(toHide);
-		fadeOut("reset");
-		if($("energyArea").classList.contains("unlocked")) fadeOut("energyArea");
-		if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
-		if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");		
-		for(i=0;i<visibilityArrayForLoading.length;i++){
-			let individualArray = visibilityArrayForLoading[i];
-			let id = individualArray[0];
-			if($(id).style.zIndex<0) $(id).style.zIndex = 1;
-			if($(id).style.zIndex>1) $(id).style.zIndex = 1;
-		}
-		/*let allMainUnlocked = document.getElementsByClassName("unlocked main");
-		for(i=0;i<allMainUnlocked.length;i++){
-			let item = allMainUnlocked[i];
-			if(item.id != "start") item.classList.remove("unlocked");
-		}*/
-		fadeIn("start");
-		updateAll();
+		resetView();
 	}
 }
 
+function resetView() {
+	var orig = "unlocked "+player.currentZone;
+	let toHide = document.getElementsByClassName(orig);
+	fadeOutAll(toHide);
+	fadeOut("reset");
+	if($("energyArea").classList.contains("unlocked")) fadeOut("energyArea");
+	if($("powerArea").classList.contains("unlocked")) fadeOut("powerArea");
+	if($("crystalArea").classList.contains("unlocked")) fadeOut("crystalArea");		
+	for(i=0;i<visibilityArrayForLoading.length;i++){
+		let individualArray = visibilityArrayForLoading[i];
+		let id = individualArray[0];
+		if($(id).style.zIndex<0) $(id).style.zIndex = 1;
+		if($(id).style.zIndex>1) $(id).style.zIndex = 1;
+	}
+	/*let allMainUnlocked = document.getElementsByClassName("unlocked main");
+	for(i=0;i<allMainUnlocked.length;i++){
+		let item = allMainUnlocked[i];
+		if(item.id != "start") item.classList.remove("unlocked");
+	}*/
+	fadeIn("start");
+	updateAll();
+}
 function genBoost() {
 }
 
