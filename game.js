@@ -193,6 +193,18 @@ function updateAll() {
 			}
 		}
 	}
+	for(i=1;i<player.quests.length+1;i++){
+		if(player.quests[i-1]!=null){
+			if(player.quests[i-1]){
+				if($("quest"+i).classList.contains("unsolved"))	$("quest"+i).classList.remove("unsolved");
+				if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
+				if(!$("quest"+i).classList.contains("claimed")) $("quest"+i).classList.add("claimed");
+			} else {
+				if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+				if(!$("quest"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
+			}
+		}
+	}
 }
 
 function beginination() {
@@ -262,10 +274,10 @@ function load() {
 
 function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
+		resetView();
 		player = getDefaultPlayer();
 		updateAll();
 		localStorage.removeItem("unLimitedSave");
-		resetView();
 	}
 	/*for(i=0;i<defaultVisibilitySetup.length;i++){
 		let individualArray = defaultVisibilitySetup[i];
@@ -337,11 +349,6 @@ function resetView() {
 		if($(id).style.zIndex<0) $(id).style.zIndex = 1;
 		if($(id).style.zIndex>1) $(id).style.zIndex = 1;
 	}
-	/*let allMainUnlocked = document.getElementsByClassName("unlocked main");
-	for(i=0;i<allMainUnlocked.length;i++){
-		let item = allMainUnlocked[i];
-		if(item.id != "start") item.classList.remove("unlocked");
-	}*/
 	fadeIn("start");
 	updateAll();
 }
