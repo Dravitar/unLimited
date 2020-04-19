@@ -194,7 +194,7 @@ function updateAll() {
 		}
 	}
 	for(i=1;i<player.quests.length+1;i++){
-		if(player.quests[i-1]!=null){
+		if($("quests"+i)!=null){
 			if(player.quests[i-1]){
 				if($("quest"+i).classList.contains("unsolved"))	$("quest"+i).classList.remove("unsolved");
 				if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
