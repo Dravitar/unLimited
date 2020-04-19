@@ -275,9 +275,9 @@ function load() {
 function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
 		resetView();
+		localStorage.removeItem("unLimitedSave");
 		player = getDefaultPlayer();
 		updateAll();
-		localStorage.removeItem("unLimitedSave");
 	}
 	/*for(i=0;i<defaultVisibilitySetup.length;i++){
 		let individualArray = defaultVisibilitySetup[i];
