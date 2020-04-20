@@ -126,7 +126,9 @@ function bank(amount, index){ //Bank some of your energy to power generators
 	player.energy = player.energy.minus(amount); //Lower energy by 1
 	player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
 	$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
-	$("bankPower"+index).textContent = player.banks[index-1].plus(1).sqrt(); //Upgrade power is subject to change, of course.
+	let bp = player.banks[index-1].plus(1).sqrt(); //Upgrade power is subject to change, of course.
+	$("bankPower"+index).textContent = bp;
+	player.generators.boost[index-1] = player.generators.boost[index-1].times(bp);
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
@@ -163,7 +165,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	else $("crystalConversion").textContent = "You need more Power to make a Crystal"; //But if the user doesn't have enough to even show a percentage, let them know
 	for(i=1;i<5;i++){ //Update values for each generator screen
 		if(player.power.lt(player.generators.price[i-1])) $("genPurchase"+i).style.color = "darkGrey"; //If you don't have enough power, make the text faded
-		else $("genPurchase"+i).style.color = "grey"; //But if they have enough, make it regular
+		else $("genPurchase"+i).style.color = "black"; //But if they have enough, make it regular
 		$("gen"+i+"Purchased").textContent = display(player.generators.purchased[i-1]); //Update purchased numbers
 		$("gen"+i+"Price").textContent = display(player.generators.price[i-1]); //Price for the next generator
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]); //How many you have
