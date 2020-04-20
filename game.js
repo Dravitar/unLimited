@@ -127,8 +127,19 @@ function bank(amount, index){ //Bank some of your energy to power generators
 	player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
 	$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
 	let bp = player.banks[index-1].plus(1).sqrt(); //Upgrade power is subject to change, of course.
-	$("bankPower"+index).textContent = bp;
+	$("bankPower"+index).textContent = display(bp);
 	player.generators.boost[index-1] = player.generators.boost[index-1].times(bp);
+}
+
+function returnEnergy() {
+	for(i=0;i<4){
+		let j = i++;
+		player.generators.boost[i] = player.generators.boost[i].div(player.banks[i].plus(1).sqrt());
+		player.energy = player.energy.plus(player.banks[i]);
+		player.banks[i] = new Decimal(0);
+		$("bankedClicks"+j).textContent = 0;
+		$("bankPower"+j).textContent = 0;
+	}
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
