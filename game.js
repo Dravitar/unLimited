@@ -112,6 +112,7 @@ function purchaseGen(item) {
 
 function upgrade(item) {
 	if(player.crystals.gte(player.upgrades[item].price)){
+		player.energy = player.energy.minus(1);
 		player.crystals = player.crystals.minus(player.upgrades[item].price);
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1);
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase);
@@ -179,7 +180,7 @@ function updateAll() {
 		}
 	}
 	if(player.upgrades.bankUnlock.purchased.gt(0)){
-		let num = player.upgrades.bankUnlock.amount;
+		let num = player.upgrades.bankUnlock.purchased;
 		for(i=1;i<5;i++){
 			if(i<num&&!$("clickBank"+i).classList.contains("unlocked")){
 				$("clickBank"+i).classList.add("unlocked");
