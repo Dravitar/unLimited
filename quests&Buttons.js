@@ -108,6 +108,10 @@ function press(id) {
 					moveFrom('main','upgrades');
 					player.clicked.mainDeparture = true;
 					player.clicked.upgradesDeparture = false;
+					if($("quest7").classList.contains("unsolved")){
+						$("quest7").classList.add("solved");
+						$("quest7").classList.remove("unsolved");
+					}
 				}
 				break;
 			case "generatorsDepartureR":
