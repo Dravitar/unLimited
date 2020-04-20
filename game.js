@@ -351,7 +351,7 @@ function reset() {
 			}
 		}
 		for(i=0;i<4;i++){
-			let j = i++;
+			let j = i+1;
 			player.banks[i] = new Decimal(0);
 			$("bankedClicks"+j).textContent = 0;
 			$("bankPower"+j).textContent = 0;
