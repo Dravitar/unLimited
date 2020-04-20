@@ -85,7 +85,7 @@ function getCrystalsOnReset() { //Function for getting number of crystals, prest
 function crystalConversion() { //Function for actually getting Crystals. Prestige.
 	if(player.power.gte(1e10)){ //If you have enough power,
 		player.crystals = player.crystals.plus(getCrystalsOnReset()); //Increase crystals by how many you can get
-		player.power = new Decimal(0); //Reset your power
+		player.power = new Decimal(10); //Reset your power
 		player.generators = getDefaultPlayer().generators; //and your generators
 		if(!player.quests[5]){ //And check if you need to complete the Crystal Quest
 			if($("quest6").classList.contains("unsolved")){ //If you haven't solved it,
@@ -119,6 +119,12 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1); //Annotate that you've made a purchase,
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
 		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling); //And scaling if necessary.
+	}
+	if(item == "bankUnlock") {
+		for(i=1;i<5;i++){
+			if(player.upgrades.bankUnlock.purchased.gt(i)) $("energyBanked"+i).style.display = "";
+			else $("energyBanked"+i).style.display = "none";
+		}
 	}
 }
 
