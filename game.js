@@ -122,7 +122,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 	}
 	if(item == "bankUnlock") {
 		for(i=1;i<5;i++){
-			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "";
+			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "inline-block";
 			else $("energyBanked"+i).style.display = "none";
 		}
 	}
