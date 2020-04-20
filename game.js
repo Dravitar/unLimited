@@ -271,7 +271,6 @@ function save() { //Utilizes the usual Decimal save function, with an additional
 						    
 function load() { //When we load the game, we load both the player state and the DOM state
 	getBaselineVisibility();
-	if(player.currentZone != "main") fadeOut("start");
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	if(localStorage.getItem("unLimitedButtonVis") !== null) visibilityArrayForLoading = JSON.parse(atob(localStorage.getItem("unLimitedButtonVis")));
 	if(visibilityArrayForLoading[0]!=null){
@@ -299,6 +298,7 @@ function load() { //When we load the game, we load both the player state and the
 			}
 		}
 	}
+	if(player.currentZone != "main") fadeOut("start");
 	//event.stopPropagation();
 	return player;
 }
