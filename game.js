@@ -350,6 +350,12 @@ function reset() {
 					break;
 			}
 		}
+		for(i=0;i<4;i++){
+			let j = i++;
+			player.banks[i] = new Decimal(0);
+			$("bankedClicks"+j).textContent = 0;
+			$("bankPower"+j).textContent = 0;
+		}
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
 		player.clicked = getDefaultPlayer().clicked;
