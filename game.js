@@ -147,6 +147,7 @@ function returnEnergy() {
 		$("bankedClicks"+j).textContent = 0;
 		$("bankPower"+j).textContent = 0;
 	}
+	event.stopPropagation();
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
