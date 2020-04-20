@@ -139,7 +139,7 @@ function bankEnergy(amount, index){ //Bank some of your energy to power generato
 
 function returnEnergy() {
 	for(i=0;i<4;i++){
-		let j = i++;
+		let j = i+1;
 		player.generators.boost[i] = player.generators.boost[i].div(player.banks[i].plus(1).sqrt());
 		player.energy = player.energy.plus(player.banks[i]);
 		player.banks[i] = new Decimal(0);
