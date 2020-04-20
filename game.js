@@ -205,16 +205,20 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		}
 	}
 	if(player.upgrades.bankUnlock.purchased.gt(0)){ //If the power banks are unlocked, we need to show them
-		let num = player.upgrades.bankUnlock.purchased.plus(1); //Upper limit on how many we have purchased
+		let num = player.upgrades.bankUnlock.purchased; //Upper limit on how many we have purchased
 		for(i=1;i<5;i++){ //4 generators need 4 banks
-			if(i<num&&!$("clickBank"+i).classList.contains("unlocked")){ //If you have purchased the bank upgrade for that generator
-				$("clickBank"+i).classList.add("unlocked"); 	     //and you have not already unlocked the bank,
-				fadeIn("clickBank"+i);				     //make it visible.
+			if(i<=num){
+				if(!$("clickBank"+i).classList.contains("unlocked")){ //If you have purchased the bank upgrade for that generator
+					$("clickBank"+i).classList.add("unlocked"); 	     //and you have not already unlocked the bank,
+					fadeIn("clickBank"+i);				     //make it visible.
+				}
 				$("energyBanked"+i).style.display = "";
 			}
-			else if(i>num&&$("clickBank"+i).classList.contains("unlocked")){ //Else, make sure nothing else is visible
-				$("clickBank"+i).classList.remove("unlocked");
-				fadeOut("clickBank"+i);
+			else{
+				if($("clickBank"+i).classList.contains("unlocked")){ //Else, make sure nothing else is visible
+					$("clickBank"+i).classList.remove("unlocked");
+					fadeOut("clickBank"+i);
+				}
 				$("energyBanked"+i).style.display = "none";
 			}
 		}
