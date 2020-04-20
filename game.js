@@ -180,7 +180,7 @@ function updateAll() {
 		}
 	}
 	if(player.upgrades.bankUnlock.purchased.gt(0)){
-		let num = player.upgrades.bankUnlock.purchased;
+		let num = player.upgrades.bankUnlock.purchased.plus(1);
 		for(i=1;i<5;i++){
 			if(i<num&&!$("clickBank"+i).classList.contains("unlocked")){
 				$("clickBank"+i).classList.add("unlocked");
