@@ -128,7 +128,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 	}
 }
 
-function bank(amount, index){ //Bank some of your energy to power generators
+function bankEnergy(amount, index){ //Bank some of your energy to power generators
 	player.energy = player.energy.minus(amount); //Lower energy by 1
 	player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
 	$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
