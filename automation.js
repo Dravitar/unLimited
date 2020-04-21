@@ -3,7 +3,7 @@ function beginAutomationRecording() {
 	if(player.automationArray[0]!=null) if(!confirm("You have a saved automation. Do you wish to overwrite it?")) good = false;
 	if(good){
 		player.automationArray = [];
-		player.automating = true;
+		player.recording = true;
 		player.energy = new Decimal(0);
 		reset();
 		$("recordingSymbol").style.opacity = 1;
@@ -32,7 +32,7 @@ function playAutomation(i) {
 }
 
 function stopAutomation() {
-	player.automating = false;
+	player.recording = false;
 	$("recordingSymbol").style.opacity = 0;
 	$("toggleAutomation").style.zIndex = 1;
 	$("toggleAutomation").style.opacity = 0;
