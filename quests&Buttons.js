@@ -150,7 +150,7 @@ function press(id) {
 					player.clicked.mainDeparture = false;
 				}
 				break;
-			case "automate":
+			case "record":
 				if(player.recording) stopAutomation();
 				else beginAutomationRecording();
 				break;
