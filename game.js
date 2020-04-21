@@ -28,6 +28,7 @@ function getDefaultPlayer() { //Initial Player State
 		columns: [false, false, false, false, false], //Also technically quests
 		storySeen: 0, //How much of the story you have seen so far
 		currentZone: "main", //Used to return the right screen on reload
+		recording: false,
 		automating: false,
 		automationArray: [],
 		lastAutomationAction: new Date().getTime(),
@@ -112,7 +113,7 @@ function purchaseGen(item) { //Function to buy generators
 		player.energy = player.energy.minus(1); //And finally, take your energy.
 	}
 	checkZero(); //Helper function used to determine if we need to show the reset button instead of energy. Having it here means less calls than putting it into updateAll()
-	if(player.automating) grabPiece('purchaseGen('+item+')');
+	if(player.recording) grabPiece('purchaseGen('+item+')');
 }
 
 function upgrade(item) { //Purchase an upgrade for Crystals
@@ -129,7 +130,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			else $("energyBanked"+i).style.display = "none";
 		}
 	}
-	if(player.automating) grabPiece('upgrade('+item+')');
+	if(player.recording) grabPiece('upgrade('+item+')');
 }
 
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
@@ -142,7 +143,7 @@ function bankEnergy(amount, index){ //Bank some of your energy to power generato
 		$("bankPower"+index).textContent = display(bp);
 		player.generators.boost[index-1] = player.generators.boost[index-1].times(bp);
 	}
-	if(player.automating) grabPiece('bankEnergy('+amount+','+index+')');
+	if(player.recording) grabPiece('bankEnergy('+amount+','+index+')');
 }
 
 function returnEnergy() {
@@ -155,7 +156,7 @@ function returnEnergy() {
 		$("bankPower"+j).textContent = 0;
 	}
 	event.stopPropagation();
-	if(player.automating) grabPiece('returnEnergy()');
+	if(player.recording) grabPiece('returnEnergy()');
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
@@ -349,9 +350,11 @@ function reset() {
 		if(!confirm("You still have energy remaining. Do you want to reset?")) good = false;
 	}
 	if(good){
-		if(player.automating){
+		if(player.recording){
 			grabPiece('reset()');
 			stopAutomation();
+		}
+		if(player.automating) playAutomation(0);
 		player.power = new Decimal(10);
 		let energy = new Decimal(4);
 		for(i=0;i<player.quests.length;i++){
