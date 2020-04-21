@@ -129,7 +129,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 }
 
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
-	if(player.upgrades.bankUnlock.purchased.gte(index)){
+	if(player.upgrades.bankUnlock.purchased.gte(index)&&player.energy.gt(0)){
 		player.energy = player.energy.minus(amount); //Lower energy by 1
 		player.generators.boost[index-1] = player.generators.boost[index-1].div(player.banks[index-1].plus(1).sqrt());
 		player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
@@ -172,10 +172,8 @@ function grow(item) { //Used to make the menu buttons all fancy
 }
 
 function updateAll() { //Big papa update function. Gotta check and update everything constantly
-	if($("reset").style.opacity>0.5&&player.energy.gt(0)){
-		fadeOut("reset");
-		fadeIn("currentEnergy");
-	}
+	if($("reset").style.opacity>0.5&&player.energy.gt(0)) fadeOut("reset");
+	if(player.energy.equals(0)) fadeIn("reset");
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
 	$("currentCrystals").textContent = display(player.crystals); //Update current Crystals
