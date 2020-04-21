@@ -28,6 +28,9 @@ function getDefaultPlayer() { //Initial Player State
 		columns: [false, false, false, false, false], //Also technically quests
 		storySeen: 0, //How much of the story you have seen so far
 		currentZone: "main", //Used to return the right screen on reload
+		automating: false,
+		automationArray: [],
+		lastAutomationAction: new Date().getTime(),
 		lastTick: new Date().getTime(), //Timing is everything
 	};
 }
@@ -93,7 +96,7 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 				$("quest6").classList.remove("unsolved"); //Take away the unneccesary class.
 			}
 		}
-			
+		if(player.automating) grabPiece('crystalConversion()');
 	}
 }
 
@@ -110,6 +113,7 @@ function purchaseGen(item) { //Function to buy generators
 		player.energy = player.energy.minus(1); //And finally, take your energy.
 	}
 	checkZero(); //Helper function used to determine if we need to show the reset button instead of energy. Having it here means less calls than putting it into updateAll()
+	if(player.automating) grabPiece('purchaseGen('+item+')');
 }
 
 function upgrade(item) { //Purchase an upgrade for Crystals
@@ -126,6 +130,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			else $("energyBanked"+i).style.display = "none";
 		}
 	}
+	if(player.automating) grabPiece('upgrade('+item+')');
 }
 
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
@@ -138,6 +143,7 @@ function bankEnergy(amount, index){ //Bank some of your energy to power generato
 		$("bankPower"+index).textContent = display(bp);
 		player.generators.boost[index-1] = player.generators.boost[index-1].times(bp);
 	}
+	if(player.automating) grabPiece('bankEnergy('+amount+','+index+')');
 }
 
 function returnEnergy() {
@@ -150,6 +156,7 @@ function returnEnergy() {
 		$("bankPower"+j).textContent = 0;
 	}
 	event.stopPropagation();
+	if(player.automating) grabPiece('returnEnergy()');
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
@@ -204,6 +211,12 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		if($("quest5").classList.contains("unsolved")){
 			$("quest5").classList.add("solved");
 			$("quest5").classList.remove("unsolved");
+		}
+	}
+	if(!player.quests[7]&&player.power.gte(1e15)){
+		if($("quest8").classList.contains("unsolved")){
+			$("quest8").classList.add("solved");
+			$("quest8").classList.remove("unsolved");
 		}
 	}
 	if(player.upgrades.bankUnlock.purchased.gt(0)){ //If the power banks are unlocked, we need to show them
