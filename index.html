@@ -14,6 +14,9 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body style="text-align:center" onLoad="beginination()" onKeyDown="checkKey(event)">
+		<button id="toggleAutomation" class="toggleAutomation menu" style="z-index: 1; position:absolute; opacity: 0;" onclick='toggleAutomation()'>
+			Automation: On
+		</button>
 		<div class="menuWrapper" style="z-index: 50">
 			<div id="tabs" class="menuContainer">
 				<div id="menuTabButton" class="menuButton" style="display:grid; z-index: 5; grid-column:2/3; grid-row:1/2" onclick="grow('menu')">
@@ -119,6 +122,11 @@
 					onclick="press('mainDepartureD')">
 					Quests
 				</button>
+				<button id="automatorButton" class="automator main" style="display:grid; opacity: 0; z-index: 1; grid-column: 5/6; grid-row:5/6;"
+					onclick="press('automate')">
+					Record an automation<br/>
+					(You will reset)
+				</button>
 		<!---------------------------------------------------------------------------->
 		<!--------------------------------- Quests ----------------------------------->
 		<!---------------------------------------------------------------------------->
@@ -146,7 +154,7 @@
 					<b>Total Reward:</b> x1.1 bonus per Generator purchase<br/>
 				</button>
 				<button id="quest5" class="quest unsolved" style="display:grid; opacity: 0;z-index: 1; grid-column: 3/4; grid-row: 3/4;" onclick="claimQuest(5)">
-					<b>Quest:</b>Obtain 1e8 Power<br/>
+					<b>Quest:</b>Obtain 1e+8 Power<br/>
 					<b>Reward:</b> +4 starting Energy<br/>
 				</button>
 				<button id="quest6" class="quest unsolved" style="display:grid; opacity: 0;z-index: 1; grid-column: 3/4; grid-row: 4/5;" onclick="claimQuest(6)">
@@ -158,11 +166,11 @@
 					<b>Reward:</b> +4 starting Energy<br/>
 				</button>
 				<button id="quest8" class="quest unsolved" style="display:grid; opacity: 0;z-index: 1; grid-column: 3/4; grid-row: 6/7;" onclick="claimQuest(7)">
-					<b>Quest:</b>???<br/>
-					<b>Reward:</b> +4 starting Energy<br/>
+					<b>Quest:</b>Obtain 1e+15 Power<br/>
+					<b>Reward:</b> +4 starting Energy and All Main Screen buttons are clicked on reset<br/>
 				</button>
-				<button id="columnReward2" class="quest column unsolved" style="display:grid; opacity: 0; z-index: 1; grid-column: 3/4; grid-row: 7/8;" onclick="claimColumn(1)">
-					<b>Total Reward:</b>???<br/>
+				<button id="columnReward2" class="quest column unsolved" style="display:grid; opacity: 0; z-index: 1; grid-column: 3/4; grid-row: 7/8;" onclick="claimColumn(2)">
+					<b>Total Reward:</b>Unlock the Automation System<br/>
 				</button>
 		<!---------------------------------------------------------------------------->
 		<!--------------------------------- Generators ------------------------------->
