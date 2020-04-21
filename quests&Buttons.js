@@ -22,6 +22,7 @@ function press(id) {
 						$("quest1").classList.add("solved");
 						$("quest1").classList.remove("unsolved");
 					}
+					if(player.automating) grabPiece("press('start')");
 				}
 				break;
 			case "showEnergy":
@@ -34,6 +35,7 @@ function press(id) {
 					$("dumpEnergy").classList.add("unlocked");
 					player.clicked.showEnergy = true;
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('showEnergy')");
 				}
 				break;
 			case "showQuests":
@@ -48,6 +50,7 @@ function press(id) {
 					if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
 					player.clicked.showQuests = true;
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('showQuests')");
 				}
 				break;
 			case "showPower":
@@ -58,6 +61,7 @@ function press(id) {
 					$("showGenerators").classList.add("unlocked");
 					player.clicked.showPower = true;
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('showPower')");
 				}
 				break;
 			case "showGenerators":
@@ -70,6 +74,7 @@ function press(id) {
 						$("quest3").classList.add("solved");
 						$("quest3").classList.remove("unsolved");
 					}
+					if(player.automating) grabPiece("press('showGenerators')");
 				}
 				break;
 			case "mainDepartureL":
@@ -87,12 +92,14 @@ function press(id) {
 					$('crystalConversion').classList.add("unlocked");
 					player.clicked.showCrystals = true;
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('showCrystals')");
 				}
 				break;
 			case "crystalConversion":
 				if(player.clicked.showCrystals&&player.power.gte(1e10)){
 					crystalConversion();
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('crystalConversion')");
 				}
 				break;
 			case "showUpgrades":
@@ -101,6 +108,7 @@ function press(id) {
 					$("mainDepartureR").classList.add("unlocked");
 					player.clicked.showUpgrades = true;
 					player.energy = player.energy.minus(1);
+					if(player.automating) grabPiece("press('showUpgrades')");
 				}
 				break;
 			case "mainDepartureR":
@@ -142,6 +150,10 @@ function press(id) {
 					player.clicked.mainDeparture = false;
 				}
 				break;
+			case "automate":
+				if(player.automating) stopAutomation();
+				else beginAutomationRecording();
+				break;
 		}
 		checkZero();
 	}
@@ -173,6 +185,7 @@ function claimColumn(num) {
 	if($("columnReward"+num).classList.contains("solved")){
 		$("columnReward"+num).classList.remove("solved");
 		$("columnReward"+num).classList.add("claimed");
+		if(num==2) $("automatorButton").classList.add("unlocked");
 		player.columns[num-1] = true;
 		var nuum = num+1;
 		fadeIn("columnReward"+nuum);
