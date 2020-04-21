@@ -22,7 +22,7 @@ function press(id) {
 						$("quest1").classList.add("solved");
 						$("quest1").classList.remove("unsolved");
 					}
-					if(player.automating) grabPiece("press('start')");
+					if(player.recording) grabPiece("press('start')");
 				}
 				break;
 			case "showEnergy":
@@ -35,7 +35,7 @@ function press(id) {
 					$("dumpEnergy").classList.add("unlocked");
 					player.clicked.showEnergy = true;
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('showEnergy')");
+					if(player.recording) grabPiece("press('showEnergy')");
 				}
 				break;
 			case "showQuests":
@@ -50,7 +50,7 @@ function press(id) {
 					if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
 					player.clicked.showQuests = true;
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('showQuests')");
+					if(player.recording) grabPiece("press('showQuests')");
 				}
 				break;
 			case "showPower":
@@ -61,7 +61,7 @@ function press(id) {
 					$("showGenerators").classList.add("unlocked");
 					player.clicked.showPower = true;
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('showPower')");
+					if(player.recording) grabPiece("press('showPower')");
 				}
 				break;
 			case "showGenerators":
@@ -74,7 +74,7 @@ function press(id) {
 						$("quest3").classList.add("solved");
 						$("quest3").classList.remove("unsolved");
 					}
-					if(player.automating) grabPiece("press('showGenerators')");
+					if(player.recording) grabPiece("press('showGenerators')");
 				}
 				break;
 			case "mainDepartureL":
@@ -92,14 +92,14 @@ function press(id) {
 					$('crystalConversion').classList.add("unlocked");
 					player.clicked.showCrystals = true;
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('showCrystals')");
+					if(player.recording) grabPiece("press('showCrystals')");
 				}
 				break;
 			case "crystalConversion":
 				if(player.clicked.showCrystals&&player.power.gte(1e10)){
 					crystalConversion();
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('crystalConversion')");
+					if(player.recording) grabPiece("press('crystalConversion')");
 				}
 				break;
 			case "showUpgrades":
@@ -108,7 +108,7 @@ function press(id) {
 					$("mainDepartureR").classList.add("unlocked");
 					player.clicked.showUpgrades = true;
 					player.energy = player.energy.minus(1);
-					if(player.automating) grabPiece("press('showUpgrades')");
+					if(player.recording) grabPiece("press('showUpgrades')");
 				}
 				break;
 			case "mainDepartureR":
@@ -151,7 +151,7 @@ function press(id) {
 				}
 				break;
 			case "automate":
-				if(player.automating) stopAutomation();
+				if(player.recording) stopAutomation();
 				else beginAutomationRecording();
 				break;
 		}
