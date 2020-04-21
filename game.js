@@ -209,15 +209,13 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		for(i=1;i<5;i++){ //4 generators need 4 banks
 			if(i<=num){
 				if(!$("clickBank"+i).classList.contains("unlocked")){ //If you have purchased the bank upgrade for that generator
-					$("clickBank"+i).classList.add("unlocked"); 	     //and you have not already unlocked the bank,
-					fadeIn("clickBank"+i);				     //make it visible.
+					$("clickBank"+i).classList.add("unlocked"); 	     //and you have not already unlocked the bank, make it visible.
 				}
 				$("energyBanked"+i).style.display = "";
 			}
 			else{
 				if($("clickBank"+i).classList.contains("unlocked")){ //Else, make sure nothing else is visible
 					$("clickBank"+i).classList.remove("unlocked");
-					fadeOut("clickBank"+i);
 				}
 				$("energyBanked"+i).style.display = "none";
 			}
