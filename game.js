@@ -173,7 +173,7 @@ function grow(item) { //Used to make the menu buttons all fancy
 
 function updateAll() { //Big papa update function. Gotta check and update everything constantly
 	if($("reset").style.opacity==1&&player.energy.gt(0)) fadeOut("reset");
-	if(player.energy.equals(0)) fadeIn("reset");
+	if(player.energy.equals(0)&&("reset").style.opacity==0) fadeIn("reset");
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
 	$("currentCrystals").textContent = display(player.crystals); //Update current Crystals
