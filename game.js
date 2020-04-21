@@ -96,7 +96,6 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 				$("quest6").classList.remove("unsolved"); //Take away the unneccesary class.
 			}
 		}
-		if(player.automating) grabPiece('crystalConversion()');
 	}
 }
 
@@ -350,6 +349,9 @@ function reset() {
 		if(!confirm("You still have energy remaining. Do you want to reset?")) good = false;
 	}
 	if(good){
+		if(player.automating){
+			grabPiece('reset()');
+			stopAutomation();
 		player.power = new Decimal(10);
 		let energy = new Decimal(4);
 		for(i=0;i<player.quests.length;i++){
