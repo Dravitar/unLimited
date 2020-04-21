@@ -129,7 +129,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 }
 
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
-	if(player.upgrades.bankEnergy.purchased.gte(index)){
+	if(player.upgrades.bankUnlock.purchased.gte(index)){
 		player.energy = player.energy.minus(amount); //Lower energy by 1
 		if(player.banks[index-1].gt(0))	player.generators.boost[index-1] = player.generators.boost[index-1].div(player.banks[index-1].sqrt());
 		player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
