@@ -33,6 +33,12 @@ function press(id) {
 					$("showQuests").classList.add("unlocked");
 					fadeIn("dumpEnergy");
 					$("dumpEnergy").classList.add("unlocked");
+					if(player.columns[1]){
+						$("record").classList.add("unlocked");
+						$("playAutomation").classList.add("unlocked");
+						fadeIn("record");
+						fadeIn("playAutomation");
+					}
 					player.clicked.showEnergy = true;
 					player.energy = player.energy.minus(1);
 					if(player.recording) grabPiece("press('showEnergy')");
