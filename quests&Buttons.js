@@ -152,7 +152,9 @@ function press(id) {
 				break;
 			case "record":
 				if(player.recording) stopAutomation();
-				else beginAutomationRecording();
+				else{
+					player.lastAutomationAction = new Date().getTime();
+					beginAutomationRecording();
 				break;
 		}
 		checkZero();
@@ -185,7 +187,9 @@ function claimColumn(num) {
 	if($("columnReward"+num).classList.contains("solved")){
 		$("columnReward"+num).classList.remove("solved");
 		$("columnReward"+num).classList.add("claimed");
-		if(num==2) $("record").classList.add("unlocked");
+		if(num==2){
+			$("record").classList.add("unlocked");
+			$("playAutomation").classList.add("unlocked");
 		player.columns[num-1] = true;
 		var nuum = num+1;
 		fadeIn("columnReward"+nuum);
