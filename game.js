@@ -351,7 +351,9 @@ function checkKey(event) {
 function reset() {
 	let good = true;
 	if(!player.energy.equals(0)){
-		if(!player.automating&&!confirm("You still have energy remaining. Do you want to reset?")) good = false;
+		if(!player.automating){
+			if(!confirm("You still have energy remaining. Do you want to reset?")) good = false;
+		}
 	}
 	if(good){
 		if(player.recording){
