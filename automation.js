@@ -28,6 +28,7 @@ function automate() {
 	fadeOut("record");
 	fadeOut("playAutomation");
 	fadeIn("stopAutomation");
+	fadeIn("automationSymbol");
 	playAutomation(0);
 }
 
