@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body style="text-align:center" onLoad="beginination()" onKeyDown="checkKey(event)">
+		<div id="automationScreen" class="automationScreen" style="opacity:0; z-index: 0;"></div>
 		<button id="toggleRecording" class="toggleRecording menu" style="z-index: 1; position:absolute; opacity: 0; top:0; left:0; font-size:x-large" onclick="toggleAutomation()">
 			Automation: On
 		</button>
@@ -136,7 +137,7 @@
 					Record an automation<br/>
 					(You will reset)
 				</button>
-				<button id="stopAutomation" class="automator main" style="display:grid; opacity: 0; z-index: 1; grid-column: 5/6; grid-row:5/6;"
+				<button id="stopAutomation" class="automator" style="display:grid; opacity: 0; z-index: 1; grid-column: 5/6; grid-row:6/7;"
 					onclick="stopAutomation()">
 					Stop your Automation<br/>
 					You will have to restart at the beginning of your automation.
