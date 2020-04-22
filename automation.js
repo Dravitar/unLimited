@@ -25,13 +25,13 @@ function grabPiece(item) {
 
 function playAutomation(i) {
 	setTimeout( function() {
-		var str = player.automationArray[i][0];
+		var str = player.automationArray[i][1];
 		var fn = window[str];
 		if(typeof fn==="function") fn();
-		//var f = new Function(player.automationArray[i][0]));
+		//var f = new Function(player.automationArray[i][1]));
 		var j = i+1;
 		if(player.automationArray[j]!=null) playAutomation(j);
-	}, player.automationArray[i][1]);
+	}, player.automationArray[i][0]);
 }
 
 function stopAutomation() {
