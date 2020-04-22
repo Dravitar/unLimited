@@ -17,7 +17,7 @@ function moveFrom(place,des) {
 function fadeIn(x) {
   let elem = $(x);
   if(player.automating){
-    if(x=="automationScreen"||elem.classList.includes("travel")){
+    if(x=="automationScreen"||elem.classList.contains("travel")){
       elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
     }
     else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10)
@@ -40,7 +40,7 @@ function fadeInAll(set) {
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
     if(player.automating){
-      if(elem.classList.includes("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
+      if(elem.classList.contains("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
       else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
     }
     else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
@@ -60,7 +60,7 @@ function fadeOut(x) {
   let op = 1;
   let elem = $(x);
   if(player.automating){
-    if(x=="automationScreen"||elem.classList.includes("travel")){
+    if(x=="automationScreen"||elem.classList.contains("travel")){
       elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-50);
     }
     else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
@@ -81,7 +81,7 @@ function fadeOutAll(set) {
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
     if(player.automating){
-      if(elem.classList.includes("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-50);
+      if(elem.classList.contains("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-50);
       else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
     }
     else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
