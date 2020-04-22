@@ -26,8 +26,11 @@ function grabPiece(item) {
 function automate() {
 	player.automating = true;
 	fadeOut("record");
+	$("record").classList.remove("unlocked");
 	fadeOut("playAutomation");
+	$("playAutomation").classList.remove("unlocked");
 	fadeIn("stopAutomation");
+	$("stopAutomation").classList.add("unlocked");
 	fadeIn("automatingSymbol");
 	playAutomation(0);
 }
@@ -47,9 +50,12 @@ function playAutomation(i) {
 function stopAutomation() {
 	player.automating = false;
 	fadeOut("stopAutomation");
+	$("stopAutomation").classList.remove("unlocked");
 	fadeOut("automatingSymbol");
 	fadeIn("record");
+	$("record").classList.add("unlocked");
 	fadeIn("playAutomation");
+	$("playAutomation").classList.add("unlocked");
 }
 	
 
