@@ -155,6 +155,7 @@ function press(id) {
 				else{
 					player.lastAutomationAction = new Date().getTime();
 					beginAutomationRecording();
+				}
 				break;
 		}
 		checkZero();
@@ -190,6 +191,7 @@ function claimColumn(num) {
 		if(num==2){
 			$("record").classList.add("unlocked");
 			$("playAutomation").classList.add("unlocked");
+		}
 		player.columns[num-1] = true;
 		var nuum = num+1;
 		fadeIn("columnReward"+nuum);
