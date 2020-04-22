@@ -24,6 +24,7 @@ function grabPiece(item) {
 }
 
 function playAutomation(i) {
+	console.log(player.automationArray[i][0]+", "+player.automationArray[i][1]);
 	setTimeout( function() {
 		eval(player.automationArray[i][1]);
 		//var fn = window[str];			//THERES GOTTA BE A BETTER WAY
