@@ -275,6 +275,7 @@ function save() { //Utilizes the usual Decimal save function, with an additional
 		}
 	});
 	localStorage.setItem("unLimitedButtonVis", btoa(JSON.stringify(visibilityArrayForLoading))); //Save the visibility state
+	localStorage.setItem("automatorArray", btoa(JSON.stringify(player.automationArray))); //Save the automation array
 	saveGame(); //And the player state
 	$("savedInfo").style.display = ""; //And then display the "saved game" message for a few seconds
 	setTimeout( function() {
@@ -282,10 +283,11 @@ function save() { //Utilizes the usual Decimal save function, with an additional
 	}, 2000);
 }
 						    
-function load() { //When we load the game, we load both the player state and the DOM state
+function load() { //When we load the game, we load the player state, the DOM state, and the automator list
 	getBaselineVisibility();
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	if(localStorage.getItem("unLimitedButtonVis") !== null) visibilityArrayForLoading = JSON.parse(atob(localStorage.getItem("unLimitedButtonVis")));
+	if(localStorage.getItem("automatorArray") !== null) player.automationArray = JSON.parse(atob(localStorage.getItem*"automatorArray"));
 	if(visibilityArrayForLoading[0]!=null){
 		for(i=0;i<visibilityArrayForLoading.length;i++){
 			let individualArray = visibilityArrayForLoading[i];
@@ -320,6 +322,8 @@ function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
 		resetView();
 		localStorage.removeItem("unLimitedSave");
+		localStorage.removeItem("unLimitedButtonVis");
+		localStorage.removeItem("automatorArray");
 		player = getDefaultPlayer();
 		updateAll();
 	}
