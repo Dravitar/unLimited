@@ -28,7 +28,7 @@ function automate() {
 	fadeOut("record");
 	fadeOut("playAutomation");
 	fadeIn("stopAutomation");
-	fadeIn("automationSymbol");
+	fadeIn("automatingSymbol");
 	playAutomation(0);
 }
 
@@ -47,6 +47,7 @@ function playAutomation(i) {
 function stopAutomation() {
 	player.automating = false;
 	fadeOut("stopAutomation");
+	fadeOut("automatingSymbol");
 	fadeIn("record");
 	fadeIn("playAutomation");
 }
