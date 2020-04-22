@@ -25,9 +25,9 @@ function grabPiece(item) {
 
 function playAutomation(i) {
 	setTimeout( function() {
-		var str = player.automationArray[i][1];
-		var fn = window[str];
-		if(typeof fn==="function") fn();
+		eval(player.automationArray[i][1]);
+		//var fn = window[str];			//THERES GOTTA BE A BETTER WAY
+		//if(typeof fn==="function") fn();
 		//var f = new Function(player.automationArray[i][1]));
 		var j = i+1;
 		if(player.automationArray[j]!=null) playAutomation(j);
