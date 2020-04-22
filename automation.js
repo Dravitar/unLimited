@@ -29,8 +29,8 @@ function automate() {
 	$("record").classList.remove("unlocked");
 	fadeOut("playAutomation");
 	$("playAutomation").classList.remove("unlocked");
-	fadeIn("stopAutomation");
-	$("stopAutomation").classList.add("unlocked");
+	$("stopAutomation").style.opacity = 1;
+	$("stopAutomation").style.zIndex = 100;
 	fadeIn("automatingSymbol");
 	playAutomation(0);
 }
@@ -49,8 +49,8 @@ function playAutomation(i) {
 
 function stopAutomation() {
 	player.automating = false;
+	fadeOut("automationScreen");
 	fadeOut("stopAutomation");
-	$("stopAutomation").classList.remove("unlocked");
 	fadeOut("automatingSymbol");
 	fadeIn("record");
 	$("record").classList.add("unlocked");
