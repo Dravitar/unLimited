@@ -185,7 +185,7 @@ function claimColumn(num) {
 	if($("columnReward"+num).classList.contains("solved")){
 		$("columnReward"+num).classList.remove("solved");
 		$("columnReward"+num).classList.add("claimed");
-		if(num==2) $("automatorButton").classList.add("unlocked");
+		if(num==2) $("record").classList.add("unlocked");
 		player.columns[num-1] = true;
 		var nuum = num+1;
 		fadeIn("columnReward"+nuum);
