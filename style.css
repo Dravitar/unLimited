@@ -162,4 +162,22 @@
 .claimed {
 	color: black;
 	background: green;
-}	
+}
+
+.toggleRecording {
+	background: mediumBlue;
+	color: orange;
+}
+
+.recordingSymbol {
+	background: red;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+}
+
+.automatingSymbol {
+}
+
+.goFastSymbol {
+}
