@@ -358,7 +358,7 @@ function reset() {
 	if(good){
 		if(player.recording){
 			grabPiece('reset()');
-			stopAutomation();
+			stopRecording();
 		}
 		if(player.automating) playAutomation(0);
 		player.power = new Decimal(10);
