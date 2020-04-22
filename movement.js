@@ -28,8 +28,8 @@ function fadeIn(x) {
   var fade = setInterval(function() {
     op += 0.02;
     elem.style.setProperty("opacity", op);
-    if(op>= 1){
-      elem.style.setProperty("opacity", 1);
+    if(op>= max){
+      elem.style.setProperty("opacity", max);
       clearInterval(fade);
     }
   }, 10);
