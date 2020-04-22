@@ -287,7 +287,7 @@ function load() { //When we load the game, we load the player state, the DOM sta
 	getBaselineVisibility();
 	if(localStorage.getItem("unLimitedSave") !== null) loadGame(localStorage.getItem("unLimitedSave"));
 	if(localStorage.getItem("unLimitedButtonVis") !== null) visibilityArrayForLoading = JSON.parse(atob(localStorage.getItem("unLimitedButtonVis")));
-	if(localStorage.getItem("automatorArray") !== null) player.automationArray = JSON.parse(atob(localStorage.getItem("automatorArray"));
+	if(localStorage.getItem("automatorArray") !== null) player.automationArray = JSON.parse(atob(localStorage.getItem("automatorArray")));
 	if(visibilityArrayForLoading[0]!=null){
 		for(i=0;i<visibilityArrayForLoading.length;i++){
 			let individualArray = visibilityArrayForLoading[i];
