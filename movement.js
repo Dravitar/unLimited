@@ -16,8 +16,15 @@ function moveFrom(place,des) {
 
 function fadeIn(x) {
   let elem = $(x);
-  elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
+  if(player.automating){
+    if(x=="automationScreen"||elem.classList.includes("travel")){
+      elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
+    }
+    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10)
+  } else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
   let op = 0;
+  let max = 1;
+  if(x=="automationScreen") max = 0.2;
   var fade = setInterval(function() {
     op += 0.02;
     elem.style.setProperty("opacity", op);
@@ -32,7 +39,11 @@ function fadeInAll(set) {
   let op = 0;
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
-    elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
+    if(player.automating){
+      if(elem.classList.includes("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
+      else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
+    }
+    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
   }
   var fade = setInterval(function() {
     op += 0.02;
@@ -48,7 +59,12 @@ function fadeInAll(set) {
 function fadeOut(x) {
   let op = 1;
   let elem = $(x);
-  elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
+  if(player.automating){
+    if(x=="automationScreen"||elem.classList.includes("travel")){
+      elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-50);
+    }
+    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
+  } else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
   var fade = setInterval(function() {
     op -= 0.02;
     elem.style.setProperty("opacity", op);
@@ -64,7 +80,11 @@ function fadeOutAll(set) {
   let op = 1;
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
-    elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
+    if(player.automating){
+      if(elem.classList.includes("travel")) elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-50);
+      else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
+    }
+    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)-10);
   }
   var fade = setInterval(function() {
     op -= 0.02;
