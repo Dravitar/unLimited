@@ -389,6 +389,7 @@ function reset() {
 			$("bankedClicks"+j).textContent = 0;
 			$("bankPower"+j).textContent = 0;
 		}
+		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
 		player.clicked = getDefaultPlayer().clicked;
