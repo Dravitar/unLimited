@@ -48,20 +48,24 @@ function playAutomation(i) {
 }
 
 function stopAutomation() {
-	player.automating = false;
-	fadeOut("automationScreen");
-	fadeOut("stopAutomation");
-	fadeOut("automatingSymbol");
-	fadeIn("record");
-	$("record").classList.add("unlocked");
-	fadeIn("playAutomation");
-	$("playAutomation").classList.add("unlocked");
+	if(player.automating){
+		player.automating = false;
+		fadeOut("automationScreen");
+		fadeOut("stopAutomation");
+		fadeOut("automatingSymbol");
+		fadeIn("record");
+		$("record").classList.add("unlocked");
+		fadeIn("playAutomation");
+		$("playAutomation").classList.add("unlocked");
+	}
 }
 	
 
 function stopRecording() {
-	player.recording = false;
-	$("recordingSymbol").style.opacity = 0;
-	$("toggleAutomation").style.zIndex = 1;
-	$("toggleAutomation").style.opacity = 0;
+	if(player.recording){
+		player.recording = false;
+		$("recordingSymbol").style.opacity = 0;
+		$("toggleAutomation").style.zIndex = 1;
+		$("toggleAutomation").style.opacity = 0;
+	}
 }
