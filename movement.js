@@ -76,7 +76,6 @@ function fadeOut(x) {
 }
 
 function fadeOutAll(set) {
-  console.log(set);
   let op = 1;
   for(i=0;i<set.length;i++){
     let elem = set.item(i);
