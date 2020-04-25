@@ -390,6 +390,7 @@ function reset() {
 			$("bankPower"+j).textContent = 0;
 		}
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
+		if(player.quests[7]) energy = energy.minus(8);
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
 		player.clicked = getDefaultPlayer().clicked;
