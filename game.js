@@ -416,7 +416,7 @@ function resetView() {
 		let main = document.getElementsByClassName("main");
 		for(i=0;i<main.length;i++){
 			let item = main[i];
-			if(!item.classList.contains("unlocked") item.classList.add("unlocked");
+			if(!item.classList.contains("unlocked")) item.classList.add("unlocked");
 			fadeIn(item.id);
 		}
 	}
