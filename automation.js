@@ -25,6 +25,7 @@ function grabPiece(item) {
 }
 
 function automate() {
+	player.energy = new Decimal(0);
 	reset();
 	player.automating = true;
 	fadeOut("record");
