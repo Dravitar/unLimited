@@ -44,6 +44,7 @@ function playAutomation(i) {
 	//if(typeof fn==="function") fn();
 	//var f = new Function(player.automationArray[i][1]));
 	setTimeout( function() {
+		player.automationRuntimeIndex = i;
 		eval(player.automationArray[i][1]);
 		var j = i+1;
 		if(player.automationArray[j]!=null&&player.automating) playAutomation(j);
@@ -71,4 +72,19 @@ function stopRecording() {
 		$("toggleRecording").style.zIndex = 1;
 		$("toggleRecording").style.opacity = 0;
 	}
+}
+
+function checkOfflineAutomation() {
+	let time = new Date().getTime() - player.lastTick;
+	let i = player.automationRuntimeIndex;
+	while(time>0){
+		player.automationRuntimeIndex = i;
+		eval(player.automationArray[i][1]);
+		var j = i+1;
+		let nextTime = player.automationArray[j][0];
+		if(nextTime>time) timeHack(nextTime);
+		time -= nextTime;
+		i = j;
+	}
+	player.lastTick = new Date().getTime();
 }
