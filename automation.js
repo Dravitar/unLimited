@@ -52,7 +52,6 @@ function playAutomation(i) {
 
 function stopAutomation() {
 	if(player.automating){
-		player.automating = false;
 		fadeOut("automationScreen");
 		fadeOut("stopAutomation");
 		fadeOut("automatingSymbol");
@@ -60,6 +59,7 @@ function stopAutomation() {
 		$("record").classList.add("unlocked");
 		fadeIn("playAutomation");
 		$("playAutomation").classList.add("unlocked");
+		player.automating = false;
 	}
 }
 	
