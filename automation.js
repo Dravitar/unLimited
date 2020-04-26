@@ -25,6 +25,7 @@ function grabPiece(item) {
 }
 
 function automate() {
+	reset();
 	player.automating = true;
 	fadeOut("record");
 	$("record").classList.remove("unlocked");
