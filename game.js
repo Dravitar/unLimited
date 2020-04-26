@@ -14,11 +14,15 @@ function getDefaultPlayer() { //Initial Player State
 			increase: [new Decimal(1.3), new Decimal(1.5), new Decimal(1.7), new Decimal(1.9),],
 			scaling: [new Decimal(1.03), new Decimal(1.05), new Decimal(1.07), new Decimal(1.09),],
 		},	//V Energy banked.V
-		banks: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],			
+		banks: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+		generatorBoost: new Decimal(1),
 		crystals: new Decimal(0), // Used to purchase upgrades
 		upgrades: { //All upgrades so far
 			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
-			
+			crystalPowerup: {price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
+			generatorBoost: {price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
+			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05)},
+			freeGenerators: {price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1)},
 		},
 		clicked: { //Used to determine order of stuff appearing
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
@@ -68,14 +72,22 @@ function gameCycle() { //Each cycle lasts 10ms, or 0.01 seconds
 function timeHack(num) { //timeHack takes input by the second
 	let now = new Date().getTime(); //Get the current time
 	let diff = num*(now - player.lastTick)/10; //Get the number of seconds that have passed since the last time we checked (which helpfully also gives us offline progress)
-	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(player.generators.boost[3].times(diff).times(player.banks[3].plus(1).sqrt())));
-	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(player.generators.boost[2].times(diff).times(player.banks[2].plus(1).sqrt())));
-	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(player.generators.boost[1].times(diff).times(player.banks[1].plus(1).sqrt())));
-	player.power = player.power.plus(player.generators.amount[0].times(player.generators.boost[0].times(diff).times(player.banks[0].plus(1).sqrt())));
+	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)));
+	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)));
+	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(getTotalBoost(1)));
+	player.power = player.power.plus(player.generators.amount[0].times(getTotalBoost(0)));
 	//Each generator makes the one below it, with the first generator making power.
 	//Generator boosts are not calculated here, for cleanliness.
 	player.lastTick = now; //Signal that we just checked progress.
 	updateAll(); //Tell all numbers to update!
+}
+
+function getTotalBoost(num) {
+	let boost = player.generators.boost[num];
+	if(player.upgrades.bankPowerup.purchased.gt(0))	boost = boost.times(Decimal.power(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
+	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
+	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
+	return boost;
 }
 
 function getCrystalsOnReset() { //Function for getting number of crystals, prestige currency, on reset
@@ -111,7 +123,12 @@ function purchaseGen(item) { //Function to buy generators
 			player.generators.price[item-1] = player.generators[item-1].times(player.generators.scaling[item-1]);
 		} //Otherwise, it's just one layer of scaling.
 		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
-		player.energy = player.energy.minus(1); //And finally, take your energy.
+		if(player.upgrades.freeGenerators.purchased.gt(0)){
+			if(player.generators.purchased.minus(1).toNumber()%(6-player.upgrades.freeGenerators.purchased.toNumber())==0){
+				return;
+			}
+		}
+		else player.energy = player.energy.minus(1); //And finally, take your energy.
 	}
 	checkZero(); //Helper function used to determine if we need to show the reset button instead of energy. Having it here means less calls than putting it into updateAll()
 	if(player.recording) grabPiece('purchaseGen('+item+')');
@@ -130,6 +147,9 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "inline-block";
 			else $("energyBanked"+i).style.display = "none";
 		}
+	}
+	if(item == "generatorBoost") {
+		$("generatorBoost").style.display = "inline-block";
 	}
 	if(player.recording) grabPiece('upgrade('+item+')');
 }
