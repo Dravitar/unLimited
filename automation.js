@@ -65,7 +65,7 @@ function stopRecording() {
 	if(player.recording){
 		player.recording = false;
 		$("recordingSymbol").style.opacity = 0;
-		$("toggleAutomation").style.zIndex = 1;
-		$("toggleAutomation").style.opacity = 0;
+		$("toggleRecording").style.zIndex = 1;
+		$("toggleRecording").style.opacity = 0;
 	}
 }
