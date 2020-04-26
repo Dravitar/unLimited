@@ -72,9 +72,9 @@ function gameCycle() { //Each cycle lasts 10ms, or 0.01 seconds
 function timeHack(num) { //timeHack takes input by the second
 	let now = new Date().getTime(); //Get the current time
 	let diff = num*(now - player.lastTick)/10; //Get the number of seconds that have passed since the last time we checked (which helpfully also gives us offline progress)
-	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)));
-	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)));
-	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(getTotalBoost(1)));
+	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)).times(diff));
+	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)).times(diff));
+	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(getTotalBoost(1)).times(diff));
 	player.power = player.power.plus(player.generators.amount[0].times(getTotalBoost(0)));
 	//Each generator makes the one below it, with the first generator making power.
 	//Generator boosts are not calculated here, for cleanliness.
