@@ -39,11 +39,11 @@ function automate() {
 
 function playAutomation(i) {
 	console.log(player.automationArray[i][0]+", "+player.automationArray[i][1]);
-	eval(player.automationArray[i][1]);
 	//var fn = window[str];			//THERES GOTTA BE A BETTER WAY
 	//if(typeof fn==="function") fn();
 	//var f = new Function(player.automationArray[i][1]));
 	setTimeout( function() {
+		eval(player.automationArray[i][1]);
 		var j = i+1;
 		if(player.automationArray[j]!=null&&player.automating) playAutomation(j);
 	}, player.automationArray[i][0]);
