@@ -75,6 +75,7 @@ function stopRecording() {
 }
 
 function checkOfflineAutomation() {
+	player.automating = false;
 	let time = new Date().getTime() - player.lastTick;
 	let i = player.automationRuntimeIndex;
 	while(time>0){
@@ -82,7 +83,7 @@ function checkOfflineAutomation() {
 		eval(player.automationArray[i][1]);
 		var j = i+1;
 		let nextTime = 0;
-		if(player.automationArray[j][0]!=null) nextTime = player.automationArray[j][0];
+		if(player.automationArray[j]!=null) nextTime = player.automationArray[j][0];
 		else{
 			nextTime = player.automationArray[0][0];
 			j = 0;
