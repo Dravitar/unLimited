@@ -75,7 +75,7 @@ function timeHack(num) { //timeHack takes input by the second
 	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)).times(diff));
 	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)).times(diff));
 	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(getTotalBoost(1)).times(diff));
-	player.power = player.power.plus(player.generators.amount[0].times(getTotalBoost(0)));
+	player.power = player.power.plus(player.generators.amount[0].times(getTotalBoost(0)).times(diff));
 	//Each generator makes the one below it, with the first generator making power.
 	//Generator boosts are not calculated here, for cleanliness.
 	player.lastTick = now; //Signal that we just checked progress.
