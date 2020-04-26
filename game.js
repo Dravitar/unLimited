@@ -314,6 +314,7 @@ function load() { //When we load the game, we load the player state, the DOM sta
 		}
 	}
 	if(player.currentZone != "main") fadeOut("start");
+	if(player.automating) checkOfflineAutomation();
 	//event.stopPropagation();
 	return player;
 }
