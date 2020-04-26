@@ -75,7 +75,6 @@ function stopRecording() {
 }
 
 function checkOfflineAutomation() {
-	player.automating = false;
 	let time = new Date().getTime() - player.lastTick;
 	let i = player.automationRuntimeIndex;
 	while(time>0){
