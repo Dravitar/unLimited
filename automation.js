@@ -81,10 +81,11 @@ function checkOfflineAutomation() {
 		player.automationRuntimeIndex = i;
 		eval(player.automationArray[i][1]);
 		var j = i+1;
-		if(player.automationArray[j][0]!=null) let nextTime = player.automationArray[j][0];
+		let nextTime = 0;
+		if(player.automationArray[j][0]!=null) nextTime = player.automationArray[j][0];
 		else{
-			let nextTime = player.automationArray[0][0];
-			let j = 0;
+			nextTime = player.automationArray[0][0];
+			j = 0;
 		}
 		if(nextTime>time) timeHack(nextTime*0.001);
 		time -= nextTime;
