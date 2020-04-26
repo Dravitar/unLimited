@@ -33,6 +33,7 @@ function automate() {
 	$("stopAutomation").style.opacity = 1;
 	$("stopAutomation").style.zIndex = 100;
 	fadeIn("automatingSymbol");
+	fadeIn("automationScreen");
 	playAutomation(0);
 }
 
