@@ -390,7 +390,6 @@ function reset() {
 			$("bankPower"+j).textContent = 0;
 		}
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
-		if(player.quests[7]) energy = energy.minus(8);
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
 		player.clicked = getDefaultPlayer().clicked;
@@ -414,12 +413,13 @@ function resetView() {
 	}
 	fadeIn("start");
 	if(player.quests[7]){
-		let main = document.getElementsByClassName("main");
-		for(i=0;i<main.length;i++){
-			let item = main[i];
-			if(!item.classList.contains("unlocked")) item.classList.add("unlocked");
-			fadeIn(item.id);
-		}
+		press("start");
+		press("showEnergy");
+		press("showQuests");
+		press("showCrystals");
+		press("showUpgrades");
+		press("showPower");
+		press("showGenerators");
 	}
 	updateAll();
 }
