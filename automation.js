@@ -82,7 +82,7 @@ function checkOfflineAutomation() {
 		eval(player.automationArray[i][1]);
 		var j = i+1;
 		let nextTime = player.automationArray[j][0];
-		if(nextTime>time) timeHack(nextTime);
+		if(nextTime>time) timeHack(nextTime*0.001);
 		time -= nextTime;
 		i = j;
 	}
