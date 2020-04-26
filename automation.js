@@ -2,6 +2,7 @@ function beginAutomationRecording() {
 	let good = true;
 	if(player.automationArray[0]!=null) if(!confirm("You have a saved automation. Do you wish to overwrite it?")) good = false;
 	if(good){
+		player.lastAutomationAction = new Date().getTime();
 		player.automationArray = [];
 		player.energy = new Decimal(0);
 		reset();
