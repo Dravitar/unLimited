@@ -7,8 +7,8 @@ function beginAutomationRecording() {
 		reset();
 		player.recording = true;
 		$("recordingSymbol").style.opacity = 1;
-		$("toggleAutomation").style.zIndex = 20;
-		$("toggleAutomation").style.opacity = 1;
+		$("toggleRecording").style.zIndex = 20;
+		$("toggleRecording").style.opacity = 1;
 	}
 }
 
