@@ -218,7 +218,7 @@
 				<button id="generatorBoost" class="upgrade generators" style="display:grid; opacity: 0; z-index: 1;grid-column: 4/5; grid-row: 6/7;"
 					onclick="genBoost()";>
 					Reset all Generators but grant them all a boost.<br/>
-					Total Boost: <span id="genBoostAmount">0</span>
+					Total Boost: <span id="genBoostAmount">0</span> --> <span id="genBoostToBecome">0</span>
 				</button>
 				<div id="generator1" class="display generators unlocked" style="display:grid; opacity: 0; z-index: 1;grid-column: 4/5; grid-row: 2/3;">
 					You have <span id="genAmount1">0</span> Generator 1s generating
@@ -263,6 +263,10 @@
 					There is <span id="bankedClicks4">0</span> Energy deposited,<br/>
 					powering up Generator 4s by <span id="bankPower4">0</span>
 				</button>
+				<button id="energyBanked" class="generators" style="display:grid; opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 6/7; background:orange"
+					onclick="returnEnergy()">
+					Click here to retrieve all banked Energy.
+				</button>
 				<button id="bankProducer1" class="upgrade generators" style="display:grid; opacity: 0; z-index: 1;grid-column: 6/7; grid-row:2/3;"
 					onclick="purchase('bank1')">
 					Produce free Energy for the Generator 1 bank.<br/>
@@ -286,7 +290,7 @@
 				</button>
 				<button id="bankProducer4" class="upgrade generators" style="display:grid; opacity: 0; z-index: 1;grid-column: 6/7; grid-row:5/6;"
 					onclick="purchase('bank4')">
-					Produce free Energy for the Generator 4 bank and generate Leve 3 Energy Producers.<br/>
+					Produce free Energy for the Generator 4 bank and generate Level 3 Energy Producers.<br/>
 					You have <span id="bankProducer4Amount">0</span> Producers, 
 					creating <span id="bankProducer4Bonus">0</span> Energy per second for Generator 4s.<br/>
 					Purchase another for <span id="bankProducer4Price">0</span> Crystals.
@@ -316,13 +320,34 @@
 				<button id="bankUnlockUpgrade" class="upgrades upgrade unlocked" style="opacity: 0; z-index: 1; grid-column: 4/5; grid-row: 4/5; text-size: small"
 					onclick="upgrade('bankUnlock')">
 					Unlock Energy Banks for your Generators.<br/>
-					You can deposit Energy here to power up Generators, and retrieve the energy when needed.<br/>
+					You can deposit Energy to power up Generators, and retrieve the energy when needed.<br/>
 					<span id="energyBanked1" style="display:none; padding-left: 5px; padding-right: 5px;"><b>O</b></span> <span id="energyBanked2" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span>    
 					Cost: 1 Crystal    
 					<span id="energyBanked3" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span> <span id="energyBanked4" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span><br/>
-					<span id="energyBanked" onclick="returnEnergy()" style="background:orange">Click here to retrieve all banked Energy.</span>
 				</button>
-				
+				<button id="crystalPowerupUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column:4/5; grid-row:3/4; text-size: small"
+					onclick="upgrade('crystalPowerup')">
+					Unspent Crystals power up Generators.<br/>
+					Current Bonus: <span id="crystalPowerArea">1</span>x<br/>
+					Cost: 5 Crystals
+				</button>
+				<button id="generatorBoostUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 3/4; text-size: small"
+					onclick="upgrade('generatorBoost')">
+					Unlock Generator Boost.<br/>
+					You can reset your Generators for a boost based on Power produced.<br/>
+					Cost: 10 Crystals
+				</button>
+				<button id="bankPowerupUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 4/5; text-size: small"
+					onclick="upgrade('bankPowerup')">
+					Improve the boost formula for Energy Banks.<br/>
+					Current Boost: ^<span id="bankPowerArea">0.5</span>
+					Cost: <span id="bankPowerupCost">20</span> Crystals
+				</button>
+				<button id="freeGeneratorsUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 5/6; text-size: small"
+					onclick="upgrade('freeGenerators')">
+					Every <span id="freeGeneratorsArea">5</span> Generators, you can purchase one without spending Energy.<br/>
+					Cost: <span id="freeGeneratorsCost">25</span> Crystals
+				</button>
 			</div>
 		</div>
 	</body>
