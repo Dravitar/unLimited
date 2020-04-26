@@ -31,6 +31,7 @@ function getDefaultPlayer() { //Initial Player State
 		recording: false,
 		automating: false,
 		automationArray: [],
+		automationRuntimeIndex: 0,
 		lastAutomationAction: new Date().getTime(),
 		lastTick: new Date().getTime(), //Timing is everything
 	};
