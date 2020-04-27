@@ -147,6 +147,16 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "inline-block";
 			else $("energyBanked"+i).style.display = "none";
 		}
+		if(player.upgrades.bankUnlock.purchased.equals(4)){
+			$("crystalPowerUpgrade").classList.add("unlocked");
+			fadeIn("crystalPowerUpgrade");
+			$("generatorBoostUpgrade").classList.add("unlocked");
+			fadeIn("generatorBoostUpgrade");
+			$("bankPowerupUpgrade").classList.add("unlocked");
+			fadeIn("bankPowerupUpgrade");
+			$("freeGeneratorsUpgrade").classList.add("unlocked");
+			fadeIn("freeGeneratorsUpgrade");
+		}
 	}
 	if(item == "generatorBoost") {
 		$("generatorBoost").style.display = "inline-block";
