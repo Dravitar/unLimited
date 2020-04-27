@@ -101,6 +101,7 @@ function genBoost() {
 		player.generatorBoost = player.power.log(10).sqrt();
 		player.generators = getDefaultPlayer().generators;
 		player.energy = player.energy.minus(1);
+		player.power = new Decimal(10);
 		$("genBoostAmount").textContent = display(player.generatorBoost);
 	}
 }
