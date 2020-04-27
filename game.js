@@ -230,7 +230,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		$("gen"+i+"Purchased").textContent = display(player.generators.purchased[i-1]); //Update purchased numbers
 		$("gen"+i+"Price").textContent = display(player.generators.price[i-1]); //Price for the next generator
 		$("genAmount"+i).textContent = display(player.generators.amount[i-1]); //How many you have
-		$("generation"+i).textContent = display(player.generators.amount[i-1].times(player.generators.boost[i-1])); //And how much this generator is making
+		$("generation"+i).textContent = display(player.generators.amount[i-1].times(getTotalBoost(i-1)); //And how much this generator is making
 	}
 	if(!player.quests[3]&&player.power.gte(1000)){ //No easy way to check for quest completion based on power outside the update area, 
 		if($("quest4").classList.contains("unsolved")){ //but having it check first for completion of the quest will mean that afterwards,
