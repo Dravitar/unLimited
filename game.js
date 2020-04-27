@@ -18,11 +18,11 @@ function getDefaultPlayer() { //Initial Player State
 		generatorBoost: new Decimal(1),
 		crystals: new Decimal(0), // Used to purchase upgrades
 		upgrades: { //All upgrades so far
-			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
-			crystalPowerup: {price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
-			generatorBoost: {price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1)},
-			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05)},
-			freeGenerators: {price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1)},
+			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
+			crystalPowerup: {price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			generatorBoost: {price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(0)},
+			freeGenerators: {price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 		},
 		clicked: { //Used to determine order of stuff appearing
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
@@ -135,7 +135,7 @@ function purchaseGen(item) { //Function to buy generators
 }
 
 function upgrade(item) { //Purchase an upgrade for Crystals
-	if(player.crystals.gte(player.upgrades[item].price)&&player.energy.gt(0)){ //If you have enough Crystals for the upgrade and energy
+	if(player.crystals.gte(player.upgrades[item].price)&&player.energy.gt(0)&&player.upgrades[item].purchased.lt(player.upgrades[item].max)){ //If you have enough Crystals for the upgrade and energy
 		player.energy = player.energy.minus(1); //Pay the energy price
 		player.crystals = player.crystals.minus(player.upgrades[item].price); //and the Crystal price.
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1); //Annotate that you've made a purchase,
