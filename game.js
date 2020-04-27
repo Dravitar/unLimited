@@ -99,7 +99,7 @@ function getTotalBoost(num) {
 function genBoost() {
 	if(player.power.gt(1000)&&player.energy.gt(0)){
 		player.generatorBoost = player.power.log(10).sqrt();
-		player.generators = getDefaultPlayer().generators();
+		player.generators = getDefaultPlayer().generators;
 		player.energy = player.energy.minus(1);
 		$("genBoostAmount").textContent = display(player.generatorBoost);
 	}
