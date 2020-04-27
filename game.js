@@ -230,7 +230,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
 	$("currentCrystals").textContent = display(player.crystals); //Update current Crystals
-	if(player.power.log10().sqrt().gte(player.generatorBoost)&&player.power.gte(1000)) $("genBoostToBecome").textContent = player.power.log10().sqrt();
+	if(player.power.log10().sqrt().gte(player.generatorBoost)&&player.power.gte(1000)) $("genBoostToBecome").textContent = display(player.power.log10().sqrt());
 	if(player.power.gte(1e8)){ //Check if we can start listing the amount of Crystals on reset
 		if(typeof getCrystalsOnReset() === "string"){ //If we have a percentage of a Crystal, it will return a string
 			$("crystalConversion").textContent = "You have "+getCrystalsOnReset()+" of a Crystal"; //And we show this message
