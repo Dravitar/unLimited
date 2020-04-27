@@ -149,7 +149,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		}
 		if(player.upgrades.bankUnlock.purchased.equals(4)){
 			$("crystalPowerupUpgrade").classList.add("unlocked");
-			fadeIn("crystalPowerUpgrade");
+			fadeIn("crystalPowerupUpgrade");
 			$("generatorBoostUpgrade").classList.add("unlocked");
 			fadeIn("generatorBoostUpgrade");
 			$("bankPowerupUpgrade").classList.add("unlocked");
