@@ -455,6 +455,7 @@ function reset() {
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
 		player.energy = energy;
 		player.generators = getDefaultPlayer().generators;
+		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		player.clicked = getDefaultPlayer().clicked;
 		resetView();
 	}
