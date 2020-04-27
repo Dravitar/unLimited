@@ -174,7 +174,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		}
 	}
 	if(item == "generatorBoost") {
-		$("generatorBoost").style.display = "inline-block";
+		$("generatorBoost").classList.add("unlocked");
 	}
 	if(player.recording) grabPiece('upgrade('+item+')');
 }
