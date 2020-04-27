@@ -98,7 +98,7 @@ function getTotalBoost(num) {
 
 function genBoost() {
 	if(player.power.gt(1000)&&player.energy.gt(0)){
-		player.generatorBoost = player.power.log(10).sqrt();
+		player.generatorBoost = player.power.log(10);
 		player.generators = getDefaultPlayer().generators;
 		player.energy = player.energy.minus(1);
 		player.power = new Decimal(10);
