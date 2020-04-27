@@ -87,6 +87,12 @@ function getTotalBoost(num) {
 	if(player.upgrades.bankPowerup.purchased.gt(0))	boost = boost.times(Decimal.power(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
+	if(!player.quests[8]){
+		if(boost.gte(5)){
+			$("quest9").classList.remove("unsolved");
+			$("quest9").classList.add("solved");
+		}
+	}
 	return boost;
 }
 
@@ -428,6 +434,12 @@ function reset() {
 				case 6:
 				case 7:
 					if(player.quests[i]) energy = energy.plus(4);
+					break;
+				case 8:
+				case 9:
+				case 10:
+				case 11:
+					if(player.quests[i]) energy = energy.plus(5);
 					break;
 				default:
 					break;
