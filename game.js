@@ -267,6 +267,9 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 			}
 		}
 	}
+	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
+	if(player.upgrades.bankPowerupUpgrade.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerupUpgrade.purchased.div(10).plus(0.5));
+	
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
 		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
 			if(player.quests[i-1]){ //If you have claimed a quest, make sure its correctly listed.
