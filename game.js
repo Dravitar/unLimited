@@ -279,8 +279,8 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	for(const upgrade of Object.keys(player.upgrades)){
 		if(player.upgrades[upgrade].purchased.equals(player.upgrades[upgrade].max)) $(player.upgrades[upgrade].id).style.background = "green";
 		else $(player.upgrades[upgrade].id).style.background = "grey";
-		if(player.crystals.gte(player.upgrades[upgrade].price)) $(player.upgrades[upgrade].id).style.color = "darkGrey";
-		else $(player.upgrades[upgrade].id).style.color = "black";
+		if(player.crystals.gte(player.upgrades[upgrade].price)) $(player.upgrades[upgrade].id).style.color = "black";
+		else $(player.upgrades[upgrade].id).style.color = "darkGrey";
 	}
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
 		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
