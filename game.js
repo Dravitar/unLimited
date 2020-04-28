@@ -151,6 +151,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		player.crystals = player.crystals.minus(player.upgrades[item].price); //and the Crystal price.
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1); //Annotate that you've made a purchase,
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
+		$(item+"cost").textContent = player.upgrades[item].price;
 		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling); //And scaling if necessary.
 	}
 	if(item == "bankUnlock") {
