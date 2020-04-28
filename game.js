@@ -101,6 +101,7 @@ function doGenBoost() {
 		player.power = new Decimal(10);
 		$("genBoostAmount").textContent = display(player.generatorBoost);
 	}
+	if(player.recording) grabPiece("doGenBoost()");
 }
 
 function getCrystalsOnReset() { //Function for getting number of crystals, prestige currency, on reset
