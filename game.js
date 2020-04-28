@@ -253,6 +253,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	if(!player.quests[7]&&player.power.gte(1e15)){
 		checkQuest(8);
 	}
+	if(!player.quests[10]&&player.energySpent.gte(200)) checkQuest(11);
 	if(player.upgrades.bankUnlock.purchased.gt(0)){ //If the power banks are unlocked, we need to show them
 		let num = player.upgrades.bankUnlock.purchased; //Upper limit on how many we have purchased
 		for(i=1;i<5;i++){ //4 generators need 4 banks
@@ -445,6 +446,7 @@ function reset() {
 		}
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
 		player.energy = energy;
+		player.energySpent = getDefaultPlayer().energySpent;
 		player.generators = getDefaultPlayer().generators;
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		$("generatorBoost").textContent = "1";
