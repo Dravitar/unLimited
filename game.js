@@ -276,11 +276,11 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	}
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
 	if(player.upgrades.bankPowerup.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerup.purchased.div(10).plus(0.5));
-	for(i=0;i<player.upgrades.length;i++){
-		if(player.upgrades[i].purchased.equals(player.upgrades[i].max)) $(player.upgrades[i].id).style.background = "green";
-		else $(player.upgrades[i].id).style.background = "grey";
-		if(player.crystals.gte(player.upgrades[i].price)) $(player.upgrades[i].id).style.color = "darkGrey";
-		else $(player.upgrades[i].id).style.color = "black";
+	for(const upgrade of player.upgrades){
+		if(upgrade.purchased.equals(upgrade.max)) $(upgrade.id).style.background = "green";
+		else $(upgrade.id).style.background = "grey";
+		if(player.crystals.gte(upgrade.price)) $(upgrade.id).style.color = "darkGrey";
+		else $(upgrade.id).style.color = "black";
 	}
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
 		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
