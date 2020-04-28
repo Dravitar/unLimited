@@ -76,21 +76,8 @@ function stopRecording() {
 }
 
 function checkOfflineAutomation() {
-	let time = new Date().getTime() - player.lastTick;
-	let i = player.automationRuntimeIndex;
-	while(time>0){
-		player.automationRuntimeIndex = i;
-		eval(player.automationArray[i][1]);
-		var j = i+1;
-		let nextTime = 0;
-		if(player.automationArray[j]!=null) nextTime = player.automationArray[j][0];
-		else{
-			nextTime = player.automationArray[0][0];
-			j = 0;
-		}
-		if(nextTime>time) timeHack(nextTime*0.001);
-		time -= nextTime;
-		i = j;
-	}
-	player.lastTick = new Date().getTime();
+	let totalTime = 0;
+	for(i=0;i<player.automationArray.length;i++) totalTime += player.automationArray[i][0];
+	let repeats = (new Date().getTime() - player.lastTick)/totalTime;
+	if(repeats>1&&player.automatedCrystals.gt(0)) player.crystals = player.crystals.plus(player.automatedCrystals.times(Math.floor(repeats)));
 }
