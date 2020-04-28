@@ -109,7 +109,7 @@ function genBoost() {
 function getCrystalsOnReset() { //Function for getting number of crystals, prestige currency, on reset
 	if(player.power.gte(1e8)){ //We start showing the player they are 1% of the way, so there is a clear continuity from a quest to the next step.
 		if(player.power.gte(1e10)){ //If we are over 1e10, get the crystal amount.
-			return 1 //player.power.log10().minus(9).floor(); //This will need to be changed and balanced
+			return player.power.log10().log10().pow(10).floor(); //This will need to be changed and balanced
 		}
 		else return display(player.power.div(1e8))+"%"; //Otherwise, let them know they are X% of the way there.
 	}
