@@ -450,7 +450,7 @@ function reset() {
 		player.energySpent = getDefaultPlayer().energySpent;
 		player.generators = getDefaultPlayer().generators;
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
-		$("generatorBoost").textContent = "1";
+		$("genBoostAmount").textContent = "1";
 		player.clicked = getDefaultPlayer().clicked;
 		resetView();
 	}
