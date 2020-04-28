@@ -8,8 +8,8 @@ function beginAutomationRecording() {
 		reset();
 		player.recording = true;
 		$("recordingSymbol").style.opacity = 1;
-		$("toggleRecording").style.zIndex = 20;
-		$("toggleRecording").style.opacity = 1;
+		$("stopRecording").style.zIndex = 20;
+		$("stopRecording").style.opacity = 1;
 	}
 }
 
@@ -70,8 +70,8 @@ function stopRecording() {
 	if(player.recording){
 		player.recording = false;
 		$("recordingSymbol").style.opacity = 0;
-		$("toggleRecording").style.zIndex = 1;
-		$("toggleRecording").style.opacity = 0;
+		$("stopRecording").style.zIndex = 1;
+		$("stopRecording").style.opacity = 0;
 	}
 }
 
