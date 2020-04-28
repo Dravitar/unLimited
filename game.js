@@ -88,7 +88,7 @@ function getTotalBoost(num) {
 	if(player.upgrades.bankPowerup.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
-	if(boost.gte(5)) checkQuest(9);
+	if(boost.gte(10)) checkQuest(9);
 	return boost;
 }
 
@@ -226,7 +226,8 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	$("currentPower").textContent = display(player.power); //Update current power
 	$("currentCrystals").textContent = display(player.crystals); //Update current Crystals
 	if(player.power.log10().sqrt().gte(player.generatorBoost)&&player.power.gte(1000)) $("genBoostToBecome").textContent = display(player.power.log10());
-	else $("genBoostToBecome").textContent = player.generatorBoost;
+	else $("genBoostToBecome").textContent = display(player.generatorBoost);
+	$("genBoost").textContent = display(player.generatorBoost);
 	if(player.power.gte(1e8)){ //Check if we can start listing the amount of Crystals on reset
 		if(typeof getCrystalsOnReset() === "string"){ //If we have a percentage of a Crystal, it will return a string
 			$("crystalConversion").textContent = "You have "+getCrystalsOnReset()+" of a Crystal"; //And we show this message
