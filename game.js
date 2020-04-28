@@ -36,7 +36,7 @@ function getDefaultPlayer() { //Initial Player State
 		recording: false,
 		automating: false,
 		automationArray: [],
-		automationRuntimeIndex: 0,
+		automatedCrystals: 0,
 		lastAutomationAction: new Date().getTime(),
 		lastTick: new Date().getTime(), //Timing is everything
 	};
@@ -116,6 +116,7 @@ function getCrystalsOnReset() { //Function for getting number of crystals, prest
 function crystalConversion() { //Function for actually getting Crystals. Prestige.
 	if(player.power.gte(1e10)){ //If you have enough power,
 		player.crystals = player.crystals.plus(getCrystalsOnReset()); //Increase crystals by how many you can get
+		if(recording) player.automatedCrystals = getCrystalsOnReset();
 		player.power = new Decimal(10); //Reset your power
 		player.generators = getDefaultPlayer().generators; //and your generators
 		checkQuest(6);
