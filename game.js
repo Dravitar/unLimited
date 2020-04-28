@@ -133,8 +133,8 @@ function purchaseGen(item) { //Function to buy generators
 		} //Otherwise, it's just one layer of scaling.
 		player.generators.price[item-1] = player.generators.price[item-1].times(player.generators.increase[item-1]);
 		if(player.upgrades.freeGenerators.purchased.gt(0)){
-			if(player.generators.purchased.minus(1).toNumber()%(6-player.upgrades.freeGenerators.purchased.toNumber())==0){
-				return;
+			if(player.generators.purchased[item-1].minus(1).toNumber()%(6-player.upgrades.freeGenerators.purchased.toNumber())!=0){
+				player.energy = player.energy.minus(1);
 			}
 		}
 		else player.energy = player.energy.minus(1); //And finally, take your energy.
