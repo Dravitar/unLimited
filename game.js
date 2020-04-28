@@ -392,6 +392,14 @@ function clearSave(){
 			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
 			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
 		}
+		if($("quest"+i).classList.contains("unlocked")&&i>4) $("quest"+i).classList.remove("unlocked");
+	}
+	for(i=1;i<player.columns.length;i++){
+		if($("column"+i)!=null){
+			if($("column"+i).classList.contains("solved")) $("column"+i).classList.remove("solved");
+			if($("column"+i).classList.contains("claimed")) $("column"+i).classList.remove("claimed");
+		}
+		if(i>1&&("column"+i).classList.contains("unlocked")) $("column"+i).classList.remove("unlocked");
 	}/*
 	beginination();
 	fadeIn("start");*/
