@@ -19,11 +19,11 @@ function getDefaultPlayer() { //Initial Player State
 		generatorBoost: new Decimal(1),
 		crystals: new Decimal(0), // Used to purchase upgrades
 		upgrades: { //All upgrades so far
-			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
-			crystalPowerup: {price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
-			generatorBoost: {price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
-			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(1000)},
-			freeGenerators: {price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
+			bankUnlock: {id: "bankUnlockUpgrade", price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
+			crystalPowerup: {id: "crystalPowerupUpgrade", price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			generatorBoost: {id: "generatorBoostUpgrade", price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			bankPowerup: {id: "bankPowerupUpgrade", price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(1000)},
+			freeGenerators: {id: "freeGeneratorsUpgrade", price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 		},
 		clicked: { //Used to determine order of stuff appearing
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
@@ -271,7 +271,12 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	}
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
 	if(player.upgrades.bankPowerup.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerup.purchased.div(10).plus(0.5));
-	
+	for(i=0;i<player.upgrades.length;i++){
+		if(player.upgrades[i].purchased.equals(player.upgrades[i].max)) $(player.upgrades[i].id).style.background = "green";
+		else $(player.upgrades[i].id).style.background = "grey";
+		if(player.crystals.gte(player.upgrades[i].price)) $(player.upgrades[i].id).style.color = "darkGrey";
+		else $(player.upgrades[i].id).style.color = "black";
+	}
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
 		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
 			if(player.quests[i-1]){ //If you have claimed a quest, make sure its correctly listed.
