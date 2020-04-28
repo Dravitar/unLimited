@@ -161,7 +161,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "inline-block";
 			else $("energyBanked"+i).style.display = "none";
 		}
-		if(player.upgrades.bankUnlock.purchased.equals(4)){
+		if(player.upgrades.bankUnlock.purchased.equals(4)&&!$("bankPowerupUpgrade").classList.contains("unlocked")){
 			$("crystalPowerupUpgrade").classList.add("unlocked");
 			fadeIn("crystalPowerupUpgrade");
 			$("generatorBoostUpgrade").classList.add("unlocked");
