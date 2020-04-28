@@ -5,6 +5,7 @@ function display(x) {return x.toPrecision(4);} //Will be replaced with more in-d
 function getDefaultPlayer() { //Initial Player State
 	return {
 		energy: new Decimal(4), //Enough energy to trigger the first two quests
+		energySpent: new Decimal(0),
 		power: new Decimal(10), //Enough power to buy one generator
 		generators: { //Generator statistics and pricing
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
@@ -87,12 +88,7 @@ function getTotalBoost(num) {
 	if(player.upgrades.bankPowerup.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
-	if(!player.quests[8]){
-		if(boost.gte(5)){
-			$("quest9").classList.remove("unsolved");
-			$("quest9").classList.add("solved");
-		}
-	}
+	if(boost.gte(5)) checkQuest(9);
 	return boost;
 }
 
@@ -101,6 +97,7 @@ function doGenBoost() {
 		player.generatorBoost = player.power.log(10);
 		player.generators = getDefaultPlayer().generators;
 		player.energy = player.energy.minus(1);
+		player.energySpent = player.energySpent.plus(1);
 		player.power = new Decimal(10);
 		$("genBoostAmount").textContent = display(player.generatorBoost);
 	}
@@ -120,12 +117,8 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 		player.crystals = player.crystals.plus(getCrystalsOnReset()); //Increase crystals by how many you can get
 		player.power = new Decimal(10); //Reset your power
 		player.generators = getDefaultPlayer().generators; //and your generators
-		if(!player.quests[5]){ //And check if you need to complete the Crystal Quest
-			if($("quest6").classList.contains("unsolved")){ //If you haven't solved it,
-				$("quest6").classList.add("solved"); //Now you have!
-				$("quest6").classList.remove("unsolved"); //Take away the unneccesary class.
-			}
-		}
+		checkQuest(6);
+		checkQuest(10);
 	}
 }
 
@@ -145,6 +138,7 @@ function purchaseGen(item) { //Function to buy generators
 			}
 		}
 		else player.energy = player.energy.minus(1); //And finally, take your energy.
+		player.energySpent = player.energySpent.plus(1);
 	}
 	checkZero(); //Helper function used to determine if we need to show the reset button instead of energy. Having it here means less calls than putting it into updateAll()
 	if(player.recording) grabPiece('purchaseGen('+item+')');
@@ -153,6 +147,7 @@ function purchaseGen(item) { //Function to buy generators
 function upgrade(item) { //Purchase an upgrade for Crystals
 	if(player.crystals.gte(player.upgrades[item].price)&&player.energy.gt(0)&&player.upgrades[item].purchased.lt(player.upgrades[item].max)){ //If you have enough Crystals for the upgrade and energy
 		player.energy = player.energy.minus(1); //Pay the energy price
+		player.energySpent = player.energySpent.plus(1);
 		player.crystals = player.crystals.minus(player.upgrades[item].price); //and the Crystal price.
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1); //Annotate that you've made a purchase,
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
@@ -183,6 +178,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
 	if(player.upgrades.bankUnlock.purchased.gte(index)&&player.energy.gt(0)){
 		player.energy = player.energy.minus(amount); //Lower energy by 1
+		player.energySpent = player.energySpent.plus(1);
 		player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
 		$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
 		let bp = Decimal.pow(player.banks[index-1].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))); //Upgrade power is subject to change, of course.
@@ -248,22 +244,13 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		$("generation"+i).textContent = display(player.generators.amount[i-1].times(getTotalBoost(i-1))); //And how much this generator is making
 	}
 	if(!player.quests[3]&&player.power.gte(1000)){ //No easy way to check for quest completion based on power outside the update area, 
-		if($("quest4").classList.contains("unsolved")){ //but having it check first for completion of the quest will mean that afterwards,
-			$("quest4").classList.add("solved"); //it only adds one check each round.
-			$("quest4").classList.remove("unsolved");
-		}
+		checkQuest(4);
 	}
 	if(!player.quests[4]&&player.power.gte(1e8)){ //Same here, and for all subsequest power-based quests
-		if($("quest5").classList.contains("unsolved")){
-			$("quest5").classList.add("solved");
-			$("quest5").classList.remove("unsolved");
-		}
+		checkQuest(5);
 	}
 	if(!player.quests[7]&&player.power.gte(1e15)){
-		if($("quest8").classList.contains("unsolved")){
-			$("quest8").classList.add("solved");
-			$("quest8").classList.remove("unsolved");
-		}
+		checkQuest(8);
 	}
 	if(player.upgrades.bankUnlock.purchased.gt(0)){ //If the power banks are unlocked, we need to show them
 		let num = player.upgrades.bankUnlock.purchased; //Upper limit on how many we have purchased
