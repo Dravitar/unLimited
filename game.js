@@ -21,7 +21,7 @@ function getDefaultPlayer() { //Initial Player State
 			bankUnlock: {price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
 			crystalPowerup: {price: new Decimal(5), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 			generatorBoost: {price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
-			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(0)},
+			bankPowerup: {price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(1000)},
 			freeGenerators: {price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 		},
 		clicked: { //Used to determine order of stuff appearing
@@ -96,7 +96,7 @@ function getTotalBoost(num) {
 	return boost;
 }
 
-function genBoost() {
+function doGenBoost() {
 	if(player.power.gt(1000)&&player.energy.gt(0)){
 		player.generatorBoost = player.power.log(10);
 		player.generators = getDefaultPlayer().generators;
