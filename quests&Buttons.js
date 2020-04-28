@@ -18,6 +18,7 @@ function press(id) {
 					$("showEnergy").classList.add("unlocked");
 					player.clicked.start = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if($("quest1").classList.contains("unsolved")){
 						$("quest1").classList.add("solved");
 						$("quest1").classList.remove("unsolved");
@@ -41,6 +42,7 @@ function press(id) {
 					}
 					player.clicked.showEnergy = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('showEnergy')");
 				}
 				break;
@@ -56,6 +58,7 @@ function press(id) {
 					if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
 					player.clicked.showQuests = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('showQuests')");
 				}
 				break;
@@ -67,6 +70,7 @@ function press(id) {
 					$("showGenerators").classList.add("unlocked");
 					player.clicked.showPower = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('showPower')");
 				}
 				break;
@@ -76,6 +80,7 @@ function press(id) {
 					$("mainDepartureL").classList.add("unlocked");
 					player.clicked.showGenerators = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if($("quest3").classList.contains("unsolved")){
 						$("quest3").classList.add("solved");
 						$("quest3").classList.remove("unsolved");
@@ -98,6 +103,7 @@ function press(id) {
 					$('crystalConversion').classList.add("unlocked");
 					player.clicked.showCrystals = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('showCrystals')");
 				}
 				break;
@@ -105,6 +111,7 @@ function press(id) {
 				if(player.clicked.showCrystals&&player.power.gte(1e10)){
 					crystalConversion();
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('crystalConversion')");
 				}
 				break;
@@ -114,6 +121,7 @@ function press(id) {
 					$("mainDepartureR").classList.add("unlocked");
 					player.clicked.showUpgrades = true;
 					player.energy = player.energy.minus(1);
+					player.energySpent = player.energySpent.plus(1);
 					if(player.recording) grabPiece("press('showUpgrades')");
 				}
 				break;
@@ -165,6 +173,15 @@ function press(id) {
 				break;
 		}
 		checkZero();
+	}
+}
+
+function checkQuest(num) {
+	if(!player.quests[num-1]){ //Check if you need to complete the quest
+		if($("quest"+num).classList.contains("unsolved")){ //If you haven't solved it,
+			$("quest"+num).classList.add("solved"); //Now you have!
+			$("quest"+num).classList.remove("unsolved"); //Take away the unneccesary class.
+		}
 	}
 }
 
