@@ -283,7 +283,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		else $(player.upgrades[upgrade].id).style.color = "darkGrey";
 	}
 	$("bankPowerupCost").textContent = display(player.upgrades.bankPowerup.price);
-	$("freeGeneratorCost").textContent = display(player.upgrades.freeGenerator.price);
+	$("freeGeneratorsCost").textContent = display(player.upgrades.freeGenerators.price);
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
 		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
 			if(player.quests[i-1]){ //If you have claimed a quest, make sure its correctly listed.
