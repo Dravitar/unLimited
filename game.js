@@ -183,12 +183,10 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 function bankEnergy(amount, index){ //Bank some of your energy to power generators
 	if(player.upgrades.bankUnlock.purchased.gte(index)&&player.energy.gt(0)){
 		player.energy = player.energy.minus(amount); //Lower energy by 1
-		player.generators.boost[index-1] = player.generators.boost[index-1].div(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 		player.banks[index-1] = player.banks[index-1].plus(amount); //Increase the banked amount by 1 based on which bank you are clicking
 		$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
-		let bp = Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))); //Upgrade power is subject to change, of course.
+		let bp = Decimal.pow(player.banks[index-1].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))); //Upgrade power is subject to change, of course.
 		$("bankPower"+index).textContent = display(bp);
-		player.generators.boost[index-1] = player.generators.boost[index-1].times(bp);
 	}
 	if(player.recording) grabPiece('bankEnergy('+amount+','+index+')');
 }
@@ -196,7 +194,7 @@ function bankEnergy(amount, index){ //Bank some of your energy to power generato
 function returnEnergy() {
 	for(i=0;i<4;i++){
 		let j = i+1;
-		player.generators.boost[i] = player.generators.boost[i].div(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
+		player.generators.boost[i] = player.generators.boost[i].div(Decimal.pow(player.banks[i].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 		player.energy = player.energy.plus(player.banks[i]);
 		player.banks[i] = new Decimal(0);
 		$("bankedClicks"+j).textContent = 0;
