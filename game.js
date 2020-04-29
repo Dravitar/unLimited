@@ -345,29 +345,6 @@ function load() { //When we load the game, we load the player state, the DOM sta
 			else if($(id).classList.contains("unlocked")) $(id).classList.remove("unlocked");
 			if(individualArray[2]) fadeIn(id);
 			else if($(id).style.opacity>0.5) fadeOut(id);
-			if($(id).classList.contains("quest")){
-				let index = parseInt(id.substring(id.length-1,id.length));
-				if($(id).classList.contains("column")){
-					if(player.columns[index-1]){
-						$(id).classList.remove("unsolved");
-						$(id).classList.add("claimed");
-					}
-					else {
-						$(id).classList.add("unsolved");
-						$(id).classList.remove("claimed");
-					}
-				}
-				else {
-					if(player.quests[index-1]){ 
-						$(id).classList.remove("unsolved");
-						$(id).classList.add("claimed");
-					}
-					else {
-						$(id).classList.add("unsolved");
-						$(id).classList.remove("claimed");
-					}
-				}
-			}
 		}
 	}
 	if(player.currentZone != "main") fadeOut("start");
