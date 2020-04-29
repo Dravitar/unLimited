@@ -352,11 +352,19 @@ function load() { //When we load the game, we load the player state, the DOM sta
 						$(id).classList.remove("unsolved");
 						$(id).classList.add("claimed");
 					}
+					else {
+						$(id).classList.add("unsolved");
+						$(id).classList.remove("claimed");
+					}
 				}
 				else {
 					if(player.quests[index-1]){ 
 						$(id).classList.remove("unsolved");
 						$(id).classList.add("claimed");
+					}
+					else {
+						$(id).classList.add("unsolved");
+						$(id).classList.remove("claimed");
 					}
 				}
 			}
