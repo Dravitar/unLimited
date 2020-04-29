@@ -30,7 +30,7 @@ function getDefaultPlayer() { //Initial Player State
 			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
 			//Quests quests quests.
 		quests: [false, false, false, false, false, false, false, false, false, false, false, false,],
-		columns: [false, false, false, false, false], //Also technically quests
+		columns: [false, false, false,], //Also technically quests
 		storySeen: 0, //How much of the story you have seen so far
 		currentZone: "main", //Used to return the right screen on reload
 		recording: false,
@@ -293,6 +293,16 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		} else { //If you haven't claimed a quest, default to unsolved.
 			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
 			if(!$("quest"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
+		}
+	}
+	for(i=1;i<player.columns.length+1;i++){
+		if(player.columns[i-1]){
+			if($("column"+i).classList.contains("unsolved")) $("quest"+i).classList.remove("unsolved");
+			if($("column"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
+			if(!$("column"+i).classList.contains("claimed")) $("quest"+i).classList.add("claimed");
+		} else { //If you haven't claimed a quest, default to unsolved.
+			if($("column"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+			if(!$("column"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
 		}
 	}
 }
