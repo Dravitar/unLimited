@@ -29,7 +29,7 @@ function getDefaultPlayer() { //Initial Player State
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
 			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
 			//Quests quests quests.
-		quests: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
+		quests: [false, false, false, false, false, false, false, false, false, false, false, false,],
 		columns: [false, false, false, false, false], //Also technically quests
 		storySeen: 0, //How much of the story you have seen so far
 		currentZone: "main", //Used to return the right screen on reload
@@ -286,15 +286,13 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	$("freeGeneratorsCost").textContent = display(player.upgrades.freeGenerators.price);
 	
 	for(i=1;i<player.quests.length+1;i++){ //Checker to make sure that no quests are sticking around that shouldn't.
-		if($("quests"+i)!=null){ //Currently not all quests are planned, so lots of the array indices will show up null.
-			if(player.quests[i-1]){ //If you have claimed a quest, make sure its correctly listed.
-				if($("quest"+i).classList.contains("unsolved"))	$("quest"+i).classList.remove("unsolved");
-				if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
-				if(!$("quest"+i).classList.contains("claimed")) $("quest"+i).classList.add("claimed");
-			} else { //If you haven't claimed a quest, default to unsolved.
-				if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
-				if(!$("quest"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
-			}
+		if(player.quests[i-1]){ //If you have claimed a quest, make sure its correctly listed.
+			if($("quest"+i).classList.contains("unsolved"))	$("quest"+i).classList.remove("unsolved");
+			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
+			if(!$("quest"+i).classList.contains("claimed")) $("quest"+i).classList.add("claimed");
+		} else { //If you haven't claimed a quest, default to unsolved.
+			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+			if(!$("quest"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
 		}
 	}
 }
