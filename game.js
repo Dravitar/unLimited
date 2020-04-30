@@ -346,12 +346,12 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	}
 	for(i=1;i<player.columns.length+1;i++){
 		if(player.columns[i-1]){
-			if($("column"+i).classList.contains("unsolved")) $("quest"+i).classList.remove("unsolved");
-			if($("column"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
-			if(!$("column"+i).classList.contains("claimed")) $("quest"+i).classList.add("claimed");
+			if($("column"+i).classList.contains("unsolved")) $("column"+i).classList.remove("unsolved");
+			if($("column"+i).classList.contains("solved")) $("column"+i).classList.remove("solved");
+			if(!$("column"+i).classList.contains("claimed")) $("column"+i).classList.add("claimed");
 		} else { //If you haven't claimed a quest, default to unsolved.
-			if($("column"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
-			if(!$("column"+i).classList.contains("unsolved")) $("quest"+i).classList.add("unsolved");
+			if($("column"+i).classList.contains("claimed")) $("column"+i).classList.remove("claimed");
+			if(!$("column"+i).classList.contains("unsolved")) $("column"+i).classList.add("unsolved");
 		}
 	}
 }
