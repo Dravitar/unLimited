@@ -202,23 +202,23 @@ function claimQuest(num) {
 	}
 	if(check) {
 		var nuum = set+1;
-		$("columnReward"+nuum).classList.add("solved");
-		$("columnReward"+nuum).classList.remove("unsolved");
+		$("column"+nuum).classList.add("solved");
+		$("column"+nuum).classList.remove("unsolved");
 	}
 }
 
 function claimColumn(num) {
-	if($("columnReward"+num).classList.contains("solved")){
-		$("columnReward"+num).classList.remove("solved");
-		$("columnReward"+num).classList.add("claimed");
+	if($("column"+num).classList.contains("solved")){
+		$("column"+num).classList.remove("solved");
+		$("column"+num).classList.add("claimed");
 		if(num==2){
 			$("record").classList.add("unlocked");
 			$("playAutomation").classList.add("unlocked");
 		}
 		player.columns[num-1] = true;
 		var nuum = num+1;
-		fadeIn("columnReward"+nuum);
-		$("columnReward"+nuum).classList.add("unlocked");
+		fadeIn("column"+nuum);
+		$("column"+nuum).classList.add("unlocked");
 		for(i=4*num;i<4*num+5;i++){
 			fadeIn("quest"+i);
 			$("quest"+i).classList.add("unlocked");
