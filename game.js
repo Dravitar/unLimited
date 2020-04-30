@@ -86,26 +86,26 @@ function timeHack(num) { //timeHack takes input by the second
 }
 
 function getTotalBoost(num) {
-	if($("generatorBoost").classList.includes("unlocked")){
-		let boost = player.generators.boost[num];
-		if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
-		if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
-		if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
-		if(boost.gte(10)) checkQuest(9);
-		return boost;
-	}
+	let boost = player.generators.boost[num];
+	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
+	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
+	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
+	if(boost.gte(10)) checkQuest(9);
+	return boost;
 }
 
 function doGenBoost() {
-	if(player.power.gt(1000)&&player.energy.gt(0)){
-		player.generatorBoost = player.power.log(10);
-		player.generators = getDefaultPlayer().generators;
-		player.energy = player.energy.minus(1);
-		player.energySpent = player.energySpent.plus(1);
-		player.power = new Decimal(10);
-		$("genBoostAmount").textContent = display(player.generatorBoost);
+	if($("generatorBoost").classList.contains("unlocked")){
+		if(player.power.gt(1000)&&player.energy.gt(0)){
+			player.generatorBoost = player.power.log(10);
+			player.generators = getDefaultPlayer().generators;
+			player.energy = player.energy.minus(1);
+			player.energySpent = player.energySpent.plus(1);
+			player.power = new Decimal(10);
+			$("genBoostAmount").textContent = display(player.generatorBoost);
+		}
+		if(player.recording) grabPiece("doGenBoost()");
 	}
-	if(player.recording) grabPiece("doGenBoost()");
 }
 
 function getCrystalsOnReset() { //Function for getting number of crystals, prestige currency, on reset
