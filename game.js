@@ -87,7 +87,7 @@ function timeHack(num) { //timeHack takes input by the second
 
 function getTotalBoost(num) {
 	let boost = player.generators.boost[num];
-	if(player.upgrades.bankPowerup.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
+	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
 	if(boost.gte(10)) checkQuest(9);
