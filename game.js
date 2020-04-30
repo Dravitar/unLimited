@@ -40,6 +40,7 @@ function getDefaultPlayer() { //Initial Player State
 		automatedCrystals: 0,
 		lastAutomationAction: new Date().getTime(),
 		lastTick: new Date().getTime(), //Timing is everything
+		stats: {maxEnergy:4, maxPower:10, maxCrystals:0, resetTime:new Date().getTime(), totalTime:new Date().getTime(), storyPercentage:0,},
 	};
 }
 
@@ -227,7 +228,46 @@ function grow(item) { //Used to make the menu buttons all fancy
 	else if(big) for(i=0;i<list.length;i++) list[i].style.display = "none"; //If the menu element is big, that means it's going away so vanish the inner elements
 }
 
+function formatTime(ms) {
+	let days, hours, minutes, seconds, str;
+	str = "";
+	if(ms>24*60*60*1000){ 
+		days = ms%(24*60*60*1000);
+		str += days+" days, ";
+	}
+	ms = ms-days*(24*60*60*1000);
+	if(ms>60*60*1000){
+		hours = ms%(60*60*1000);
+		str += hours+" hours, ";
+	}
+	ms = ms-hours*(60*60*1000);
+	if(ms>60*1000){
+		minutes = ms%(60*1000);
+		str += minutes+" minutes, ";
+	}
+	ms = ms-minutes*(60*1000);
+	if(ms>1000){
+		seconds = ms%1000;
+		str += seconds+" seconds";
+	}
+	return str;
+}
+
 function updateAll() { //Big papa update function. Gotta check and update everything constantly
+	if(player.energy.gte(player.stats.maxEnergy)){
+		$("maxEnergy").textContent = display(player.energy);
+		player.stats.maxEnergy = player.energy;
+	}
+	if(player.power.gte(player.stats.maxPower)){
+		$("maxPower").textContent = display(player.power);
+		player.stats.maxPower = player.power;
+	}
+	if(player.crystals.gte(player.stats.maxCrystals)){
+		$("maxCrystals").textContent = display(player.crystals);
+		player.stats.maxCrystals = player.crystals;
+	}
+	$("resetTime").innerContent = formatTime(new Date().getTime() - player.stats.resetTime);
+	$("totalTime").innerContent = formatTime(new Date().getTime() - player.stats.totalTime);
 	if($("reset").style.opacity==1&&player.energy.gt(0)) fadeOut("reset");
 	if(player.energy.equals(0)&&$("reset").style.opacity==0) fadeIn("reset");
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
@@ -464,6 +504,7 @@ function reset() {
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		$("genBoostAmount").textContent = "1";
 		player.clicked = getDefaultPlayer().clicked;
+		player.stats.resetTime = new Date().getTime();
 		resetView();
 	}
 }
