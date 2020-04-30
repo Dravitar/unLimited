@@ -24,6 +24,7 @@ function getDefaultPlayer() { //Initial Player State
 			generatorBoost: {id: "generatorBoostUpgrade", price: new Decimal(10), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 			bankPowerup: {id: "bankPowerupUpgrade", price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(1000)},
 			freeGenerators: {id: "freeGeneratorsUpgrade", price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
+			keepGenBoost: {id: "keepGenBoostUpgrade", price: new Decimal(100), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 		},
 		clicked: { //Used to determine order of stuff appearing
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
@@ -119,6 +120,7 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 		if(player.recording) player.automatedCrystals = getCrystalsOnReset();
 		player.power = new Decimal(10); //Reset your power
 		player.generators = getDefaultPlayer().generators; //and your generators
+		if(player.upgrades.keepGenBoost.purchased.equals(0)) player.generatorBoost = getDefaultPlayer().generatorBoost;
 		checkQuest(6);
 		checkQuest(10);
 	}
@@ -171,6 +173,10 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			$("freeGeneratorsUpgrade").classList.add("unlocked");
 			fadeIn("freeGeneratorsUpgrade");
 		}
+	}
+	if(item == "freeGenerators"&&!$("keepGenBoostUpgrade").classList.contains("unlocked")) {
+		$("keepGenBoostUpgrade").classList.add("unlocked");
+		fadeIn("keepGenBoostUpgrade");
 	}
 	if(item == "generatorBoost") {
 		$("generatorBoost").classList.add("unlocked");
