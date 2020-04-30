@@ -158,7 +158,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		player.crystals = player.crystals.minus(player.upgrades[item].price); //and the Crystal price.
 		player.upgrades[item].purchased = player.upgrades[item].purchased.plus(1); //Annotate that you've made a purchase,
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
-		$(item+"cost").textContent = player.upgrades[item].price;
+		if($(item+"cost")!=null) $(item+"cost").textContent = player.upgrades[item].price;
 		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling); //And scaling if necessary.
 	}
 	if(item == "bankUnlock") {
@@ -166,7 +166,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			if(player.upgrades.bankUnlock.purchased.gt(i-1)) $("energyBanked"+i).style.display = "inline-block";
 			else $("energyBanked"+i).style.display = "none";
 		}
-		if(player.upgrades.bankUnlock.purchased.equals(4)&&!$("bankPowerupUpgrade").classList.contains("unlocked")){
+		if(player.upgrades.bankUnlock.purchased.equals(3)&&!$("bankPowerupUpgrade").classList.contains("unlocked")){
 			$("crystalPowerupUpgrade").classList.add("unlocked");
 			fadeIn("crystalPowerupUpgrade");
 			$("generatorBoostUpgrade").classList.add("unlocked");
