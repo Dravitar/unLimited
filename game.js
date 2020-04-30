@@ -175,7 +175,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 			fadeIn("freeGeneratorsUpgrade");
 		}
 	}
-	if(item == "freeGenerators"&&!$("keepGenBoostUpgrade").classList.contains("unlocked")) {
+	if(item == "freeGenerators"&&("freeGenerators").classList.contains("unlocked")&&!$("keepGenBoostUpgrade").classList.contains("unlocked")) {
 		$("keepGenBoostUpgrade").classList.add("unlocked");
 		fadeIn("keepGenBoostUpgrade");
 	}
