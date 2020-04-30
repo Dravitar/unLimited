@@ -229,8 +229,11 @@ function grow(item) { //Used to make the menu buttons all fancy
 }
 
 function formatTime(ms) {
-	let days, hours, minutes, seconds, str;
-	str = "";
+	let days = 0;
+	let hours = 0;
+	let minutes = 0;
+	let seconds = 0;
+	let str = "";
 	if(ms>24*60*60*1000){ 
 		days = (ms-(ms%(24*60*60*1000)))/(24*60*60*1000);
 		str += days+" days, ";
