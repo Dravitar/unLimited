@@ -232,22 +232,22 @@ function formatTime(ms) {
 	let days, hours, minutes, seconds, str;
 	str = "";
 	if(ms>24*60*60*1000){ 
-		days = ms%(24*60*60*1000);
+		days = (ms-(ms%(24*60*60*1000)))/(24*60*60*1000);
 		str += days+" days, ";
 	}
 	ms = ms-days*(24*60*60*1000);
 	if(ms>60*60*1000){
-		hours = ms%(60*60*1000);
+		hours = (ms-(ms%(60*60*1000)))/(60*60*1000);
 		str += hours+" hours, ";
 	}
 	ms = ms-hours*(60*60*1000);
 	if(ms>60*1000){
-		minutes = ms%(60*1000);
+		minutes = (ms-(ms%(60*1000)))/(60*1000);
 		str += minutes+" minutes, ";
 	}
 	ms = ms-minutes*(60*1000);
 	if(ms>1000){
-		seconds = ms%1000;
+		seconds = (ms-(ms%1000))/1000;
 		str += seconds+" seconds";
 	}
 	return str;
