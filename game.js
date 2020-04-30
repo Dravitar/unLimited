@@ -25,7 +25,9 @@ function getDefaultPlayer() { //Initial Player State
 			bankPowerup: {id: "bankPowerupUpgrade", price: new Decimal(20), purchased: new Decimal(0), increase: new Decimal(3.75), scaling: new Decimal(1.05), max: new Decimal(1000)},
 			freeGenerators: {id: "freeGeneratorsUpgrade", price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 			keepGenBoost: {id: "keepGenBoostUpgrade", price: new Decimal(100), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			bankResetBoost: {id: "bankResetBoostUpgrade", price: new Decimal(200), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 		},
+		validResets: new Decimal(0),
 		clicked: { //Used to determine order of stuff appearing
 			start: false, showEnergy: false, showQuests: false, showPower: false, showGenerators: false, mainDeparture: false, showCrystals: false, 
 			showUpgrades: false, generatorsDeparture: false, questDeparture: false,},
@@ -87,7 +89,13 @@ function timeHack(num) { //timeHack takes input by the second
 
 function getTotalBoost(num) {
 	let boost = player.generators.boost[num];
-	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
+	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),
+											Decimal.plus(0.5,
+												     player.upgrades.bankPowerup.purchased.times(0.1)
+												    )
+										       )
+									   );
+	if(player.upgrades.bankResetBoost.purchased.gt(0)) boost = boost.times(player.validResets);
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
 	if(boost.gte(10)) checkQuest(9);
@@ -180,6 +188,8 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 	if(item == "freeGenerators"&&("freeGenerators").classList.contains("unlocked")&&!$("keepGenBoostUpgrade").classList.contains("unlocked")) {
 		$("keepGenBoostUpgrade").classList.add("unlocked");
 		fadeIn("keepGenBoostUpgrade");
+		$("bankResetBoostUpgrade").classList.add("unlocked");
+		fadeIn("bankResetBoostUpgrade");
 	}
 	if(item == "generatorBoost") {
 		$("generatorBoost").classList.add("unlocked");
@@ -326,6 +336,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	}
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
 	if(player.upgrades.bankPowerup.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerup.purchased.div(10).plus(0.5));
+	if(player.upgrades.bankResetBoost.purchased.gt(0)) $("bankResetBoostArea").textContent = display(player.validResets.plus(1));
 	for(const upgrade of Object.keys(player.upgrades)){
 		if(player.upgrades[upgrade].purchased.equals(player.upgrades[upgrade].max)) $(player.upgrades[upgrade].id).style.background = "green";
 		else $(player.upgrades[upgrade].id).style.background = "grey";
@@ -467,6 +478,7 @@ function reset() {
 			stopRecording();
 		}
 		if(player.automating) playAutomation(0);
+		if(player.power.gte(1e10)) player.validResets = player.validResets.plus(1);
 		player.power = new Decimal(10);
 		let energy = new Decimal(4);
 		for(i=0;i<player.quests.length;i++){
