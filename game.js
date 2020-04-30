@@ -269,8 +269,8 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		$("maxCrystals").textContent = display(player.crystals);
 		player.stats.maxCrystals = player.crystals;
 	}
-	$("resetTime").innerContent = formatTime(new Date().getTime() - player.stats.resetTime);
-	$("totalTime").innerContent = formatTime(new Date().getTime() - player.stats.totalTime);
+	$("resetTime").textContent = formatTime(new Date().getTime() - player.stats.resetTime);
+	$("totalTime").textContent = formatTime(new Date().getTime() - player.stats.totalTime);
 	if($("reset").style.opacity==1&&player.energy.gt(0)) fadeOut("reset");
 	if(player.energy.equals(0)&&$("reset").style.opacity==0) fadeIn("reset");
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
