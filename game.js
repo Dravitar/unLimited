@@ -2,6 +2,11 @@ function $(x) {return document.getElementById(x);} //Shortening function. Easier
 
 function display(x) {return x.toPrecision(4);} //Will be replaced with more in-depth display if possible.
 
+function togClass(item, itemClass){
+	if($(item).classList.contains(itemClass)) $(item).classList.remove(itemClass);
+	else $(item).classList.add(itemClass);
+}
+
 function getDefaultPlayer() { //Initial Player State
 	return {
 		energy: new Decimal(4), //Enough energy to trigger the first two quests
@@ -516,6 +521,8 @@ function clearSave(){
 		if(individualArray[2]) fadeIn(id);
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}*/
+		for(i=1;i<5;i++){
+			if($("generatorPurchaser"+i).classList.contains("unlocked")) $("generatorPurchaser"+i).classList.remove("unlocked");
 		for(i=1;i<player.quests.length;i++){
 			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
 			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
