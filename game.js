@@ -116,7 +116,7 @@ function getGenProduction(num) {
 		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorPurchasers.amount[i]); //And your actual amount.
 		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i])); //Your power drops by the price
 		if(player.generators.purchased[i].gte(Decimal.div(40,i).floor())){ //And if you have enough, then scaling scaling comes into play
-			player.generators.price[i] = player.generators[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorPurchasers.amount[i]);
+			player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorPurchasers.amount[i]);
 		} //Otherwise, it's just one layer of scaling.
 		player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i]);
 	}
