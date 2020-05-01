@@ -328,10 +328,12 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	if(player.power.log10().gte(player.generatorBoost)&&player.power.gte(1000)) $("genBoostToBecome").textContent = display(player.power.log10());
 	else $("genBoostToBecome").textContent = display(player.generatorBoost);
 	$("genBoostAmount").textContent = display(player.generatorBoost);
-	$("bankedClicks"+index).textContent = player.banks[index-1]; //We also update the DOM text here since it only changes on click.
-	let bp = Decimal.pow(player.banks[index-1].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))); //Upgrade power is subject to change, of course.
-	if(player.upgrades.bankResetBoost.purchased.gt(0)) bp = bp.times(player.validResets);
-	$("bankPower"+index).textContent = display(bp);
+	for(i=1;i<5;i++){
+		$("bankedClicks"+i).textContent = player.banks[i-1];
+		let bp = Decimal.pow(player.banks[i-1].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1)));
+		if(player.upgrades.bankResetBoost.purchased.gt(0)) bp = bp.times(player.validResets);
+		$("bankPower"+i).textContent = display(bp);
+	}
 	if(player.power.gte(1e8)){ //Check if we can start listing the amount of Crystals on reset
 		if(typeof getCrystalsOnReset() === "string"){ //If we have a percentage of a Crystal, it will return a string
 			$("crystalConversion").textContent = "You have "+getCrystalsOnReset()+" of a Crystal"; //And we show this message
