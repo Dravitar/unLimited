@@ -442,7 +442,7 @@ function beginination() { //On webpage load,
 	load(); //We load any saved games from local storage.
 	setInterval(gameCycle, 10); //Set the game to run every 10 ms,
 	setInterval(save, 30000); //And save every 30 sec.
-	if(player.upgrades.purchaserUnlock.purchased.gt(0)) setInterval(getGenProduction(), 1000);
+	if(player.upgrades.purchaserUnlock.purchased.gt(0)) var genLoop = setInterval(getGenProduction(), 1000);
 }
 
 function save() { //Utilizes the usual Decimal save function, with an additional bit about the current DOM state
