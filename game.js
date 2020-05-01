@@ -111,14 +111,14 @@ function getTotalBoost(num) {
 
 function getGenProduction(num) {
 	for(i=0;i<4;i++){
-		if(player.columns[0]) player.generators.boost[i] = player.generators.boost[i].times(Decimal.pow(1.1,player.generatorProducers.amount[i])); //Give the right boost if the quest reward is present
-		player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorProducers.amount[i]); //Your purchased count rises,
-		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorProducers.amount[i]); //And your actual amount.
-		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorProducers.amount[i])); //Your power drops by the price
+		if(player.columns[0]) player.generators.boost[i] = player.generators.boost[i].times(Decimal.pow(1.1,player.generatorPurchasers.amount[i])); //Give the right boost if the quest reward is present
+		player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorPurchasers.amount[i]); //Your purchased count rises,
+		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorPurchasers.amount[i]); //And your actual amount.
+		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i])); //Your power drops by the price
 		if(player.generators.purchased[i].gte(Decimal.div(40,item).floor())){ //And if you have enough, then scaling scaling comes into play
-			player.generators.price[i] = player.generators[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorProducers.amount[i]);
+			player.generators.price[i] = player.generators[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorPurchasers.amount[i]);
 		} //Otherwise, it's just one layer of scaling.
-		player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generatorProducers.amount[i]);
+		player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i]);
 	}
 }
 
@@ -248,7 +248,7 @@ function returnEnergy() {
 
 function genPurchasePurchase(num) {
 	let energyReq = new Decimal(1);
-	if(player.generatorPurchasers.purchased[num-1].gt(0)) energyReq = player.generatorPurchasers.energyPrice[num-1];
+	if(player.generatorPurchasers.purchased[num-1].equals(0)) energyReq = player.generatorPurchasers.energyPrice[num-1];
 	if(player.energy.gte(energyReq)&&player.power.gte(player.generatorPurchasers.price[num-1])){
 		player.energy = player.energy.minus(energyReq);
 		player.power = player.power.minus(player.generatorPurchasers.price[num-1]);
