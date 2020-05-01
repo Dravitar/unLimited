@@ -87,7 +87,7 @@ function timeHack(num) { //timeHack takes input by the second
 	let now = new Date().getTime(); //Get the current time
 	let diff = num*(now - player.lastTick)/10; //Get the number of seconds that have passed since the last time we checked (which helpfully also gives us offline progress)
 	let getMore = false;
-	for(i=1;i<5;i++) if(player.generatorPurchasers.purchased[i].gt(0)) getMore = true;
+	for(i=0;i<4;i++) if(player.generatorPurchasers.purchased[i].gt(0)) getMore = true;
 	if(getMore) getGenProduction(diff);
 	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)).times(diff));
 	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)).times(diff));
