@@ -101,6 +101,7 @@ function timeHack(num) { //timeHack takes input by the second
 
 function getTotalBoost(num) {
 	let boost = player.generators.boost[num];
+	if(player.columns[0]) boost = boost.times(Decimal.pow(1.1,player.generators.purchased[num])); //Give the right boost if the quest reward is present	
 	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.bankResetBoost.purchased.gt(0)) boost = boost.times(player.validResets);
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
@@ -109,16 +110,17 @@ function getTotalBoost(num) {
 	return boost;
 }
 
-function getGenProduction(num) {
+function getGenProduction() {
 	for(i=0;i<4;i++){
-		if(player.columns[0]) player.generators.boost[i] = player.generators.boost[i].times(Decimal.pow(1.1,player.generatorPurchasers.amount[i])); //Give the right boost if the quest reward is present
-		player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorPurchasers.amount[i]); //Your purchased count rises,
-		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorPurchasers.amount[i]); //And your actual amount.
-		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i])); //Your power drops by the price
-		if(player.generators.purchased[i].gte(Decimal.div(40,i).floor())){ //And if you have enough, then scaling scaling comes into play
-			player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorPurchasers.amount[i]);
-		} //Otherwise, it's just one layer of scaling.
-		player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generatorPurchasers.amount[i]);
+		if(player.power.gte(player.generators.price[i])){
+			player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorPurchasers.amount[i]); //Your purchased count rises,
+			player.generators.amount[i] = player.generators.amount[i].plus(player.generatorPurchasers.amount[i]); //And your actual amount.
+			player.power = player.power.minus(player.generators.price[i]); //Your power drops by the price
+			if(player.generators.purchased[i].gte(Decimal.div(40,i).floor())){ //And if you have enough, then scaling scaling comes into play
+				player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generators.scaling[i]);
+			} //Otherwise, it's just one layer of scaling.
+			player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]);
+		}
 	}
 }
 
@@ -159,7 +161,6 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 
 function purchaseGen(item) { //Function to buy generators
 	if(player.power.gte(player.generators.price[item-1])&&player.energy.gt(0)){ //If you have energy to push buttons, and enough power
-		if(player.columns[0]) player.generators.boost[item-1] = player.generators.boost[item-1].times(1.1); //Give the right boost if the quest reward is present
 		player.generators.purchased[item-1] = player.generators.purchased[item-1].plus(1); //Your purchased count rises,
 		player.generators.amount[item-1] = player.generators.amount[item-1].plus(1); //And your actual amount.
 		player.power = player.power.minus(player.generators.price[item-1]); //Your power drops by the price
@@ -188,6 +189,7 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
 		if($(item+"cost")!=null) $(item+"cost").textContent = player.upgrades[item].price;
 		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling); //And scaling if necessary.
+		if(player.upgrades.purchaserUnlock.purchased.equals(1)) setInterval(getGenProduction(), 1000);
 	}
 	if(item == "bankUnlock") {
 		for(i=1;i<5;i++){
@@ -440,6 +442,7 @@ function beginination() { //On webpage load,
 	load(); //We load any saved games from local storage.
 	setInterval(gameCycle, 10); //Set the game to run every 10 ms,
 	setInterval(save, 30000); //And save every 30 sec.
+	if(player.upgrades.purchaserUnlock.purchased.gt(0)) setInterval(getGenProduction(), 1000);
 }
 
 function save() { //Utilizes the usual Decimal save function, with an additional bit about the current DOM state
