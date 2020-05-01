@@ -507,7 +507,7 @@ function clearSave(){
 		localStorage.removeItem("automatorArray");
 		player = getDefaultPlayer();
 		updateAll();
-	}
+	
 	/*for(i=0;i<defaultVisibilitySetup.length;i++){
 		let individualArray = defaultVisibilitySetup[i];
 		let id = individualArray[0];
@@ -516,22 +516,19 @@ function clearSave(){
 		if(individualArray[2]) fadeIn(id);
 		else if($(id).style.opacity>0.5) fadeOut(id);
 	}*/
-	for(i=1;i<player.quests.length;i++){
-		if($("quest"+i)!=null){
+		for(i=1;i<player.quests.length;i++){
 			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
 			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
+			if($("quest"+i).classList.contains("unlocked")&&i>4) $("quest"+i).classList.remove("unlocked");
 		}
-		if($("quest"+i).classList.contains("unlocked")&&i>4) $("quest"+i).classList.remove("unlocked");
-	}
-	for(i=1;i<player.columns.length;i++){
-		if($("column"+i)!=null){
+		for(i=1;i<player.columns.length;i++){
 			if($("column"+i).classList.contains("solved")) $("column"+i).classList.remove("solved");
 			if($("column"+i).classList.contains("claimed")) $("column"+i).classList.remove("claimed");
-		}
-		if(i>1&&("column"+i).classList.contains("unlocked")) $("column"+i).classList.remove("unlocked");
-	}/*
+			if(i>1&&("column"+i).classList.contains("unlocked")) $("column"+i).classList.remove("unlocked");
+		}/*
 	beginination();
 	fadeIn("start");*/
+	}
 }
 
 function checkKey(event) {
