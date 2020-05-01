@@ -380,7 +380,19 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		let num = player.upgrades.purchaserUnlock.purchased;
 		for(i=1;i<5;i++){
 			if(i<=num){
-				if(!($("
+				if(!$("generatorPurchaser"+i).classList.contains("unlocked")){
+					$("generatorPurchaser"+i).classList.add("unlocked");
+				}
+				$("purchaser"+i).style.display = "";
+			}
+			else{
+				if($("generatorPurchaser"+i).classList.contains("unlocked")){
+					$("generatorPurchaser"+i).classList.remove("unlocked");
+				}
+				$("purchaser"+i).style.display = "none";
+			}
+		}
+	}
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
 	if(player.upgrades.bankPowerup.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerup.purchased.div(10).plus(0.5));
 	if(player.upgrades.bankResetBoost.purchased.gt(0)) $("bankResetBoostArea").textContent = display(player.validResets.plus(1));
