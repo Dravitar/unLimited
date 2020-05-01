@@ -333,6 +333,11 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		let bp = Decimal.pow(player.banks[i-1].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1)));
 		if(player.upgrades.bankResetBoost.purchased.gt(0)) bp = bp.times(player.validResets);
 		$("bankPower"+i).textContent = display(bp);
+		
+		$("genPurchaseAmount"+i).textContent = player.generatorPurchasers.amount[i-1];
+		$("genPurchaseEnergyCost"+i).textContent = player.generatorPurchasers.energyPrice[i-1];
+		$("genPurchaseCost"+i).textContent = player.generatorPurchasers.price[i-1];
+		$("genPurchasePower"+i).textContent = player.generatorPurchasers.boost[i-1];
 	}
 	if(player.power.gte(1e8)){ //Check if we can start listing the amount of Crystals on reset
 		if(typeof getCrystalsOnReset() === "string"){ //If we have a percentage of a Crystal, it will return a string
