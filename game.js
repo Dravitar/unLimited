@@ -253,6 +253,7 @@ function genPurchasePurchase(num) {
 		player.energy = player.energy.minus(energyReq);
 		player.power = player.power.minus(player.generatorPurchasers.price[num-1]);
 		player.generatorPurchasers.purchased[num-1] = player.generatorPurchasers.purchased[num-1].plus(1);
+		player.generatorPurchasers.amount[num-1] = player.generatorPurchasers.amount[num-1].plus(1);
 		player.generatorPurchasers.price[num-1] = player.generatorPurchasers.price[num-1].times(player.generatorPurchasers.increase[num-1]);
 	}
 	if(player.recording) grabPiece('genPurchasePurchase('+num+')');
