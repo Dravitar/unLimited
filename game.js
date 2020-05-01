@@ -25,6 +25,7 @@ function getDefaultPlayer() { //Initial Player State
 			price: [new Decimal(1e10), new Decimal(1e20), new Decimal(1e30), new Decimal(1e50)],
 			increase: [new Decimal(100), new Decimal(1e4), new Decimal(1e8), new Decimal(1e16)],
 		},
+		isGenRunning: false,
 		crystals: new Decimal(0), // Used to purchase upgrades
 		upgrades: { //All upgrades so far
 			bankUnlock: {id: "bankUnlockUpgrade", price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
@@ -111,6 +112,7 @@ function getTotalBoost(num) {
 }
 
 function getGenProduction() {
+	if(!player.isGenRunning) player.isGenRunning = true;
 	for(i=0;i<4;i++){
 		if(player.power.gte(player.generators.price[i])&&player.generatorPurchasers.purchased[i].gt(0)){
 			player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorPurchasers.amount[i]); //Your purchased count rises,
@@ -189,7 +191,6 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		player.upgrades[item].price = player.upgrades[item].price.times(player.upgrades[item].increase); //Increase the upgrade price
 		if($(item+"cost")!=null) $(item+"cost").textContent = player.upgrades[item].price;
 		player.upgrades[item].increase = player.upgrades[item].increase.times(player.upgrades[item].scaling); //And scaling if necessary.
-		if(player.upgrades.purchaserUnlock.purchased.equals(1)) setInterval(getGenProduction(), 1000);
 	}
 	if(item == "bankUnlock") {
 		for(i=1;i<5;i++){
@@ -259,6 +260,7 @@ function genPurchasePurchase(num) {
 		player.generatorPurchasers.price[num-1] = player.generatorPurchasers.price[num-1].times(player.generatorPurchasers.increase[num-1]);
 	}
 	if(player.recording) grabPiece('genPurchasePurchase('+num+')');
+	if(!player.isGenRunning) var genLoop = setInterval(getGenProduction(), 1000);
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
@@ -442,7 +444,7 @@ function beginination() { //On webpage load,
 	load(); //We load any saved games from local storage.
 	setInterval(gameCycle, 10); //Set the game to run every 10 ms,
 	setInterval(save, 30000); //And save every 30 sec.
-	if(player.upgrades.purchaserUnlock.purchased.gt(0)) var genLoop = setInterval(getGenProduction(), 1000);
+	if(player.isGenRunning) var genLoop = setInterval(getGenProduction(), 1000);
 }
 
 function save() { //Utilizes the usual Decimal save function, with an additional bit about the current DOM state
@@ -588,6 +590,8 @@ function reset() {
 		player.energySpent = getDefaultPlayer().energySpent;
 		player.generators = getDefaultPlayer().generators;
 		player.generatorProducers = getDefaultPlayer().generatorProducers;
+		player.isGenRunning = false;
+		clearInterval(genLoop);
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		$("genBoostAmount").textContent = "1";
 		player.clicked = getDefaultPlayer().clicked;
