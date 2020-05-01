@@ -587,6 +587,7 @@ function reset() {
 		player.energy = energy;
 		player.energySpent = getDefaultPlayer().energySpent;
 		player.generators = getDefaultPlayer().generators;
+		player.generatorProducers = getDefaultPlayer().generatorProducers;
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		$("genBoostAmount").textContent = "1";
 		player.clicked = getDefaultPlayer().clicked;
