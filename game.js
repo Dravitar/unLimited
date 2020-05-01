@@ -112,7 +112,7 @@ function getTotalBoost(num) {
 
 function getGenProduction() {
 	for(i=0;i<4;i++){
-		if(player.power.gte(player.generators.price[i])){
+		if(player.power.gte(player.generators.price[i])&&player.generatorPurchasers.purchased[i].gt(0)){
 			player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorPurchasers.amount[i]); //Your purchased count rises,
 			player.generators.amount[i] = player.generators.amount[i].plus(player.generatorPurchasers.amount[i]); //And your actual amount.
 			player.power = player.power.minus(player.generators.price[i]); //Your power drops by the price
