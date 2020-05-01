@@ -113,7 +113,7 @@ function getGenProduction(num) {
 	for(i=0;i<4;i++){
 		if(player.columns[0]) player.generators.boost[i] = player.generators.boost[i].times(Decimal.pow(1.1,player.generatorProducers.amount[i])); //Give the right boost if the quest reward is present
 		player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorProducers.amount[i]); //Your purchased count rises,
-		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorProducers.amount[i])); //And your actual amount.
+		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorProducers.amount[i]); //And your actual amount.
 		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorProducers.amount[i])); //Your power drops by the price
 		if(player.generators.purchased[i].gte(Decimal.div(40,item).floor())){ //And if you have enough, then scaling scaling comes into play
 			player.generators.price[i] = player.generators[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorProducers.amount[i]);
