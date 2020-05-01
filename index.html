@@ -322,7 +322,26 @@
 		<!----------------------------------------------------------------------------------------->
 		<!--------------------------------Generator Purchasers------------------------------------->
 		<!----------------------------------------------------------------------------------------->
-				
+				<button id="generatorPurchaser1" class="upgrade generators" style="opacity:0; z-index: 1; grid-column: 2/3; grid-row: 2/3;"
+					onclick="genPurchasePurchase(1)">
+					Purchase <span id="genPurchaseAmount1">0</span> Generator 1s per second.
+					Requires <span id="genPurchaseEnergyCost1">5</span> Energy.
+				</button>
+				<button id="generatorPurchaser2" class="upgrade generators" style="opacity:0; z-index: 1; grid-column: 2/3; grid-row: 3/4;"
+					onclick="genPurchasePurchase(2)">
+					Purchase <span id="genPurchaseAmount2">0</span> Generator 2s per second.
+					Requires <span id="genPurchaseEnergyCost2">10</span> Energy.
+				</button>
+				<button id="generatorPurchaser3" class="upgrade generators" style="opacity:0; z-index: 1; grid-column: 2/3; grid-row: 4/5;"
+					onclick="genPurchasePurchase(3)">
+					Purchase <span id="genPurchaseAmount3">0</span> Generator 3s per second.
+					Requires <span id="genPurchaseEnergyCost3">15</span> Energy.
+				</button>
+				<button id="generatorPurchaser4" class="upgrade generators" style="opacity:0; z-index: 1; grid-column: 2/3; grid-row: 5/6;"
+					onclick="genPurchasePurchase(4)">
+					Purchase <span id="genPurchaseAmount14">0</span> Generator 4s per second.
+					Requires <span id="genPurchaseEnergyCost4">20</span> Energy.
+				</button>
 				
 				
 				<button id="generatorsDepartureR" class="travel generators unlocked" style="display:grid; opacity: 0; z-index: 0; grid-column: 7/8; grid-row: 4/5;font-size: 100px"
@@ -377,6 +396,14 @@
 					Full resets with greater than 1e10 Power gained boost Energy Banks.<br/>
 					Current Boost: x<span id="bankResetBoostArea">1</span>
 					Cost: 200 Crystals
+				</button>
+				<button id="purchaserUnlockUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 4/5; grid-row: 4/5; text-size: small"
+					onclick="upgrade('purchaserUnlock')">
+					Unlock Purchasers for your Generators.<br/>
+					Each Purchaser will purchase Generators at a slow rate, but they require more Energy to start up.<br/>
+					<span id="purchaser1" style="display:none; padding-left: 5px; padding-right: 5px;"><b>O</b></span> <span id="purchaser2" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span>    
+					Cost: 500 Crystals    
+					<span id="purchaser3" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span> <span id="purchaser4" style="padding-left: 5px; padding-right: 5px; display:none"><b>O</b></span><br/>
 				</button>
 			</div>
 		</div>
