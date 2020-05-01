@@ -17,6 +17,14 @@ function getDefaultPlayer() { //Initial Player State
 		},	//V Energy banked.V
 		banks: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
 		generatorBoost: new Decimal(1),
+		generatorPurchasers: {
+			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+			purchased: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+			boost: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+			energyPrice: [new Decimal(5), new Decimal(10), new Decimal(15), new Decimal(20)],
+			price: [new Decimal(1e10), new Decimal(1e20), new Decimal(1e30), new Decimal(1e50)],
+			increase: [new Decimal(100), new Decimal(1e4), new Decimal(1e8), new Decimal(1e16)],
+		},
 		crystals: new Decimal(0), // Used to purchase upgrades
 		upgrades: { //All upgrades so far
 			bankUnlock: {id: "bankUnlockUpgrade", price: new Decimal(1), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
@@ -26,6 +34,7 @@ function getDefaultPlayer() { //Initial Player State
 			freeGenerators: {id: "freeGeneratorsUpgrade", price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 			keepGenBoost: {id: "keepGenBoostUpgrade", price: new Decimal(100), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 			bankResetBoost: {id: "bankResetBoostUpgrade", price: new Decimal(200), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			purchaserUnlock: {id: "purchaserUnlockUpgrade", price: new Decimal(500), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
 		},
 		validResets: new Decimal(0),
 		clicked: { //Used to determine order of stuff appearing
@@ -77,6 +86,9 @@ function gameCycle() { //Each cycle lasts 10ms, or 0.01 seconds
 function timeHack(num) { //timeHack takes input by the second
 	let now = new Date().getTime(); //Get the current time
 	let diff = num*(now - player.lastTick)/10; //Get the number of seconds that have passed since the last time we checked (which helpfully also gives us offline progress)
+	let getMore = false;
+	for(i=1;i<5;i++) if(player.generatorPurchasers.purchased[i].gt(0)) getMore = true;
+	if(getMore) getGenProduction(diff);
 	player.generators.amount[2] = player.generators.amount[2].plus(player.generators.amount[3].times(getTotalBoost(3)).times(diff));
 	player.generators.amount[1] = player.generators.amount[1].plus(player.generators.amount[2].times(getTotalBoost(2)).times(diff));
 	player.generators.amount[0] = player.generators.amount[0].plus(player.generators.amount[1].times(getTotalBoost(1)).times(diff));
@@ -89,17 +101,25 @@ function timeHack(num) { //timeHack takes input by the second
 
 function getTotalBoost(num) {
 	let boost = player.generators.boost[num];
-	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),
-											Decimal.plus(0.5,
-												     player.upgrades.bankPowerup.purchased.times(0.1)
-												    )
-										       )
-									   );
+	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.bankResetBoost.purchased.gt(0)) boost = boost.times(player.validResets);
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
 	if(player.upgrades.generatorBoost.purchased.gt(0)) boost = boost.times(player.generatorBoost);
 	if(boost.gte(10)) checkQuest(9);
 	return boost;
+}
+
+function getGenProduction(num) {
+	for(i=0;i<4;i++){
+		if(player.columns[0]) player.generators.boost[i] = player.generators.boost[i].times(Decimal.pow(1.1,player.generatorProducers.amount[i])); //Give the right boost if the quest reward is present
+		player.generators.purchased[i] = player.generators.purchased[i].plus(player.generatorProducers.amount[i]); //Your purchased count rises,
+		player.generators.amount[i] = player.generators.amount[i].plus(player.generatorProducers.amount[i])); //And your actual amount.
+		player.power = player.power.minus(player.generators.price[i].times(player.generators.increase[i]).times(player.generatorProducers.amount[i])); //Your power drops by the price
+		if(player.generators.purchased[i].gte(Decimal.div(40,item).floor())){ //And if you have enough, then scaling scaling comes into play
+			player.generators.price[i] = player.generators[i].times(player.generators.increase[i]).times(player.generators.scaling[i]).times(player.generatorProducers.amount[i]);
+		} //Otherwise, it's just one layer of scaling.
+		player.generators.price[i] = player.generators.price[i].times(player.generators.increase[i]).times(player.generatorProducers.amount[i]);
+	}
 }
 
 function doGenBoost() {
@@ -194,6 +214,12 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 	if(item == "generatorBoost") {
 		$("generatorBoost").classList.add("unlocked");
 	}
+	if(item == "purchaserUnlock") {
+		for(i=1;i<5;i++){
+			if(player.upgrades.purchaserUnlock.purchased.gt(i-1)) $("purchaser"+i).style.display = "inline-block";
+			else $("purchaser"+i).style.display = "none";
+		}
+	}
 	if(player.recording) grabPiece('upgrade('+item+')');
 }
 
@@ -218,6 +244,18 @@ function returnEnergy() {
 		$("bankPower"+j).textContent = 0;
 	}
 	if(player.recording) grabPiece('returnEnergy()');
+}
+
+function genPurchasePurchase(num) {
+	let energyReq = new Decimal(1);
+	if(player.generatorPurchasers.purchased[num-1].gt(0)) energyReq = player.generatorPurchasers.energyPrice[num-1];
+	if(player.energy.gte(energyReq)&&player.power.gte(player.generatorPurchasers.price[num-1])){
+		player.energy = player.energy.minus(energyReq);
+		player.power = player.power.minus(player.generatorPurchasers.price[num-1]);
+		player.generatorPurchasers.purchased[num-1] = player.generatorPurchasers.purchased[num-1].plus(1);
+		player.generatorPurchasers.price[num-1] = player.generatorPurchasers.price[num-1].times(player.generatorPurchasers.increase[num-1]);
+	}
+	if(player.recording) grabPiece('genPurchasePurchase('+num+')');
 }
 
 function grow(item) { //Used to make the menu buttons all fancy
@@ -338,6 +376,11 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 			}
 		}
 	}
+	if(player.upgrades.purchaserUnlock.purchased.gt(0)){
+		let num = player.upgrades.purchaserUnlock.purchased;
+		for(i=1;i<5;i++){
+			if(i<=num){
+				if(!($("
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) $("crystalPowerArea").textContent = display(player.crystals.div(10).plus(1));
 	if(player.upgrades.bankPowerup.purchased.gt(0)) $("bankPowerArea").textContent = display(player.upgrades.bankPowerup.purchased.div(10).plus(0.5));
 	if(player.upgrades.bankResetBoost.purchased.gt(0)) $("bankResetBoostArea").textContent = display(player.validResets.plus(1));
