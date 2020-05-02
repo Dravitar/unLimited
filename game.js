@@ -7,7 +7,7 @@ function removeClass(item, itemClass){
 }
 
 function hideStory(){
-	if($("storyScreen").opacity == 1) fadeOut("storyScreen");
+	if($("storyScreen").style.opacity == 1) fadeOut("storyScreen");
 	if(player.storySeen==3){
 		$("storyScreen").textContent = story3_2;
 		if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
