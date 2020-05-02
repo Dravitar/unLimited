@@ -169,7 +169,7 @@ function crystalConversion() { //Function for actually getting Crystals. Prestig
 		player.generators = getDefaultPlayer().generators; //and your generators
 		if(player.upgrades.keepGenBoost.purchased.equals(0)) player.generatorBoost = getDefaultPlayer().generatorBoost;
 		checkQuest(6);
-		checkQuest(10);
+		if(player.crystals.gte(50)) checkQuest(10);
 	}
 }
 
