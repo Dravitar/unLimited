@@ -523,6 +523,13 @@ function clearSave(){
 	}*/
 		for(i=1;i<5;i++){
 			if($("generatorPurchaser"+i).classList.contains("unlocked")) $("generatorPurchaser"+i).classList.remove("unlocked");
+		}
+		let allUps = Document.getElementsByClassName("upgrades");
+		for(i=0;i<allUps.length;i++){
+			if(allUps[i].id!="bankUnlockUpgrade"||allUps[i].id!="upgradesDepartureL"){
+				if(allUps[i].classList.contains("unlocked")) allUps[i].classList.remove("unlocked");
+			}
+		}
 		for(i=1;i<player.quests.length;i++){
 			if($("quest"+i).classList.contains("solved")) $("quest"+i).classList.remove("solved");
 			if($("quest"+i).classList.contains("claimed")) $("quest"+i).classList.remove("claimed");
@@ -532,7 +539,8 @@ function clearSave(){
 			if($("column"+i).classList.contains("solved")) $("column"+i).classList.remove("solved");
 			if($("column"+i).classList.contains("claimed")) $("column"+i).classList.remove("claimed");
 			if(i>1&&("column"+i).classList.contains("unlocked")) $("column"+i).classList.remove("unlocked");
-		}/*
+		}
+		player.genLoop = false;/*
 	beginination();
 	fadeIn("start");*/
 	}
@@ -581,6 +589,12 @@ function reset() {
 					break;
 				default:
 					break;
+			}
+		}
+		let mainScreen = Document.getElementsByClassName("main");
+		for(i=0;i<mainScreen.length;i++){
+			if(mainScreen[i].id!="start"){
+				if(mainScreen[i].classList.contains("unlocked")) mainScreen[i].classList.remove("unlocked");
 			}
 		}
 		for(i=0;i<4;i++){
