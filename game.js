@@ -599,7 +599,7 @@ function reset() {
 		}
 		for(i=0;i<4;i++){
 			let j = i+1;
-			if(player.upgrades.bankUnlock.purchased.lt(i+1)&&$("clickbank"+j).classList.contains("unlocked")) {
+			if(player.upgrades.bankUnlock.purchased.lt(i+1)&&$("clickBank"+j).classList.contains("unlocked")) {
 				$("clickBank"+j).classList.remove("unlocked");
 			}
 			if(player.upgrades.purchaserUnlock.purchased.lt(i+1)&&("generatorPurchaser"+j).classList.contains("unlocked")) {
