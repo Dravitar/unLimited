@@ -524,7 +524,7 @@ function clearSave(){
 		for(i=1;i<5;i++){
 			if($("generatorPurchaser"+i).classList.contains("unlocked")) $("generatorPurchaser"+i).classList.remove("unlocked");
 		}
-		let allUps = Document.getElementsByClassName("upgrades");
+		let allUps = document.getElementsByClassName("upgrades");
 		for(i=0;i<allUps.length;i++){
 			if(allUps[i].id!="bankUnlockUpgrade"||allUps[i].id!="upgradesDepartureL"){
 				if(allUps[i].classList.contains("unlocked")) allUps[i].classList.remove("unlocked");
@@ -591,7 +591,7 @@ function reset() {
 					break;
 			}
 		}
-		let mainScreen = Document.getElementsByClassName("main");
+		let mainScreen = document.getElementsByClassName("main");
 		for(i=0;i<mainScreen.length;i++){
 			if(mainScreen[i].id!="start"){
 				if(mainScreen[i].classList.contains("unlocked")) mainScreen[i].classList.remove("unlocked");
