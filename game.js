@@ -708,3 +708,8 @@ function bank(amount, index) {
 
 function bankBoost() {
 }
+
+function devReset(){
+	player.energy = new Decimal(0);
+	reset();
+}
