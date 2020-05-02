@@ -6,6 +6,10 @@ function removeClass(item, itemClass){
 	if($(item).classList.contains(itemClass)) $(item).classList.remove(itemClass);
 }
 
+function hideStory(){
+	if($("scoryScreen").opacity == 1)) fadeOut("storyScreen");
+}
+
 function getDefaultPlayer() { //Initial Player State
 	return {
 		energy: new Decimal(4), //Enough energy to trigger the first two quests
