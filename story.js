@@ -16,4 +16,5 @@ let story3_2 = "When you run out of energy, you return to the start of your jour
 
 let story3_3 = "In order for you to accomplish the next set of challenges, you will need to increase your starting energy.\n"+ 
     " You can find the list of challenges below.\n"+ 
+    " Make sure you accept the quests or you won'y gain the rewards.\n"+
     " Don't worry, all green items will not cost you energy. Good luck.";
