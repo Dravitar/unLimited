@@ -12,11 +12,13 @@ function hideStory(){
 		$("storyScreen").textContent = story3_2;
 		if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 		player.storySeen++;
+		return;
 	}
 	if(player.storySeen==4){
 		$("storyScreen").textContent = story3_3;
 		if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 		player.storySeen++;
+		return;
 	}
 }
 
