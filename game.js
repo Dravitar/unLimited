@@ -10,12 +10,12 @@ function hideStory(){
 	if($("storyScreen").opacity == 1) fadeOut("storyScreen");
 	if(player.storySeen==3){
 		$("storyScreen").textContent = story3_2;
-		fadeIn("storyScreen");
+		if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 		player.storySeen++;
 	}
 	if(player.storySeen==4){
 		$("storyScreen").textContent = story3_3;
-		fadeIn("storyScreen");
+		if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 		player.storySeen++;
 	}
 }
@@ -664,7 +664,7 @@ function reset() {
 		resetView();
 		if(player.storySeen == 2){
 			$("storyScreen").textContent = story3;
-			fadeIn("storyScreen");
+			if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 			player.storySeen++;
 		}			
 	}
