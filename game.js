@@ -6,6 +6,10 @@ function removeClass(item, itemClass){
 	if($(item).classList.contains(itemClass)) $(item).classList.remove(itemClass);
 }
 
+function addClass(item, itemClass){
+	if(!$(item).classList.contains(itemClass)) $(item).classList.add(itemClass);
+}
+
 function hideStory(){
 	if($("storyScreen").style.opacity == 1) fadeOut("storyScreen");
 	if(player.storySeen==3){
@@ -525,6 +529,8 @@ function load() { //When we load the game, we load the player state, the DOM sta
 			else if($(id).style.opacity>0.5) fadeOut(id);
 		}
 	}
+	addClass("upgradeDepartureL","unlocked");
+	addClass("bankUnlockUpgrade","unlocked");
 	if(player.currentZone != "main") fadeOut("start");
 	if(player.automating){
 		checkOfflineAutomation();
