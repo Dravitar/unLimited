@@ -529,7 +529,7 @@ function load() { //When we load the game, we load the player state, the DOM sta
 			else if($(id).style.opacity>0.5) fadeOut(id);
 		}
 	}
-	addClass("upgradeDepartureL","unlocked");
+	addClass("upgradesDepartureL","unlocked");
 	addClass("bankUnlockUpgrade","unlocked");
 	if(player.currentZone != "main") fadeOut("start");
 	if(player.automating){
