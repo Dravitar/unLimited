@@ -585,6 +585,12 @@ function reset() {
 		}
 		for(i=0;i<4;i++){
 			let j = i+1;
+			if(player.upgrades.bankUnlock.purchased.lt(i+1)&&$("clickbank"+j).classList.contains("unlocked")) {
+				$("clickBank"+j).classList.remove("unlocked");
+			}
+			if(player.upgrades.purchaserUnlock.purchased.lt(i+1)&&("generatorPurchaser"+j).classList.contains("unlocked")) {
+				$("generatorPurchaser"+j).classList.remove("unlocked");
+			}
 			player.banks[i] = new Decimal(0);
 			$("bankedClicks"+j).textContent = 0;
 			$("bankPower"+j).textContent = 0;
@@ -596,6 +602,9 @@ function reset() {
 		player.generatorProducers = getDefaultPlayer().generatorProducers;
 		if(player.isGenRunning) clearInterval(genLoop);
 		player.isGenRunning = false;
+		if(player.upgrades.generatorBoost.purchased.lt(1)&&$("generatorBoost").classList.contains("unlocked")){
+			$("generatorBoost").classList.remove("unlocked");
+		}
 		player.generatorBoost = getDefaultPlayer().generatorBoost;
 		$("genBoostAmount").textContent = "1";
 		player.clicked = getDefaultPlayer().clicked;
