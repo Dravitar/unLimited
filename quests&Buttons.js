@@ -8,7 +8,7 @@ function checkZero() {
 		}
 		if(player.storySeen==1){
 			$("storyScreen").textContent = story2;
-			fadeIn("storyScreen");
+			if($("storyScreen").style.opacity != 1) fadeIn("storyScreen");
 			player.storySeen++;
 		}
 	}
