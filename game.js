@@ -623,7 +623,7 @@ function reset() {
 		}
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
 		if(player.upgrades.bankUnlock.purchased.lt(4)){
-			removeClass("crystalPowerUpgrade","unlocked");
+			removeClass("crystalPowerupUpgrade","unlocked");
 			removeClass("generatorBoostUpgrade","unlocked");
 			removeClass("bankPowerupUpgrade","unlocked");
 			removeClass("freeGeneratorsUpgrade","unlocked");
