@@ -595,6 +595,7 @@ function reset() {
 		for(i=0;i<mainScreen.length;i++){
 			if(mainScreen[i].id!="start"){
 				if(mainScreen[i].classList.contains("unlocked")) mainScreen[i].classList.remove("unlocked");
+				if(mainScreen[i].style.opacity == 1) fadeOut(mainScreen[i]);
 			}
 		}
 		for(i=0;i<4;i++){
@@ -641,6 +642,7 @@ function resetView() {
 		if($(id).style.zIndex<0) $(id).style.zIndex = 1;
 		if($(id).style.zIndex>1) $(id).style.zIndex = 1;
 	}
+	
 	fadeIn("start");
 	if(player.quests[7]){
 		press("start");
