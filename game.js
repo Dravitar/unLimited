@@ -602,7 +602,7 @@ function reset() {
 			if(player.upgrades.bankUnlock.purchased.lt(i+1)&&$("clickBank"+j).classList.contains("unlocked")) {
 				$("clickBank"+j).classList.remove("unlocked");
 			}
-			if(player.upgrades.purchaserUnlock.purchased.lt(i+1)&&("generatorPurchaser"+j).classList.contains("unlocked")) {
+			if(player.upgrades.purchaserUnlock.purchased.lt(i+1)&&$("generatorPurchaser"+j).classList.contains("unlocked")) {
 				$("generatorPurchaser"+j).classList.remove("unlocked");
 			}
 			player.banks[i] = new Decimal(0);
