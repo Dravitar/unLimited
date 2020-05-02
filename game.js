@@ -595,7 +595,7 @@ function reset() {
 		for(i=0;i<mainScreen.length;i++){
 			if(mainScreen[i].id!="start"){
 				if(mainScreen[i].classList.contains("unlocked")) mainScreen[i].classList.remove("unlocked");
-				if(mainScreen[i].style.opacity == 1) fadeOut(mainScreen[i]);
+				if(mainScreen[i].style.opacity == 1) fadeOut(mainScreen[i].id);
 			}
 		}
 		for(i=0;i<4;i++){
