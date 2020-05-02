@@ -197,3 +197,11 @@
 	left: 0px;
 	top: 0px;
 }
+
+.storyScreen {
+	top: 300px;
+	height: 400px;
+	width: 600px;
+	position: fixed;
+	margin: auto;
+}
