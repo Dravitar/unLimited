@@ -6,6 +6,11 @@ function checkZero() {
 			$("quest2").classList.add("solved");
 			$("quest2").classList.remove("unsolved");
 		}
+		if(player.storySeen==1){
+			$("storyScreen").textContent = story2;
+			fadeIn("storyScreen");
+			player.storySeen++;
+		}
 	}
 }
 
@@ -14,6 +19,11 @@ function press(id) {
 		switch(id) {
 			case "start":
 				if(!player.clicked.start){
+					if(player.storySeen==0){
+						$("storyScreen").textContent = story1;
+						fadeIn("storyScreen");
+						player.storySeen++;
+					}
 					fadeIn('showEnergy');
 					$("showEnergy").classList.add("unlocked");
 					player.clicked.start = true;
