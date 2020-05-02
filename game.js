@@ -8,6 +8,16 @@ function removeClass(item, itemClass){
 
 function hideStory(){
 	if($("scoryScreen").opacity == 1)) fadeOut("storyScreen");
+	if(player.storySeen==3){
+		$("storyScreen").textContent = story3_2;
+		fadeIn("storyScreen");
+		player.storySeen++;
+	}
+	if(player.storySeen==4){
+		$("storyScreen").textContent = story3_3;
+		fadeIn("storyScreen");
+		player.storySeen++;
+	}
 }
 
 function getDefaultPlayer() { //Initial Player State
@@ -652,6 +662,11 @@ function reset() {
 		player.clicked = getDefaultPlayer().clicked;
 		player.stats.resetTime = new Date().getTime();
 		resetView();
+		if(player.storySeen == 2){
+			$("storyScreen").textContent = story3;
+			fadeIn("storyScreen");
+			player.storySeen++;
+		}			
 	}
 }
 
