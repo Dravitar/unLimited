@@ -2,9 +2,8 @@ function $(x) {return document.getElementById(x);} //Shortening function. Easier
 
 function display(x) {return x.toPrecision(4);} //Will be replaced with more in-depth display if possible.
 
-function togClass(item, itemClass){
+function removeClass(item, itemClass){
 	if($(item).classList.contains(itemClass)) $(item).classList.remove(itemClass);
-	else $(item).classList.add(itemClass);
 }
 
 function getDefaultPlayer() { //Initial Player State
@@ -40,6 +39,7 @@ function getDefaultPlayer() { //Initial Player State
 			freeGenerators: {id: "freeGeneratorsUpgrade", price: new Decimal(25), purchased: new Decimal(0), increase: new Decimal(4.25), scaling: new Decimal(1.1), max: new Decimal(4)},
 			keepGenBoost: {id: "keepGenBoostUpgrade", price: new Decimal(100), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 			bankResetBoost: {id: "bankResetBoostUpgrade", price: new Decimal(200), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
+			generatorSpreadBoost: {id: "generatorSpreadBoostUpgrade", price: new Decimal(250), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(1)},
 			purchaserUnlock: {id: "purchaserUnlockUpgrade", price: new Decimal(500), purchased: new Decimal(0), increase: new Decimal(1), scaling: new Decimal(1), max: new Decimal(4)},
 		},
 		validResets: new Decimal(0),
@@ -108,6 +108,13 @@ function timeHack(num) { //timeHack takes input by the second
 function getTotalBoost(num) {
 	let boost = player.generators.boost[num];
 	if(player.columns[0]) boost = boost.times(Decimal.pow(1.1,player.generators.purchased[num])); //Give the right boost if the quest reward is present	
+	if(player.upgrades.generatorSpreadBoost.purchased.gt(0)){
+		let otherTotal = new Decimal(0);
+		for(i=0;i<4;i++){
+			if(num!=i+1) otherTotal = otherTotal.plus(player.generators.purchased[i]);
+		}
+		boost = boost.times(Decimal.pow(1.05,otherTotal));
+	}
 	if(player.upgrades.bankUnlock.purchased.gt(0))	boost = boost.times(Decimal.pow(player.banks[num].plus(1),Decimal.plus(0.5,player.upgrades.bankPowerup.purchased.times(0.1))));
 	if(player.upgrades.bankResetBoost.purchased.gt(0)) boost = boost.times(player.validResets);
 	if(player.upgrades.crystalPowerup.purchased.gt(0)) boost = boost.times(player.crystals.div(10).plus(1));
@@ -218,6 +225,10 @@ function upgrade(item) { //Purchase an upgrade for Crystals
 		fadeIn("keepGenBoostUpgrade");
 		$("bankResetBoostUpgrade").classList.add("unlocked");
 		fadeIn("bankResetBoostUpgrade");
+		$("generatorSpreadBoostUpgrade").classList.add("unlocked");
+		fadeIn("generatorSpreadBoostUpgrade");
+		$("purchaserUnlockUpgrade").classList.add("unlocked");
+		fadeIn("purchaserUnlockUpgrade");
 	}
 	if(item == "generatorBoost") {
 		$("generatorBoost").classList.add("unlocked");
@@ -611,6 +622,18 @@ function reset() {
 			$("bankPower"+j).textContent = 0;
 		}
 		for(i=0;i<player.upgrades.length;i++) energy = energy - player.upgrades[i].purchased;
+		if(player.upgrades.bankUnlock.purchased.lt(4)){
+			removeClass("crystalPowerUpgrade","unlocked");
+			removeClass("generatorBoostUpgrade","unlocked");
+			removeClass("bankPowerupUpgrade","unlocked");
+			removeClass("freeGeneratorsUpgrade","unlocked");
+		}
+		if(player.upgrades.freeGenerators.purchased.lt(1)){
+			removeClass("keepGenBoostUpgrade","unlocked");
+			removeClass("bankResetBoostUpgrade","unlocked");
+			removeClass("generatorSpreadBoostUpgrade","unlocked");
+			removeClass("purchaserUnlockUpgrade","unlocked");
+		}
 		player.energy = energy;
 		player.energySpent = getDefaultPlayer().energySpent;
 		player.generators = getDefaultPlayer().generators;
