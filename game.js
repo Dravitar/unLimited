@@ -351,21 +351,27 @@ function formatTime(ms) {
 
 function updateAll() { //Big papa update function. Gotta check and update everything constantly
 	if(player.energy.gte(player.stats.maxEnergy)){
-		$("maxEnergy").textContent = display(player.energy);
 		player.stats.maxEnergy = player.energy;
+		$("maxEnergy").textContent = display(player.stats.maxEnergy);
 	}
 	if(player.power.gte(player.stats.maxPower)){
-		$("maxPower").textContent = display(player.power);
 		player.stats.maxPower = player.power;
+		$("maxPower").textContent = display(player.stats.maxPower);
 	}
 	if(player.crystals.gte(player.stats.maxCrystals)){
-		$("maxCrystals").textContent = display(player.crystals);
 		player.stats.maxCrystals = player.crystals;
+		$("maxCrystals").textContent = display(player.stats.maxCrystals);
 	}
 	$("resetTime").textContent = formatTime(new Date().getTime() - player.stats.resetTime);
 	$("totalTime").textContent = formatTime(new Date().getTime() - player.stats.totalTime);
-	if($("reset").style.opacity==1&&player.energy.gt(0)) fadeOut("reset");
-	if(player.energy.equals(0)&&$("reset").style.opacity==0) fadeIn("reset");
+	if($("reset").style.opacity==1&&player.energy.gt(0)){
+		fadeOut("reset");
+		fadeIn("currentPower");
+	}
+	if(player.energy.equals(0)&&$("reset").style.opacity==0){
+		fadeIn("reset");
+		fadeOut("currentPower");
+	}
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
 	$("currentCrystals").textContent = display(player.crystals); //Update current Crystals
