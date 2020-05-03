@@ -313,14 +313,12 @@ function grow(item) { //Used to make the menu buttons all fancy
 	$(id).classList.toggle("expandButtonActive");//		\| |/
 	$(id).classList.toggle(item+"ExpandButtonActive");//	 \ /
 	let list = document.getElementsByClassName(item);// Now we get all the items that are a part of the menu screen we are moving
-	var big;
-	list[0].style.display=="none" ? big=false : big=true; //Toggle
-	if(!big){ //If the menu element is small, then we set the inner elements to display as soon as the animation is complete
+	if($(id).classList.contains("expandButtonActive")){ //If the menu element is small, then we set the inner elements to display as soon as the animation is complete
 		setTimeout(function() {
 			for(i=0;i<list.length;i++) list[i].style.display = "block";
 		}, 1750); //And the animation lasts 1.75s, which will eventually be a changeable amount in the menu
 	}
-	else if(big) for(i=0;i<list.length;i++) list[i].style.display = "none"; //If the menu element is big, that means it's going away so vanish the inner elements
+	else if(!$(id).classList.contains("expandButtonActive")) for(i=0;i<list.length;i++) list[i].style.display = "none"; //If the menu element is big, that means it's going away so vanish the inner elements
 }
 
 function formatTime(ms) {
