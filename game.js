@@ -371,11 +371,11 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	$("totalTime").textContent = formatTime(new Date().getTime() - player.stats.totalTime);
 	if($("reset").style.opacity==1&&player.energy.gt(0)){
 		fadeOut("reset");
-		setTimeout(function(){fadeIn("currentPower")},1000);
+		setTimeout(function(){fadeIn("energyArea")},1000);
 	}
 	if(player.energy.equals(0)&&$("reset").style.opacity==0){
 		setTimeout(function(){fadeIn("reset")},1000);
-		fadeOut("currentPower");
+		fadeOut("energyArea");
 	}
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
