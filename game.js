@@ -374,8 +374,8 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		setTimeout(function(){fadeIn("energyArea")},1000);
 	}
 	if(player.energy.equals(0)&&$("reset").style.opacity==0){
-		setTimeout(function(){fadeIn("reset")},1000);
 		fadeOut("energyArea");
+		setTimeout(function(){fadeIn("reset")},1000);
 	}
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
 	$("currentPower").textContent = display(player.power); //Update current power
