@@ -5,7 +5,7 @@ function moveFrom(place,des) {
   let toHide = document.getElementsByClassName(orig);
   fadeOutAll(toHide);
   let toShow = document.getElementsByClassName(dest);
-  fadeInAll(toShow);
+  setTimeout(fadeInAll(toShow), 1000);
   let allTravel = document.getElementsByClassName("travel");
   for(i=0;i<allTravel.length;i++){
     let id = des+"Departure";
