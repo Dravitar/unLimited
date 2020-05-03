@@ -16,25 +16,27 @@ function moveFrom(place,des) {
 
 function fadeIn(x) {
   let elem = $(x);
-  if(player.automating){
-    if(x=="automationScreen"||elem.classList.contains("travel")){
-      elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
+  if(elem.classList.contains("unlocked")){
+    if(player.automating){
+     if(x=="automationScreen"||elem.classList.contains("travel")){
+       elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+50);
+     }
+     else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10)
     }
-    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10)
-  } else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
-  let op = 0;
-  let max = 1;
-  if(x=="automationScreen") max = 0.2;
-  var fade = setInterval(function() {
-    op += 0.02;
-    elem.style.setProperty("opacity", op);
-    if(op>= max){
-      elem.style.setProperty("opacity", max);
-      clearInterval(fade);
-    }
-  }, 10);
+    else elem.style.setProperty("z-index",parseInt(elem.style.zIndex)+10);
+    let op = 0;
+    let max = 1;
+    if(x=="automationScreen") max = 0.2;
+    var fade = setInterval(function() {
+      op += 0.02;
+      elem.style.setProperty("opacity", op);
+      if(op>= max){
+        elem.style.setProperty("opacity", max);
+        clearInterval(fade);
+      }
+    }, 10);
+  }
 }
-
 function fadeInAll(set) {
   let op = 0;
   for(i=0;i<set.length;i++){
