@@ -63,8 +63,6 @@ function press(id) {
 					$("showPower").classList.add("unlocked");
 					$("mainDepartureD").classList.add("unlocked");
 					if(player.quests[4]) $("showCrystals").classList.add("unlocked");
-					if(player.quests[5]) $("showUpgrades").classList.add("unlocked");
-					if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
 					if($("showCrystals").classList.contains("unlocked")) fadeIn('showCrystals');
 					player.clicked.showQuests = true;
 					player.energy = player.energy.minus(1);
@@ -111,6 +109,8 @@ function press(id) {
 					$('crystalArea').classList.add("unlocked");
 					fadeIn('crystalConversion');
 					$('crystalConversion').classList.add("unlocked");
+					if(player.quests[5]) $("showUpgrades").classList.add("unlocked");
+					if($("showUpgrades").classList.contains("unlocked")) fadeIn('showUpgrades');
 					player.clicked.showCrystals = true;
 					player.energy = player.energy.minus(1);
 					player.energySpent = player.energySpent.plus(1);
