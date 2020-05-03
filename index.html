@@ -369,25 +369,25 @@
 				</button>
 				<button id="crystalPowerupUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column:4/5; grid-row:3/4; text-size: small"
 					onclick="upgrade('crystalPowerup')">
-					Unspent Crystals power up Generators.<br/>
+					Unspent Crystals power up Generators by 1+(Crystals/10)x.<br/>
 					Current Bonus: <span id="crystalPowerArea">1</span>x<br/>
 					Cost: 5 Crystals
 				</button>
 				<button id="generatorBoostUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 3/4; text-size: small"
 					onclick="upgrade('generatorBoost')">
 					Unlock Generator Boost.<br/>
-					You can reset your Generators for a boost based on Power produced.<br/>
+					You can reset your Generators for a boost equal to log10(Power).<br/>
 					Cost: 10 Crystals
 				</button>
 				<button id="bankPowerupUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 4/5; text-size: small"
 					onclick="upgrade('bankPowerup')">
-					Improve the boost formula for Energy Banks.<br/>
+					Improve the boost formula for Energy Banks by +0.1.<br/>
 					Current Boost: ^<span id="bankPowerArea">0.5</span>
 					Cost: <span id="bankPowerupCost">20</span> Crystals
 				</button>
 				<button id="freeGeneratorsUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 5/6; grid-row: 5/6; text-size: small"
 					onclick="upgrade('freeGenerators')">
-					Every <span id="freeGeneratorsArea">5</span> Generators, you can purchase one without spending Energy.<br/>
+					Every <span id="freeGeneratorsArea">5</span> Generators, you can purchase one without spending Energy. Each upgrade decreases the amount between free Generators, to a minimum of 2.<br/>
 					Cost: <span id="freeGeneratorsCost">25</span> Crystals
 				</button>
 				<button id="keepGenBoostUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 4/5; grid-row: 5/6; text-size: small"
@@ -397,7 +397,7 @@
 				</button>
 				<button id="bankResetBoostUpgrade" class="upgrades upgrade" style="opacity: 0; z-index: 1; grid-column: 3/4; grid-row: 5/6; text-size: small"
 					onclick="upgrade('bankResetBoost')">
-					Full resets with greater than 1e10 Power gained boost Energy Banks.<br/>
+					Full resets with greater than 1e10 Power gained multiply Energy Banks by number of resets.<br/>
 					Current Boost: x<span id="bankResetBoostArea">1</span>
 					Cost: 200 Crystals
 				</button>
