@@ -78,7 +78,9 @@ function getDefaultPlayer() { //Initial Player State
 		recording: false,
 		automating: false,
 		automationArray: [],
-		automatedCrystals: 0,
+		automationLength: new Decimal(0),
+		automationCrystals: new Decimal(0),
+		automationRatio: new Decimal(0),
 		lastAutomationAction: new Date().getTime(),
 		lastTick: new Date().getTime(), //Timing is everything
 		stats: {maxEnergy:4, maxPower:10, maxCrystals:0, resetTime:new Date().getTime(), totalTime:new Date().getTime(), storyPercentage:0,},
@@ -497,6 +499,14 @@ function beginination() { //On webpage load,
 }
 
 function save() { //Utilizes the usual Decimal save function, with an additional bit about the current DOM state
+	if(player.automating){
+		if(player.automationArray[0][0]!=null){
+			for(i=0;i<player.automationArray.length;i++){
+				player.automationLength = player.automationLength.plus(player.automationArray[i][0]);
+			}
+			player.automationRatio = player.automationCrystals.div(player.automationLength);
+		}
+	}
 	visibilityArrayForLoading = []; //This was all explained above with the initial visibility state.
 	document.querySelectorAll('body *').forEach(function(node) {
 		let individualArray = [];
@@ -541,7 +551,12 @@ function load() { //When we load the game, we load the player state, the DOM sta
 	addClass("bankUnlockUpgrade","unlocked");
 	if(player.currentZone != "main") fadeOut("start");
 	if(player.automating){
-		checkOfflineAutomation();
+		let timeOffline = new Date().getTime() - player.lastTick;
+		if(player.automationRatio.times(timeOffline).gt(1)){
+			let offlineCrystals = player.automationRatio.times(timeOffline).floor();
+			alert("While offline, your automator produced "+offlineCrystals+" Crystals.");
+			player.crystals = player.crystals.plus(offlineCrystals);
+		}
 		fadeOut("record");
 		fadeOut("playAutomation");
 		fadeIn("stopAutomation");
