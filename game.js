@@ -371,10 +371,10 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 	$("totalTime").textContent = formatTime(new Date().getTime() - player.stats.totalTime);
 	if($("reset").style.opacity==1&&player.energy.gt(0)){
 		fadeOut("reset");
-		setTimeout(fadeIn("currentPower"),1000);
+		setTimeout(function(){fadeIn("currentPower")},1000);
 	}
 	if(player.energy.equals(0)&&$("reset").style.opacity==0){
-		setTimeout(fadeIn("reset"),1000);
+		setTimeout(function(){fadeIn("reset")},1000);
 		fadeOut("currentPower");
 	}
 	$("currentEnergy").textContent = display(player.energy); //Update current energy
@@ -543,7 +543,7 @@ function load() { //When we load the game, we load the player state, the DOM sta
 			let id = individualArray[0];
 			if(individualArray[1]) $(id).classList.add("unlocked");
 			else if($(id).classList.contains("unlocked")) $(id).classList.remove("unlocked");
-			if(individualArray[2]) setTimeout(fadeIn(id),1000);
+			if(individualArray[2]) setTimeout(function(){fadeIn(id)},1000);
 			else if($(id).style.opacity>0.5) fadeOut(id);
 		}
 	}
@@ -559,7 +559,7 @@ function load() { //When we load the game, we load the player state, the DOM sta
 		}
 		fadeOut("record");
 		fadeOut("playAutomation");
-		setTimeout(fadeIn("stopAutomation"),1000);
+		setTimeout(function(){fadeIn("stopAutomation")},1000);
 	}
 	//event.stopPropagation();
 	return player;
@@ -721,7 +721,7 @@ function resetView() {
 		if($(id).style.zIndex>1) $(id).style.zIndex = 1;
 	}
 	
-	setTimeout(fadeIn("start"),1000);
+	setTimeout(function(){fadeIn("start")},1000);
 	if(player.quests[7]){
 		press("start");
 		press("showEnergy");
