@@ -536,7 +536,7 @@ function exportSave() {
 	var tempInput = document.createElement("input"); //You have to create a new document element
 	tempInput.style = "position: absolute; left: -1000px; top: -1000px"; //Say it's out of the window view
 	tempInput.value = btoa(JSON.stringify(player)); //Fill it with the player save file
-	tempInput.value += "btoa(JSON.stringify(visibilityArrayForLoading));
+	tempInput.value += btoa(JSON.stringify(visibilityArrayForLoading));
 	tempInput.value += btoa(JSON.stringify(player.automationArray));
 	document.body.appendChild(tempInput); //Stick the window on the main document
 	tempInput.select(); //Select the window
