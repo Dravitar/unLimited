@@ -373,7 +373,7 @@ function updateAll() { //Big papa update function. Gotta check and update everyt
 		fadeOut("reset");
 		setTimeout(function(){fadeIn("energyArea")},1000);
 	}
-	if(player.energy.equals(0)&&$("reset").style.opacity==0){
+	if(player.energy.equals(0)&&$("energyArea").style.opacity==1){
 		fadeOut("energyArea");
 		setTimeout(function(){fadeIn("reset")},1000);
 	}
