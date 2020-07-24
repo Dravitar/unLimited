@@ -308,8 +308,8 @@ function genPurchasePurchase(num) {
 
 function grow(item) { //Used to make the menu buttons all fancy
 	let id = item+"Section"; //Make the item id
-	if($(id).style.zIndex == 23) $(id).style.zIndex = 3; //Toggle the zIndex of the item
-	else $(id).style.zIndex = 23; //Toggle
+	if($(id).style.zIndex == 43) $(id).style.zIndex = 3; //Toggle the zIndex of the item
+	else $(id).style.zIndex = 43; //Toggle
 	$(id).classList.toggle("expandButton"); //Switch between the expanded and not expanded classes
 	$(id).classList.toggle(item+"ExpandButton");//		 | |
 	$(id).classList.toggle("expandButtonActive");//		\| |/
